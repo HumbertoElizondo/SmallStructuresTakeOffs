@@ -1,0 +1,147 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.ResultsVM>
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h1>Results: C-15.80 CATCH BASINS</h1>
+
+@if (Model.Count() == 0)
+{
+    <div class="row">
+        <div class="col text-center p-4"><h3>No Data!</h3></div>
+    </div>
+}
+else
+{
+    <table class="table table-responsive-sm">
+        <thead>
+            <tr>
+                @*<th>
+            @Html.DisplayNameFor(model => model.ResVMId)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.ResVMHWcode)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.ResVMHWStrId)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.ResVMHWDescription)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMPourBottomCY)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMPourWallCY)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMRebNo4Req)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMRebNo4Purch)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMFormFab)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMFormBase)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.ResVMFormWall)
+                </th>
+
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.SqRingRebEa)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.SqRingRebL)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.VertLsRebEa)
+                </th>
+                <th class="text-right">
+                    @Html.DisplayNameFor(model => model.VertLsRebL)
+                </th>
+
+                @*<th>ACTIONS</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.ResVMId)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResVMHWcode)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.ResVMHWStrId)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResVMHWDescription)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMPourBottomCY)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMPourWallCY)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMRebNo4Req)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMRebNo4Purch)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMFormFab)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMFormBase)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ResVMFormWall)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.SqRingRebEa)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.SqRingRebL)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.VertLsRebEa)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.VertLsRebL)
+                </td>
+
+                @*<td>
+            <a asp-action="Edit" asp-route-id="@item.ResourceVMFKId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ResourceVMFKId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ResourceVMFKId">Delete</a>
+        </td>*@
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td class="text-right" colspan="2">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourWallCY).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebNo4Req).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebNo4Purch).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormFab).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormBase).ToString("0.00")</td>
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormWall).ToString("0.00")</td>
+
+
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+}
+
+

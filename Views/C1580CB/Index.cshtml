@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.C1580CB>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.C1580CBCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C1580CBDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C1580CBHeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C1580Reb4FandI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C1580Reb4Purch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.C1580CBCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C1580CBDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C1580CBHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C1580Reb4FandI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C1580Reb4Purch)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.C1580CBId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.C1580CBId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.C1580CBId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Results">Results</a>
+</div>
+
+
