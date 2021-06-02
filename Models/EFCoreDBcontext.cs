@@ -11,6 +11,7 @@ namespace SmallStructuresTakeOffs.Models
         public EFCoreDBcontext(DbContextOptions<EFCoreDBcontext> opts)
             : base(opts) { }
 
+        public DbSet<SD630Headwall> SD630Headwalls { get; set; }
         public DbSet<SmallStructure> SmallStructures { get; set; }
         public DbSet<C1580CB> C1580CBs { get; set; }
 

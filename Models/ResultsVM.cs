@@ -18,19 +18,19 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "HW Description")]
         public string ResVMHWDescription { get; set; }
 
-        [Display(Name = "PourBase (cy)")]
+        [Display(Name = "Pour Bottom (cy)")]
         public decimal ResVMPourBottomCY { get; set; }
 
-        [Display(Name = "PourWall (cy)")]
+        [Display(Name = "Pour Top (cy)")]
         public decimal ResVMPourWallCY { get; set; }
 
-        [Display(Name = "FormBase (sf)")]
+        [Display(Name = "Form Base (sf)")]
         public decimal ResVMFormBase { get; set; }
 
-        [Display(Name = "FormWall (sf)")]
+        [Display(Name = "Form Wall (sf)")]
         public decimal ResVMFormWall { get; set; }
 
-        [Display(Name = "FormFab (sf)")]
+        [Display(Name = "Form Fab (sf)")]
         public decimal ResVMFormFab { get; set; }
 
         [Display(Name = "Reb#4 F&I (lb)")]
@@ -39,7 +39,7 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Reb#4 Buy (lb)")]
         public decimal ResVMRebNo4Purch { get; set; }
 
-        [Display(Name = "SqRing (ea)")]
+        [Display(Name = "Sq Ring (ea)")]
         public int SqRingRebEa { get; set; }
 
         [Display(Name = "Vert L's (ea)")]
@@ -48,7 +48,15 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Vert L's (ft)")]
         public decimal VertLsRebL { get; set; }
 
-        [Display(Name = "SqRing (ft)")]
+        [Display(Name = "Sq Ring (ft)")]
         public decimal SqRingRebL { get; set; }
+
+        [Display(Name = "Pour Apron (cy)")]
+        public decimal PourApron { get; set; }
+
+        [Display(Name = "Purch Concr(cy)")]
+        public decimal PurchConcrete { get; set; }
+
+        //public decimal Concrete => PourApron + ResVMPourBottomCY + ResVMPourWallCY;
     }
 }

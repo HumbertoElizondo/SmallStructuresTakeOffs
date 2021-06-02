@@ -10,9 +10,9 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">SD-6.30 HEADWALLS</a>
-                <a class="navbar-brand" asp-area="" asp-controller="C1580CB" asp-action="Index">C-15.80 CATCH BASIN</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="SD630Headwall" asp-action="Index">SD-6.30 HW</a>
+                <a class="navbar-brand" asp-area="" asp-controller="C1580CB" asp-action="Index">C-15.80 CB</a>
                 @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.91 CATCH BASIN</a>*@
                 @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.30 CATCH BASIN</a>*@
 
@@ -34,14 +34,14 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container-fluid">
             &copy; 2021 - SmallStructuresTakeOffs - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

@@ -1,0 +1,102 @@
+﻿@model SmallStructuresTakeOffs.Models.SD630Headwall
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>SD630Headwall</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SD630HeadwallId" />
+            <div class="form-group">
+                <label asp-for="HWCode" class="control-label"></label>
+                <input asp-for="HWCode" class="form-control" />
+                <span asp-validation-for="HWCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThisHeadwall" class="control-label"></label>
+                <select asp-for="ThisHeadwall" class="form-control" asp-items="@ViewBag.HWList"></select>
+                <span asp-validation-for="ThisHeadwall" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="SD630Description" class="control-label"></label>
+            <input asp-for="SD630Description" class="form-control" />
+            <span asp-validation-for="SD630Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PipeNo" class="control-label"></label>
+            <select asp-for="PipeNo" class="form-control"></select>
+            <span asp-validation-for="PipeNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_I_D" class="control-label"></label>
+            <input asp-for="SD630_I_D" class="form-control" />
+            <span asp-validation-for="SD630_I_D" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_A" class="control-label"></label>
+            <input asp-for="SD630_A" class="form-control" />
+            <span asp-validation-for="SD630_A" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_B" class="control-label"></label>
+            <input asp-for="SD630_B" class="form-control" />
+            <span asp-validation-for="SD630_B" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_C" class="control-label"></label>
+            <input asp-for="SD630_C" class="form-control" />
+            <span asp-validation-for="SD630_C" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_D" class="control-label"></label>
+            <input asp-for="SD630_D" class="form-control" />
+            <span asp-validation-for="SD630_D" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_E" class="control-label"></label>
+            <input asp-for="SD630_E" class="form-control" />
+            <span asp-validation-for="SD630_E" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_F" class="control-label"></label>
+            <input asp-for="SD630_F" class="form-control" />
+            <span asp-validation-for="SD630_F" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_G" class="control-label"></label>
+            <input asp-for="SD630_G" class="form-control" />
+            <span asp-validation-for="SD630_G" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SD630_L" class="control-label"></label>
+            <input asp-for="SD630_L" class="form-control" />
+            <span asp-validation-for="SD630_L" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="RebNo4Req" class="control-label"></label>
+                <input asp-for="RebNo4Req" class="form-control" />
+                <span asp-validation-for="RebNo4Req" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebNo4Purch" class="control-label"></label>
+                <input asp-for="RebNo4Purch" class="form-control" />
+                <span asp-validation-for="RebNo4Purch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

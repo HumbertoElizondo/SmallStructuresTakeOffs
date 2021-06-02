@@ -1,0 +1,121 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.SD630Headwall>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HWCode)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SD630Description)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.PipeNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_I_D)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_A)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_B)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_C)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_D)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_E)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_F)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_G)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SD630_L)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.RebNo4Req)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebNo4Purch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HWCode)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SD630Description)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.PipeNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_I_D)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_A)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_B)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_C)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_D)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_E)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_F)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_G)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SD630_L)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.RebNo4Req)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RebNo4Purch)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SD630HeadwallId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SD630HeadwallId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SD630HeadwallId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Results">Results</a>
+</div>
+

@@ -173,17 +173,19 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWDescription = l.C1580CBDescription,
                     ResVMHWStrId = l.C1580CBId,
                     ResVMId = l.C1580CBId,
-                    ResVMPourBottomCY = l.PourBottom(l.C1580CBHeight),
                     SqRingRebEa = l.RebSqRingEa(l.C1580CBHeight),
                     SqRingRebL = l.C1580SqRingL,
                     VertLsRebEa = l.C1580VertLsEa,
                     VertLsRebL = l.RebVertLength(l.C1580CBHeight),
-                    //ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630Id == l.ThisStructure).PourWall(),
                     ResVMRebNo4Req = l.C1580Reb4FandI,
-                    ResVMRebNo4Purch = l.C1580Reb4Purch
-                    //ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630Id == l.ThisStructure).FormFab(),
-                    //ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630Id == l.ThisStructure).FormBase(),
-                    //ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630Id == l.ThisStructure).FormWall()
+                    ResVMRebNo4Purch = l.C1580Reb4Purch,
+                    ResVMPourWallCY = l.PourTop(),
+                    ResVMPourBottomCY = l.PourBottom(l.C1580CBHeight),
+                    PourApron = l.PourApron(),
+                    PurchConcrete = l.PurchConcrete(l.C1580CBHeight),
+                    ResVMFormFab = l.FabForms(l.C1580CBHeight),
+                    ResVMFormBase = l.InstBottomForms(l.C1580CBHeight),
+                    ResVMFormWall = l.InstTopForms()
                 };
                 results.Add(thisStr);
             }
