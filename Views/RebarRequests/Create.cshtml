@@ -1,0 +1,60 @@
+﻿@model SmallStructuresTakeOffs.RebarRequest
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RebarRequest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Structure" class="control-label"></label>
+                <input asp-for="Structure" class="form-control" />
+                @*<select asp-for="Structure" class="form-control"></select>*@
+                <span asp-validation-for="Structure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebarRequestNomination" class="control-label"></label>
+                <select asp-for="RebarRequestNomination" class="form-control" asp-items="@ViewBag.RebNomination"></select>
+                @*<span asp-validation-for="RebarRequestNomination" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="RebarRequestQty" class="control-label"></label>
+                <input asp-for="RebarRequestQty" class="form-control" />
+                <span asp-validation-for="RebarRequestQty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebarRequestLength" class="control-label"></label>
+                <input asp-for="RebarRequestLength" class="form-control" />
+                <span asp-validation-for="RebarRequestLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebReqDescription" class="control-label"></label>
+                <input asp-for="RebReqDescription" class="form-control" />
+                <span asp-validation-for="RebReqDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="RebReqProjId" type="hidden" value="@ViewBag.ProjectId" />
+                @*<label asp-for="ProjectId" class="control-label"></label>*@
+                @*<select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>*@
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

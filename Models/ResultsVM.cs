@@ -57,6 +57,23 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Purch Concr(cy)")]
         public decimal PurchConcrete { get; set; }
 
+        public int RebNo3LengthEa { get; set; }
+        public decimal RebNo3Length  { get; set; }
+
+        public int RebNo3WidthEa { get; set; }
+        public decimal RebNo3Width { get; set; }
+
+        public int RebNo4DowelEa { get; set; }
+        public decimal RebNo4DowelLength { get; set; }
+
+        [Display(Name = "Reb#3 F&I (lb)")]
+        public decimal ResVMRebNo3Req { get; set; }
+
+        [Display(Name = "Reb#3 Buy (lb)")]
+        public decimal ResVMRebNo3Purch { get; set; }
+
+
+
         //public decimal Concrete => PourApron + ResVMPourBottomCY + ResVMPourWallCY;
     }
 }

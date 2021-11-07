@@ -9,11 +9,11 @@ using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Controllers
 {
-    public class C1580CBController : Controller
+    public class P1569_1MController : Controller
     {
         private readonly EFCoreDBcontext _context;
 
-        public C1580CBController(EFCoreDBcontext context)
+        public P1569_1MController(EFCoreDBcontext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: C1580CB
         public async Task<IActionResult> Index()
         {
-            return View(await _context.C1580CBs.ToListAsync());
+            ViewBag.StructureName = _context.P1569_1Ms.GetType().Name;
+            return View(await _context.P1569_1Ms.ToListAsync());
         }
 
         // GET: C1580CB/Details/5
@@ -32,8 +33,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var c1580CB = await _context.C1580CBs
-                .FirstOrDefaultAsync(m => m.C1580CBId == id);
+            var c1580CB = await _context.P1569_1Ms
+                .FirstOrDefaultAsync(m => m.P1569_1MId == id);
             if (c1580CB == null)
             {
                 return NotFound();
@@ -53,15 +54,15 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("C1580CBId,C1580CBDescription,C1580CBHeight,C1580CBCode")] C1580CB c1580CB)
+        public async Task<IActionResult> Create([Bind("P1569_1MCode,P1569_1MDescription,Height")] P1569_1M p1569_1M)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(c1580CB);
+                _context.Add(p1569_1M);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(c1580CB);
+            return View(p1569_1M);
         }
 
         // GET: C1580CB/Edit/5
@@ -72,12 +73,12 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var c1580CB = await _context.C1580CBs.FindAsync(id);
-            if (c1580CB == null)
+            var p1569_1M = await _context.P1569_1Ms.FindAsync(id);
+            if (p1569_1M == null)
             {
                 return NotFound();
             }
-            return View(c1580CB);
+            return View(p1569_1M);
         }
 
         // POST: C1580CB/Edit/5
@@ -85,9 +86,9 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("C1580CBId,C1580CBDescription,C1580CBHeight,C1580CBCode,C1580Reb4FandI,C1580Reb4Purch")] C1580CB c1580CB)
+        public async Task<IActionResult> Edit(int id, [Bind("P1569_1MId,P1569_1MCode,P1569_1MDescription,Height")] P1569_1M p1569_1M)
         {
-            if (id != c1580CB.C1580CBId)
+            if (id != p1569_1M.P1569_1MId)
             {
                 return NotFound();
             }
@@ -96,12 +97,12 @@ namespace SmallStructuresTakeOffs.Controllers
             {
                 try
                 {
-                    _context.Update(c1580CB);
+                    _context.Update(p1569_1M);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!C1580CBExists(c1580CB.C1580CBId))
+                    if (!ThisStructureExists(p1569_1M.P1569_1MId))
                     {
                         return NotFound();
                     }
@@ -112,7 +113,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(c1580CB);
+            return View(p1569_1M);
         }
 
         // GET: C1580CB/Delete/5
@@ -123,14 +124,14 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var c1580CB = await _context.C1580CBs
-                .FirstOrDefaultAsync(m => m.C1580CBId == id);
-            if (c1580CB == null)
+            var p1569_1M = await _context.P1569_1Ms
+                .FirstOrDefaultAsync(m => m.P1569_1MId == id);
+            if (p1569_1M == null)
             {
                 return NotFound();
             }
 
-            return View(c1580CB);
+            return View(p1569_1M);
         }
 
         // POST: C1580CB/Delete/5
@@ -138,15 +139,15 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var c1580CB = await _context.C1580CBs.FindAsync(id);
-            _context.C1580CBs.Remove(c1580CB);
+            var p1569_1M = await _context.P1569_1Ms.FindAsync(id);
+            _context.P1569_1Ms.Remove(p1569_1M);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool C1580CBExists(int id)
+        private bool ThisStructureExists(int id)
         {
-            return _context.C1580CBs.Any(e => e.C1580CBId == id);
+            return _context.P1569_1Ms.Any(e => e.P1569_1MId == id);
         }
 
         #region Result Action
@@ -154,7 +155,7 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             var CBList =
-                from hw in _context.C1580CBs
+                from hw in _context.P1569_1Ms
                 select hw;
 
             List<ResultsVM> results = new();
@@ -169,22 +170,24 @@ namespace SmallStructuresTakeOffs.Controllers
 
                 ResultsVM thisStr = new()
                 {
-                    ResVMHWcode = l.C1580CBCode,
-                    ResVMHWDescription = l.C1580CBDescription,
-                    ResVMHWStrId = l.C1580CBId,
-                    ResVMId = l.C1580CBId,
-                    SqRingRebEa = l.RebSqRingEa(l.C1580CBHeight),
-                    SqRingRebL = l.C1580SqRingL,
-                    VertLsRebEa = l.C1580VertLsEa,
-                    VertLsRebL = l.RebVertLength(l.C1580CBHeight),
-                    ResVMRebNo4Req = l.C1580Reb4FandI,
-                    ResVMRebNo3Purch = l.C1580Reb4Purch,
-                    ResVMPourWallCY = l.PourTop(),
-                    ResVMPourBottomCY = l.PourBottom(l.C1580CBHeight),
+                    ResVMHWcode = l.P1569_1MCode,
+                    ResVMHWDescription = l.P1569_1MDescription,
+                    ResVMHWStrId = l.P1569_1MId,
+                    ResVMId = l.P1569_1MId,
+                    //SqRingRebEa = 0,
+                    //SqRingRebL = 0,
+                    //VertLsRebEa = 0,
+                    //VertLsRebL = 0,
+                    ResVMRebNo4Req = l.Reb4FandI,
+                    ResVMRebNo4Purch = l.Reb4Purch,
+                    ResVMRebNo3Req = l.Reb3FandI,
+                    ResVMRebNo3Purch = l.Reb3Purch,
+                    ResVMPourWallCY = l.PourBottom(l.Height),
+                    ResVMPourBottomCY = l.PourTop(),
                     PourApron = l.PourApron(),
-                    PurchConcrete = l.PurchConcrete(l.C1580CBHeight),
-                    ResVMFormFab = l.FabForms(l.C1580CBHeight),
-                    ResVMFormBase = l.InstBottomForms(l.C1580CBHeight),
+                    PurchConcrete = l.PurchConcrete(l.Height),
+                    ResVMFormFab = l.FabForms(l.Height),
+                    ResVMFormBase = l.InstBottomForms(l.Height),
                     ResVMFormWall = l.InstTopForms()
                 };
                 results.Add(thisStr);

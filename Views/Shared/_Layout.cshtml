@@ -11,10 +11,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="SD630Headwall" asp-action="Index">SD-6.30 HW</a>
-                <a class="navbar-brand" asp-area="" asp-controller="C1580CB" asp-action="Index">C-15.80 CB</a>
-                @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.91 CATCH BASIN</a>*@
-                @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.30 CATCH BASIN</a>*@
+                <a class="navbar-brand" asp-area="" asp-controller="Projects" asp-action="Index">Projects</a>
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,6 +33,7 @@
     </header>
     <div class="container-fluid">
         <main role="main" class="pb-3">
+            <h5 class="bg-primary text-center p-2 text-white">@ViewData["Title"]</h5>
             @RenderBody()
         </main>
     </div>

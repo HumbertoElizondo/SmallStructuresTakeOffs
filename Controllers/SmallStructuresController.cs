@@ -215,7 +215,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 from hw in _context.SmallStructures
                 select hw;
 
-            List<ResultsVM> results = new List<ResultsVM>();
+            List<ResultsVM> results = new();
 
             foreach(var l in HWList)
             {
@@ -225,7 +225,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 var takeOff =
                      SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourBase();
 
-                     ResultsVM thisStr = new ResultsVM()
+                     ResultsVM thisStr = new()
                      {
                          ResVMHWcode = l.HWcode,
                          ResVMHWDescription = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).SD630Description,
@@ -234,7 +234,7 @@ namespace SmallStructuresTakeOffs.Controllers
                          ResVMPourBottomCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourBase(),
                          ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourWall(),
                          ResVMRebNo4Req = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).RebNo4Req,
-                         ResVMRebNo4Purch = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).RebNo4Purch,
+                         ResVMRebNo3Purch = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).RebNo4Purch,
                          ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormFab(),
                          ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormBase(),
                          ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormWall()

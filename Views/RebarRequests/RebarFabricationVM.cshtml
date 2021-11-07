@@ -1,0 +1,69 @@
+﻿@using SmallStructuresTakeOffs.Models
+@model IEnumerable<RebarPresentationVM.RebarFabricationVM>
+@*@model IEnumerable<RebarRequest>*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationVMReqNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationVMNomination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationVMLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationVMQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastedLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastedQuantity)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderBy(o => o.RebarFabricationVMNomination).ThenByDescending(t => t.RebarFabricationVMLength))
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarFabricationVMReqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarFabricationVMNomination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarFabricationSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarFabricationVMLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarFabricationVMQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastedLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastedQuantity)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Details</a> |*@
+                @*<a asp-action="Delete" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Delete</a>*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+This is my partial View => RebarRequestsSorted

@@ -1,0 +1,60 @@
+﻿@model SmallStructuresTakeOffs.Models.P1569_1M
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>P1569_1M</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P1569_1MCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P1569_1MCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P1569_1MDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P1569_1MDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reb4FandI)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reb4FandI)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reb3Purch)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reb3Purch)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reb3FandI)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reb3FandI)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reb4Purch)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reb4Purch)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.P1569_1MId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

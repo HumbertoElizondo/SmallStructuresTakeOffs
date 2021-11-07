@@ -1,0 +1,57 @@
+﻿@using SmallStructuresTakeOffs.Models
+@model IEnumerable<RebarPresentationVM.RebarRequestsVM>
+@*@model IEnumerable<RebarRequest>*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequestVMId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequestVMNomination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequestVMLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequestVMQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequestVMStructure)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderBy(o => o.RebarRequestVMNomination).ThenByDescending(t => t.RebarRequestVMLength))
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequestVMId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequestVMNomination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequestVMLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequestVMQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequestVMStructure)
+            </td>
+
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Details</a> |*@
+                @*<a asp-action="Delete" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Delete</a>*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+This is my partial View => RebarRequestsSorted

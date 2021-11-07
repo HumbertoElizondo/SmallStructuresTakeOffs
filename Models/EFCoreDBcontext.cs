@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SmallStructuresTakeOffs;
 
 namespace SmallStructuresTakeOffs.Models
 {
@@ -14,11 +15,19 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<SD630Headwall> SD630Headwalls { get; set; }
         public DbSet<SmallStructure> SmallStructures { get; set; }
         public DbSet<C1580CB> C1580CBs { get; set; }
+        public DbSet<P1569_1M> P1569_1Ms { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<RebarRequest> RebarRequests { get; set; }
+        public DbSet<RebarWasting> RebarWastings { get; set; }
+        //public DbSet<Rebar> Rebars { get; set; }
+        //public DbSet<RebarNomination> RebarNominations { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<C1580CB>(ar => ar.Property(p => p.C1580CBHeight).HasColumnType("decimal(18,4)"));
+            //modelBuilder.Entity<RebarNomination>(r => r.HasNoKey);
         }
+
     }
 }
 //namespace DataApp.Models

@@ -1,0 +1,64 @@
+﻿@model SmallStructuresTakeOffs.Models.P1569_1M
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>P1569_1M</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="P1569_1MId" />
+            <div class="form-group">
+                <label asp-for="P1569_1MCode" class="control-label"></label>
+                <input asp-for="P1569_1MCode" class="form-control" />
+                <span asp-validation-for="P1569_1MCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="P1569_1MDescription" class="control-label"></label>
+                <input asp-for="P1569_1MDescription" class="form-control" />
+                <span asp-validation-for="P1569_1MDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reb4FandI" class="control-label"></label>
+                <input asp-for="Reb4FandI" class="form-control" />
+                <span asp-validation-for="Reb4FandI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reb3Purch" class="control-label"></label>
+                <input asp-for="Reb3Purch" class="form-control" />
+                <span asp-validation-for="Reb3Purch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reb3FandI" class="control-label"></label>
+                <input asp-for="Reb3FandI" class="form-control" />
+                <span asp-validation-for="Reb3FandI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reb4Purch" class="control-label"></label>
+                <input asp-for="Reb4Purch" class="form-control" />
+                <span asp-validation-for="Reb4Purch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
