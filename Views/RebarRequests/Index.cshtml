@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SmallStructuresTakeOffs.RebarRequest>
+﻿@using SmallStructuresTakeOffs.Models;
+@model IEnumerable<SmallStructuresTakeOffs.RebarRequest>
 
 @{
     ViewData["Title"] = "Rebar Requests";
@@ -6,8 +7,17 @@
 
 <p>
     <a asp-action="Create" asp-route-id="@ViewBag.ProjectId">Create New</a>
+
 </p>
-<table class="table">
+<form asp-action="Results" method="get">
+    <label>Stick Length</label>
+    <select  class="form-control" @*asp-for="RebarLengths"*@  asp-items="@ViewBag.RebarLgthList" @*value="@ViewBag.RebarLgthList"*@></select>
+    @*<input class="form-control" name="Name" value="@ViewBag.name" />*@
+    @*<select asp-for="AnalysisResId" class="form-control" asp-items="@ViewBag.ResourceList"></select>*@
+
+</form>
+
+<table class="table-sm">
     <thead>
         <tr>
             <th>
@@ -36,26 +46,26 @@
             </tr>
             foreach (var r in item.OrderBy(o => o.RebarRequestId))
             {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => r.RebarRequestNomination)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => r.RebarRequestQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => r.RebarRequestLength)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => r.RebReqDescription)
-        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => r.RebarRequestNomination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => r.RebarRequestQty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => r.RebarRequestLength)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => r.RebReqDescription)
+                    </td>
 
-        <td>
-            <a asp-action="Edit" asp-route-id="@r.RebarRequestId">Edit</a> |
-            @*<a asp-action="Details" asp-route-id="@r.RebarRequestId">Details</a> |*@
-            <a asp-action="Delete" asp-route-id="@r.RebarRequestId">Delete</a>
-        </td>
-    </tr>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@r.RebarRequestId">Edit</a> |
+                        @*<a asp-action="Details" asp-route-id="@r.RebarRequestId">Details</a> |*@
+                        <a asp-action="Delete" asp-route-id="@r.RebarRequestId">Delete</a>
+                    </td>
+                </tr>
             }
             @*<tr>
                     <td class="text-right" colspan="1">Sub-Total</td>
@@ -63,14 +73,15 @@
                 </tr>*@
         }
     </tbody>
-    @*<tfoot>
-            <tr>
-                <td>Total (Directs + Indirects)</td>
-                <td class="text-right" colspan="5">@Model.Sum(i => i.ResourceVMAmount).ToString("c")</td>
-            </tr>
-        </tfoot>*@
 </table>
 
+<div>
+    Total Pieces to Fabricate: @Model.Sum(s => s.RebarRequestQty)
+</div>
+<div>
+    Total Length to Fabricate: @Model.Sum(s => s.RebarRequestQty * s.RebarRequestLength)
+</div>
+<div></div>
 <div>
     <a class="btn-primary" asp-action="Details" asp-controller="Projects" asp-route-id="@ViewBag.ProjectId">To Project Actions</a>
     <a class="btn-primary" asp-action="Results" asp-controller="RebarRequests" asp-route-id="@ViewBag.ProjectId">Rebar Results</a>

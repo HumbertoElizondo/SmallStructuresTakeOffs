@@ -12,11 +12,12 @@ namespace SmallStructuresTakeOffs
         public int RebarFabricationQuantity { get; set; }
         public decimal RebarFabricationLength { get; set; }
         public RebarNomination RebarFabricationNomination { get; set; }
-
+        public string RebFabStructure { get; set; }
         public int RebarWastedQuantity { get; set; }
-
+        public int RebarWastedReqNo { get; set; }
         public decimal RebarWastedLength { get; set; }
         public FabricationSource Source { get; set; }
+        //public decimal RebFabWeight { get; set; }
     }
 
     public enum FabricationSource

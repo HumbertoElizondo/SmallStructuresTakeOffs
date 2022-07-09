@@ -75,7 +75,8 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            return View(_context.Projects.Where(w => w.ProjectId == id).FirstOrDefault());
         }
 
         // POST: ProjectsController/Edit/5

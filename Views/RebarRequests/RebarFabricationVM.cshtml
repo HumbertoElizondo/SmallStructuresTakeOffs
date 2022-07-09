@@ -2,19 +2,29 @@
 @model IEnumerable<RebarPresentationVM.RebarFabricationVM>
 @*@model IEnumerable<RebarRequest>*@
 
+@{
+    ViewData["Title"] = "REBAR FABRICATION";
+}
 
-<table class="table">
+
+<table class="table-sm">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RebarFabricationVMReqNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RebarFabricationVMNomination)
+                    @Html.DisplayNameFor(model => model.RebFabStructure)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RebarFabricationSource)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarFabricationVMReqNo)
+            </th>
+            <td>
+                @Html.DisplayNameFor(model => model.RebarWastedSource)
+            </td>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.RebarFabricationVMNomination)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.RebarFabricationVMLength)
             </th>
@@ -27,43 +37,84 @@
             <th>
                 @Html.DisplayNameFor(model => model.RebarWastedQuantity)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebFabWeight)
+            </th>
 
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.OrderBy(o => o.RebarFabricationVMNomination).ThenByDescending(t => t.RebarFabricationVMLength))
+        @foreach (var item in Model.GroupBy(o => o.RebarFabricationVMNomination).OrderBy(t => t.Key))
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarFabricationVMReqNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarFabricationVMNomination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarFabricationSource)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarFabricationVMLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarFabricationVMQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarWastedLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RebarWastedQuantity)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Edit</a> |*@
-                @*<a asp-action="Details" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Details</a> |*@
-                @*<a asp-action="Delete" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Delete</a>*@
-            </td>
-        </tr>
+            <tr>
+                <td class="text-uppercase font-weight-bold">
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+            </tr>
+            @*foreach (var n in item.GroupBy(g => g.RebarFabricationVMNomination).OrderBy(o => o.Key))*@
+            @*{*@
+                @*<tr class="text-right" colspan="1">*@
+                    @*<td class="text-uppercase font-weight-bold">*@
+                        @*@Html.DisplayFor(modelItem => n.Key)*@
+                    @*</td>*@
+                @*</tr>*@
+                foreach (var r in item.OrderByDescending(o => o.RebarFabricationVMLength))
+                {
+                    <tr class="text-right" colspan="1">
+                        <td>
+                                @Html.DisplayFor(modelItem => r.RebFabStructure)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarFabricationSource)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarFabricationVMReqNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarWastedSource)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => r.RebarFabricationVMNomination)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarFabricationVMLength)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarFabricationVMQuantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarWastedLength)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebarWastedQuantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.RebFabWeight)
+                        </td>
+                        <td>
+                            @*<a asp-action="Edit" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Edit</a> |*@
+                            @*<a asp-action="Details" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Details</a> |*@
+                            @*<a asp-action="Delete" asp-route-id="@item.RebarRequestsVM.Select(s => s.RebarRequestNomination)">Delete</a>*@
+                        </td>
+                    </tr>
+                }
+            @*}*@
         }
     </tbody>
 </table>
 
-This is my partial View => RebarRequestsSorted
+<div>
+    Total Fabrication Length is: @Model.Sum(s => s.RebarFabricationVMLength * s.RebarFabricationVMQuantity)
+</div>
+<div>
+    Total Fabrication Pieces is: @Model.Sum(s => s.RebarFabricationVMQuantity)
+</div>
+
+<div>
+    Total Fab/Ins Weight is: @Model.Sum(s => s.RebarFabricationVMLength * s.RebarFabricationVMQuantity * s.RebFabWeight)
+</div>
+
+<div>
+    Total Waste Length is: @ViewBag.TotalWaste
+</div>

@@ -21,6 +21,11 @@ namespace SmallStructuresTakeOffs
         public long RebReqProjId { get; set; }
         public string Structure { get; set; }
 
+        //[NotMapped]
+        //public RebarLengths RebLength { get; set; }
+
+        //public string RebLength { get; set; }
+
         [Display(Name = "REBAR SHAPE")]
         public string RebReqDescription { get; set; }
 

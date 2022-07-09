@@ -1,0 +1,63 @@
+﻿@*@model IEnumerable<ViewComponentSample.Models.TodoItem>*@
+@model IEnumerable<SmallStructuresTakeOffs.Models.RebarWasting>
+
+<h3>Wasting Items (View Component)</h3>
+<table class="table-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastingReqNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastingNomination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastingQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarWastingLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsItAvailable)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastingReqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastingNomination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastingQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarWastingLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsItAvailable)
+            </td>
+
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.RebarToPurchaseId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.RebarToPurchaseId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.RebarToPurchaseId">Delete</a>
+        </td>*@
+        </tr>
+        }
+
+    </tbody>
+</table>
+<div>
+    Total Waste Length is: @Model.Where(w => w.IsItAvailable == true).Sum(s => s.RebarWastingQuantity * s.RebarWastingLength)
+    </div>
+<div>
+    Total Waste Pieces is: @Model.Where(w => w.IsItAvailable == true).Sum(s => s.RebarWastingQuantity)
+
+</div>

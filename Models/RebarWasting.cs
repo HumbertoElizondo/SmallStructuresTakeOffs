@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SmallStructuresTakeOffs.Models;
 
-namespace SmallStructuresTakeOffs
+namespace SmallStructuresTakeOffs.Models
 {
     public class RebarWasting
     {

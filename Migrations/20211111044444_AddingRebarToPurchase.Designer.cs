@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20211111044444_AddingRebarToPurchase")]
+    partial class AddingRebarToPurchase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,9 +106,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("RebarNomLengths")
-                        .HasColumnType("int");
-
                     b.Property<int>("RebarRequest")
                         .HasColumnType("int");
 
@@ -119,41 +118,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasKey("RebarToPurchaseId");
 
                     b.ToTable("RebarToPurchase");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
-                {
-                    b.Property<int>("RebarWastingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsItAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("RebarRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("RebarWastingLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RebarWastingNomination")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RebarWastingQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RebarWastingReqNo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReqNo")
-                        .HasColumnType("int");
-
-                    b.HasKey("RebarWastingId");
-
-                    b.HasIndex("RebarRequestId");
-
-                    b.ToTable("RebarWastings");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
@@ -266,13 +230,39 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.ToTable("RebarRequests");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.RebarWasting", b =>
                 {
-                    b.HasOne("SmallStructuresTakeOffs.RebarRequest", "RebarRequest")
-                        .WithMany("RebarWastings")
-                        .HasForeignKey("RebarRequestId");
+                    b.Property<int>("RebarWastingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Navigation("RebarRequest");
+                    b.Property<bool>("IsItAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("RebarRequestId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("RebarWastingLength")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RebarWastingNomination")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RebarWastingQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RebarWastingReqNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReqNo")
+                        .HasColumnType("int");
+
+                    b.HasKey("RebarWastingId");
+
+                    b.HasIndex("RebarRequestId");
+
+                    b.ToTable("RebarWastings");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
@@ -280,6 +270,15 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
                         .WithMany("RebarRequests")
                         .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.RebarWasting", b =>
+                {
+                    b.HasOne("SmallStructuresTakeOffs.RebarRequest", "RebarRequest")
+                        .WithMany("RebarWastings")
+                        .HasForeignKey("RebarRequestId");
+
+                    b.Navigation("RebarRequest");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>

@@ -15,7 +15,15 @@
 
             <input type="hidden" asp-for="RebarRequestId" />
             <input asp-for="RebReqProjId" type="hidden" value="@Model.RebReqProjId" />
-            <input asp-for="Structure" type="hidden" value="@Model.Structure" />
+            @*<input asp-for="Structure" type="hidden" value="@Model.Structure" />*@
+
+            <div class="form-group">
+                <label asp-for="Structure" class="control-label"></label>
+                <input asp-for="Structure" class="form-control" />
+                @*<select asp-for="Structure" class="form-control"></select>*@
+                <span asp-validation-for="Structure" class="text-danger"></span>
+            </div>
+
 
             <div class="form-group">
                 <label asp-for="RebarRequestNomination" class="control-label"></label>

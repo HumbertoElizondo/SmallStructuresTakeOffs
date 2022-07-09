@@ -1,8 +1,22 @@
-﻿@using SmallStructuresTakeOffs.Models
-@*@model IEnumerable<RebarPresentationVM.RebarRequestsVM>*@
+﻿@using SmallStructuresTakeOffs.Controllers
+@using SmallStructuresTakeOffs.Models
 @model IEnumerable<RebarPresentationVM.RebarFabricationVM>
+
+@{
+    ViewData["Title"] = "REBAR FABRICATION";
+}
+
+
 <h6>This is my Rebar Results View</h6>
 
-@*@Html.Partial("RebarRequestsSorted", Model)*@
 
-<partial name="RebarFabricationVM" />
+<div>
+    @await Component.InvokeAsync("PurchasesList", new { })
+</div>
+<div></div>
+<div>
+    @await Component.InvokeAsync("WastesList", new { })
+</div>
+<div></div>
+<h3>Fabrication Items (View)</h3>
+<partial name="RebarFabricationVM">

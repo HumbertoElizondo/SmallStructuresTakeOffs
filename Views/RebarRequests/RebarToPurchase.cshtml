@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.RebarToPurchase>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarToPurchaseNomination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarToPurchaseQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebarRequest)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarToPurchaseNomination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarToPurchaseQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebarRequest)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RebarToPurchaseId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RebarToPurchaseId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RebarToPurchaseId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

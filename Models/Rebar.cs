@@ -16,6 +16,7 @@ namespace SmallStructuresTakeOffs.Models
 
     public enum RebarNomLength
     {
+        StickL8 = 8,
         StickL16 = 16,
         RebL20 = 20,
         RebL30 = 30,
@@ -23,6 +24,7 @@ namespace SmallStructuresTakeOffs.Models
         RebL60 = 60
     }
 
+    // enum doesn't take decimal values...
     public class RebarNomWeight
     {
         static decimal RebWNo2Weight => 0.167M;

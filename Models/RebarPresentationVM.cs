@@ -63,6 +63,14 @@ namespace SmallStructuresTakeOffs.Models
             [Display(Name = "Source")]
             public FabricationSource RebarFabricationSource { get; set; }
 
+            [Display(Name = "Waste ReqNo")]
+            public int RebarWastedSource { get; set; }
+
+            [Display(Name = "Structure")]
+            public string RebFabStructure { get; set; }
+
+            [Display(Name = "Weight")]
+            public decimal RebFabWeight { get; set; }
         }
 
     }

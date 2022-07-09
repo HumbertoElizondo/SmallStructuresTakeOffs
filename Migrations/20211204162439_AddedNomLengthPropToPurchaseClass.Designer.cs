@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20211204162439_AddedNomLengthPropToPurchaseClass")]
+    partial class AddedNomLengthPropToPurchaseClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,6 +242,9 @@ namespace SmallStructuresTakeOffs.Migrations
 
                     b.Property<long?>("ProjectId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("RebLength")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RebReqDescription")
                         .HasColumnType("nvarchar(max)");

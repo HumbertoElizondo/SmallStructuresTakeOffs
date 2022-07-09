@@ -26,6 +26,22 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: RebarRequestsController
         public ActionResult Index(long id)
         {
+            var RebLengthList =
+                from l in typeof(RebarLengths).GetFields()
+                select l;
+
+
+            ViewBag.RebarLgthList = new SelectList(RebLengthList, "RebarLengths");
+            //var ResList = repository.GetResourceList(id);
+            //ViewBag.RebarLgthList = new SelectList(RebLengthList, "ResourceVMId", "ResourceVMCombined");
+
+            var RebLList = new { RebarLengths.RebLength8, RebarLengths.RebLength16, RebarLengths.RebLength20, RebarLengths.RebLength30, RebarLengths.RebLength40 };
+
+
+            ViewBag.RebarLengths = new SelectList(RebLList.ToString(), "RebLList");
+
+
+
             ViewBag.ProjectId = id;
             return View(_context.RebarRequests.Where(w => w.RebReqProjId == id).ToList());
         }
@@ -45,17 +61,10 @@ namespace SmallStructuresTakeOffs.Controllers
         {
             ViewBag.ProjectId = id;
 
-            //ViewBag.RebNomination = new RebarNomination();
             var rNom =
                     Enum.GetValues(typeof(RebarNomination));
             ViewBag.RebNomination = new SelectList(rNom, "RebarRequestNomination");
 
-            //ViewBag.RebNomination = new SelectList(rNom, "No.2");
-            //{
-
-            //};
-            //from n in RebarNomination
-            //select n;
             return View();
         }
 
@@ -125,12 +134,19 @@ namespace SmallStructuresTakeOffs.Controllers
         #endregion
 
         #region Results Display
-        public ActionResult Results(long id)
+        public ActionResult Results(long id, string length)
         {
             ViewBag.ProjectId = id;
 
-            MyMethods.ClearWaste(_context);
+            string nomLength = length;
 
+            var purchasesQ =
+                from q in MyMethods.purchases
+                select q;
+
+            ViewData["purchasesM"] = purchasesQ;
+
+            MyMethods.ClearWaste(_context);
 
             #region Ordering RebarRequest by Nom, Length (It Works!, commented out)
             var RebarRequestsSorted =
@@ -150,20 +166,20 @@ namespace SmallStructuresTakeOffs.Controllers
                 foreach (var q in r.OrderByDescending(o => o.RebarRequestLength))
                 {
 
-                    try
+                    //try
                     {
                         Console.WriteLine($"ReqNo. {q.RebarRequestId}, \t{q.RebarRequestNomination}, \t{q.RebarRequestLength} ft/ea, \t{q.RebarRequestQty} ea,  \t{q.RebarRequestLength * q.RebarRequestQty} Length");
 
                         totalLength += q.RebarRequestLength * q.RebarRequestQty;
                         totalweight += q.RebarRequestLength * q.RebarRequestQty * MyMethods.rInfo.Find(s => s.rNom == q.RebarRequestNomination.ToString()).rWeigth;
                         AllReqWeight += q.RebarRequestLength * q.RebarRequestQty * MyMethods.rInfo.Find(s => s.rNom == q.RebarRequestNomination.ToString()).rWeigth;
-                        MyMethods.PurchasesAdd(q.RebarRequestNomination, q.RebarRequestLength, q.RebarRequestQty, q.RebarRequestId, q.RebReqProjId, _context);
+                        MyMethods.PurchasesAdd(q.RebarRequestNomination, q.RebarRequestLength, q.RebarRequestQty, q.RebarRequestId, q.RebReqProjId, _context, q.Structure, RebarLengths.RebLength20);
                     }
 
-                    catch (InvalidOperationException e)
-                    {
-                        Console.WriteLine($"No Elements {e}");
-                    }
+                    //catch (InvalidOperationException e)
+                    //{
+                    //    Console.WriteLine($"No Elements {e}");
+                    //}
                 }
 
                 Console.WriteLine($"\t\t\t\tTotal Requested Length: {r.Key}, {totalLength} ft");
@@ -177,21 +193,40 @@ namespace SmallStructuresTakeOffs.Controllers
 
 
             #endregion
+            var rebWas =
+                _context.RebarWastings.Where(w => w.IsItAvailable == true).Select(s => s.RebarWastingQuantity * s.RebarWastingLength).Sum();
+                //(from w in MyMethods.rebarfabricated
+                // where rf.RebarFabricationReqNo != rf.RebarWastedReqNo
+                //where rf.RebarFabricationReqNo != _context.RebarWastings.Where(w => w.IsItAvailable == true).Select(s => s.RebarWastingReqNo).First()
+                    //union s in SmallStructuresTakeOffs.Models.Rebar on rf. equals s.
+                    //group rf by rf.RebarFabricationNomination into fabs
+                    //orderby fabs.Key
+                //select rf.RebarWastedLength * rf.RebarWastedQuantity).Sum();
+
+            ViewBag.TotalWaste = rebWas;
+
 
             var rebFab =
                 from rf in MyMethods.rebarfabricated
-                join w in _context.RebarWastings on rf.RebarFabricationReqNo equals w.RebarWastingReqNo
-
+                //union s in SmallStructuresTakeOffs.Models.Rebar on rf. equals s.
+                    //group rf by rf.RebarFabricationNomination into fabs
+                    //orderby fabs.Key
                 select new RebarPresentationVM.RebarFabricationVM
                 {
-                    RebarFabricationVMId = rf.RebarFabricationId,
+                    RebarWastedSource = rf.RebarWastedReqNo,
+                    RebarFabricationVMId = rf.RebarFabricationReqNo,
                     RebarFabricationVMReqNo = rf.RebarFabricationReqNo,
                     RebarFabricationVMNomination = rf.RebarFabricationNomination,
                     RebarFabricationVMLength = rf.RebarFabricationLength,
                     RebarFabricationVMQuantity = rf.RebarFabricationQuantity,
-                    RebarWastedLength = w.RebarWastingLength,
-                    RebarWastedQuantity = w.RebarWastingQuantity,
-                    RebarFabricationSource = rf.Source
+                    RebarWastedLength = rf.RebarWastedLength,
+                    RebarWastedQuantity = rf.RebarWastedQuantity,
+                    RebarFabricationSource = rf.Source,
+                    RebFabStructure = rf.RebFabStructure,
+                    RebFabWeight = rf.RebarFabricationNomination == RebarNomination.No2 ? MyMethods.rInfo.Find(s => s.rNom == rf.RebarFabricationNomination.ToString()).rWeigth :
+                        rf.RebarFabricationNomination == RebarNomination.No3 ? MyMethods.rInfo.Find(s => s.rNom == rf.RebarFabricationNomination.ToString()).rWeigth : 
+                        rf.RebarFabricationNomination == RebarNomination.No4 ? MyMethods.rInfo.Find(s => s.rNom == rf.RebarFabricationNomination.ToString()).rWeigth :
+                        rf.RebarFabricationNomination == RebarNomination.No5 ? MyMethods.rInfo.Find(s => s.rNom == rf.RebarFabricationNomination.ToString()).rWeigth : 0M
                 };
 
             var rebReq =
@@ -205,8 +240,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     RebarRequestVMLength = rq.RebarRequestLength,
                     RebarRequestVMStructure = rq.Structure
                 };
-
-            //MyMethods.ClearWaste(_context);
 
             return View(rebFab.ToList());
         }
@@ -231,7 +264,7 @@ namespace SmallStructuresTakeOffs.Controllers
             #endregion
 
             #region Method to Add Purchases, Wastes & Fabs
-            public static void PurchasesAdd(RebarNomination rebNom, decimal length, int qty, int reqNo, long projId, EFCoreDBcontext _context)
+            public static void PurchasesAdd(RebarNomination rebNom, decimal length, int qty, int reqNo, long projId, EFCoreDBcontext _context, string structure, decimal nomLength)
             {
 
                 #region Querying Rebar Wastes
@@ -247,7 +280,7 @@ namespace SmallStructuresTakeOffs.Controllers
                     if (length <= RebarLengths.RebLength20)
                     {
 
-                        int eaInStick = (int)Math.Floor(RebarLengths.RebLength20 / length); // Requested Rebar in Stick
+                        int eaInStick = (int)Math.Floor(RebarLengths.RebLength20/ length); // Requested Rebar in Stick
 
                         decimal num = ((decimal)qty / (decimal)eaInStick);
                         decimal Sticks = Math.Ceiling(num); // Stick to purchase for given Quantity
@@ -257,6 +290,7 @@ namespace SmallStructuresTakeOffs.Controllers
                         {
                             purchases.Add(new RebarToPurchase
                             {
+                                RebarNomLengths = nomLength,
                                 RebarToPurchaseNomination = rebNom,
                                 RebarToPurchaseQuantity = (int)Sticks,
                                 RebarRequest = reqNo
@@ -273,6 +307,9 @@ namespace SmallStructuresTakeOffs.Controllers
                                 {
                                     //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                                     //RebarRequestId = reqNo,
+                                    RebFabStructure = structure,
+                                    Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                                    RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                                     RebarFabricationReqNo = reqNo,
                                     RebarFabricationNomination = rebNom,
                                     RebarFabricationLength = length,
@@ -292,6 +329,10 @@ namespace SmallStructuresTakeOffs.Controllers
                             {
                                 //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                                 //RebarRequestId = reqNo,
+                                RebFabStructure = structure,
+                                Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                                RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+
                                 RebarFabricationReqNo = reqNo,
                                 RebarFabricationNomination = rebNom,
                                 RebarFabricationLength = length,
@@ -306,6 +347,7 @@ namespace SmallStructuresTakeOffs.Controllers
                         #region B. There's a remainder available
                         purchases.Add(new RebarToPurchase
                         {
+                            RebarNomLengths = nomLength,
                             RebarToPurchaseNomination = rebNom,
                             RebarToPurchaseQuantity = (int)Sticks,
                             RebarRequest = reqNo
@@ -325,12 +367,16 @@ namespace SmallStructuresTakeOffs.Controllers
                             {
                                 //RebarFabricationId = rbFabId,
                                 //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                                RebFabStructure = structure,
+                                Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                                RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+
                                 RebarFabricationReqNo = reqNo,
                                 RebarFabricationNomination = rebNom,
                                 RebarFabricationLength = length,
                                 RebarFabricationQuantity = (int)Math.Floor((decimal)(qty / eaInStick)) * eaInStick,
                                 RebarWastedLength = wasteLength1,
-                                RebarWastedQuantity = wasteQuantity1
+                                RebarWastedQuantity = wasteLength1 == 0 ? 0 : wasteQuantity1
                             });
                         }
 
@@ -343,6 +389,10 @@ namespace SmallStructuresTakeOffs.Controllers
                         {
                             //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                             //RebarRequestId = reqNo,
+                            RebFabStructure = structure,
+                            Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                            RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+
                             RebarFabricationReqNo = reqNo,
                             RebarFabricationNomination = rebNom,
                             RebarFabricationLength = length,
@@ -358,13 +408,13 @@ namespace SmallStructuresTakeOffs.Controllers
                         //else
                         //{
                         //    rebarfabricated.Add(new RebarFabrication { RebarFabricationLength = length, RebarFabricationNomination = rebNom, RebarFabricationQuantity = (int)Math.Floor(Sticks) * eaInStick, RebarFabricationReqNo = reqNo, Source = FabricationSource.FullStick }); // Added Fabricated pieces in a full Rebar Size
-                        //    decimal wasteLength0 = RebarLengths.RebLength20 - eaInStick * length;
+                        //    decimal wasteLength0 = RebarLengths. - eaInStick * length;
                         //    int wasteQuantity0 = (int)Math.Floor(Sticks);
                         //    MyMethods.AddWaste(rebNom, wasteLength0, wasteQuantity0, reqNo);
 
                         //    // Added Fabricated pieces remained in a Full Rebar Size
                         //    rebarfabricated.Add(new RebarFabrication { RebarFabricationLength = length, RebarFabricationNomination = rebNom, RebarFabricationQuantity = qty - (int)Math.Floor(Sticks) * eaInStick, RebarFabricationReqNo = reqNo, Source = FabricationSource.FullStick });
-                        //    decimal wasteLength1 = RebarLengths.RebLength20 - (qty - (int)Math.Floor(Sticks) * eaInStick) * length;
+                        //    decimal wasteLength1 = RebarLengths. - (qty - (int)Math.Floor(Sticks) * eaInStick) * length;
                         //    int wasteQuantity1 = 1;
                         //    MyMethods.AddWaste(rebNom, wasteLength1, wasteQuantity1, reqNo);
 
@@ -407,6 +457,10 @@ namespace SmallStructuresTakeOffs.Controllers
                         {
                             //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                             //RebarRequestId = reqNo,
+                            RebFabStructure = structure,
+                            Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                            RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+
                             RebarFabricationReqNo = reqNo,
                             RebarFabricationNomination = rebNom,
                             RebarFabricationLength = length,
@@ -442,6 +496,10 @@ namespace SmallStructuresTakeOffs.Controllers
                         {
                             //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
                             //RebarRequestId = reqNo,
+                            RebFabStructure = structure,
+                            Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                            RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+
                             RebarFabricationReqNo = reqNo,
                             RebarFabricationNomination = rebNom,
                             RebarFabricationLength = length,
@@ -466,32 +524,117 @@ namespace SmallStructuresTakeOffs.Controllers
 
                         int remainingQty = qty - currentRequestCount;
 
-                        MyMethods.PurchasesAdd(rebNom, length, remainingQty, reqNo, projId, _context);
+                        PurchasesAdd(rebNom, length, remainingQty, reqNo, projId, _context, structure, RebarLengths.RebLength20);
 
                         return;
 
                     }
 
-                    decimal wasteLength1 = checkingwastes.RebarWastingLength - length;
-                    int wasteQuantity1 = (int)Math.Ceiling((decimal)(qty / eaInStick2)) == 0 ? 1 :
-                        (int)Math.Ceiling((decimal)(qty / eaInStick2));
+                    decimal wasteLength1 = checkingwastes.RebarWastingLength - eaInStick2*length;
 
-                    if (wasteLength1 != 0)
-                    {
-                        MyMethods.AddWaste(rebNom, wasteLength1, wasteQuantity1, reqNo, _context);
+                    int remQty = wasteQtyAvailable - qty;
+
+                    if (qty % eaInStick2 == 0) {
+
+                        MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            wasteLength1,
+                            qty/eaInStick2,
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
+
+                        MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            checkingwastes.RebarWastingLength,
+                            (int)Math.Floor((decimal)remQty/(decimal)eaInStick2),
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
+
+                        MyMethods.UpdateWaste(
+                        checkingwastes.RebarWastingNomination,
+                        checkingwastes.RebarWastingLength,
+                        checkingwastes.RebarWastingReqNo,
+                        checkingwastes.RebarWastingId,
+                        checkingwastes.RebarWastingReqNo,
+                        _context);
+
+                        rebarfabricated.Add(new RebarFabrication
+                        {
+                            //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                            //RebarRequestId = reqNo,
+                            RebFabStructure = structure,
+                            Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                            RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                            RebarFabricationReqNo = reqNo,
+                            RebarFabricationNomination = rebNom,
+                            RebarFabricationLength = length,
+                            RebarFabricationQuantity = qty,
+                            RebarWastedLength = wasteLength1,
+                            RebarWastedQuantity = (int)Math.Floor((decimal)remQty/(decimal)eaInStick2)
+                        });
+
+
+                        return;
                     }
 
-                    rebarfabricated.Add(new RebarFabrication
-                    {
-                        //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
-                        //RebarRequestId = reqNo,
-                        RebarFabricationReqNo = reqNo,
-                        RebarFabricationNomination = rebNom,
-                        RebarFabricationLength = length,
-                        RebarFabricationQuantity = qty,
-                        RebarWastedLength = wasteLength1,
-                        RebarWastedQuantity = wasteQuantity1
-                    });
+                    if (wasteLength1 != 0) {
+
+                        int wasteQty1 = (int)Math.Floor((decimal)qty/(decimal)eaInStick2);
+
+                        MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            wasteLength1,
+                            wasteQty1,
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
+
+                        MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            checkingwastes.RebarWastingLength,
+                            (int)Math.Floor((decimal)remQty/(decimal)eaInStick2),
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
+
+                        MyMethods.UpdateWaste(
+                        checkingwastes.RebarWastingNomination,
+                        checkingwastes.RebarWastingLength, reqNo,
+                        checkingwastes.RebarWastingId,
+                        checkingwastes.RebarWastingReqNo,
+                        _context);
+
+                        rebarfabricated.Add(new RebarFabrication
+                        {
+                            //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                            //RebarRequestId = reqNo,
+                            RebFabStructure = structure,
+                            Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                            RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                            RebarFabricationReqNo = reqNo,
+                            RebarFabricationNomination = rebNom,
+                            RebarFabricationLength = length,
+                            RebarFabricationQuantity = qty,
+                            RebarWastedLength = wasteLength1,
+                            RebarWastedQuantity = (int)Math.Floor((decimal)remQty/(decimal)eaInStick2)
+                        });
+
+                        return;
+
+
+                    }
+
+                    MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            checkingwastes.RebarWastingLength - (wasteQtyAvailable % qty) * length,
+                            wasteQtyAvailable % qty,
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
+
+                    MyMethods.AddWaste(
+                            checkingwastes.RebarWastingNomination,
+                            checkingwastes.RebarWastingLength,
+                            (int)Math.Floor((decimal)remQty/(decimal)eaInStick2),
+                            checkingwastes.RebarWastingReqNo,
+                            _context);
 
                     MyMethods.UpdateWaste(
                         checkingwastes.RebarWastingNomination,
@@ -500,21 +643,32 @@ namespace SmallStructuresTakeOffs.Controllers
                         checkingwastes.RebarWastingReqNo,
                         _context);
 
-                    MyMethods.AddWaste(
-                        checkingwastes.RebarWastingNomination,
-                        checkingwastes.RebarWastingLength,
-                        checkingwastes.RebarWastingQuantity - qty,
-                        checkingwastes.RebarWastingReqNo,
-                        _context);
+                    rebarfabricated.Add(new RebarFabrication
+                    {
+                        //WasteId = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                        //RebarRequestId = reqNo,
+                        RebFabStructure = structure,
+                        Source = checkingwastes == null ? FabricationSource.FullStick : FabricationSource.Waste,
+                        RebarWastedReqNo = checkingwastes == null ? 0 : checkingwastes.RebarWastingReqNo,
+                        RebarFabricationReqNo = reqNo,
+                        RebarFabricationNomination = rebNom,
+                        RebarFabricationLength = length,
+                        RebarFabricationQuantity = qty,
+                        RebarWastedLength = wasteLength1,
+                        RebarWastedQuantity = (int)Math.Floor((decimal)remQty/(decimal)eaInStick2)
+                    });
 
                     return;
+                    /**********************************/
+
+
+
                 }
 
                 #endregion if-08
 
 
                 #endregion
-
 
             }
             #endregion Waste Available
@@ -576,19 +730,35 @@ namespace SmallStructuresTakeOffs.Controllers
                 #region Update Waste
                 public static void UpdateWaste(RebarNomination rebNom, decimal lenght, int qty, int id, int reqNo, EFCoreDBcontext _context)
                 {
-                    var thisUpdate =
-                        from u in _context.RebarWastings
-                        where u.RebarWastingId == id
-                        select new RebarWasting
-                        {
-                            RebarWastingReqNo = reqNo,
-                            IsItAvailable = false,
-                            RebarWastingLength = lenght,
-                            RebarWastingQuantity = qty,
-                            RebarWastingNomination = rebNom,
-                            RebarWastingId = id
-                        };
-                    _context.RebarWastings.Update(thisUpdate.FirstOrDefault());
+                //var thisUpdate =
+                //    (from u in _context.RebarWastings
+                //    where u.RebarWastingId == id
+                //    select new RebarWasting
+                //    {
+                //        RebarWastingReqNo = reqNo,
+                //        IsItAvailable = false,
+                //        RebarWastingLength = lenght,
+                //        RebarWastingQuantity = qty,
+                //        RebarWastingNomination = rebNom
+                //        //RebarWastingId = id
+                //    });
+
+                var thisUpdate =
+                     (from u in _context.RebarWastings
+                     where u.RebarWastingId == id
+                     select u).FirstOrDefault();
+                //{
+                //    RebarWastingReqNo = reqNo,
+                //    IsItAvailable = false,
+                //    RebarWastingLength = lenght,
+                //    RebarWastingQuantity = qty,
+                //    RebarWastingNomination = rebNom
+                //                        //RebarWastingId = id
+                //                    });
+
+                thisUpdate.IsItAvailable = false;
+
+                _context.Update<RebarWasting>(thisUpdate);
                     _context.SaveChanges();
                 }
 
