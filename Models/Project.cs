@@ -11,5 +11,6 @@ namespace SmallStructuresTakeOffs.Models
         public string ProjectCode { get; set; }
         public string ProjectName { get; set; }
         public ICollection<RebarRequest> RebarRequests { get; set; }
+        public ICollection<CatchBasin> CatchBasins { get; set; }
     }
 }

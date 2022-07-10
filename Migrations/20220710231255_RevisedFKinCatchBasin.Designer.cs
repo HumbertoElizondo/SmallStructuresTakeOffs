@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20220710231255_RevisedFKinCatchBasin")]
+    partial class RevisedFKinCatchBasin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,12 +92,12 @@ namespace SmallStructuresTakeOffs.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("ProjId")
+                    b.Property<long>("ProjectId")
                         .HasColumnType("bigint");
 
                     b.HasKey("CatchBasinId");
 
-                    b.HasIndex("ProjId");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("CatchBasins");
 
@@ -333,7 +335,7 @@ namespace SmallStructuresTakeOffs.Migrations
                 {
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
                         .WithMany("CatchBasins")
-                        .HasForeignKey("ProjId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

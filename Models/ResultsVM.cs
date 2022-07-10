@@ -24,10 +24,10 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Pour Top (cy)")]
         public decimal ResVMPourWallCY { get; set; }
 
-        [Display(Name = "Form Base (sf)")]
+        [Display(Name = "Form Bottom (sf)")]
         public decimal ResVMFormBase { get; set; }
 
-        [Display(Name = "Form Wall (sf)")]
+        [Display(Name = "Form Top (sf)")]
         public decimal ResVMFormWall { get; set; }
 
         [Display(Name = "Form Fab (sf)")]

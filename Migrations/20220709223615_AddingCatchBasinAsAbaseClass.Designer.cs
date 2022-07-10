@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20220709223615_AddingCatchBasinAsAbaseClass")]
+    partial class AddingCatchBasinAsAbaseClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,12 +92,7 @@ namespace SmallStructuresTakeOffs.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("ProjId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("CatchBasinId");
-
-                    b.HasIndex("ProjId");
 
                     b.ToTable("CatchBasins");
 
@@ -329,17 +326,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBc1580");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany("CatchBasins")
-                        .HasForeignKey("ProjId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
                 {
                     b.HasOne("SmallStructuresTakeOffs.RebarRequest", "RebarRequest")
@@ -358,8 +344,6 @@ namespace SmallStructuresTakeOffs.Migrations
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
                 {
-                    b.Navigation("CatchBasins");
-
                     b.Navigation("RebarRequests");
                 });
 
