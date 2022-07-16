@@ -56,7 +56,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,CatchBasinProjectId")] CBc1580 c1580CB)
+        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId")] CBc1580 c1580CB)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch")] CBc1580 c1580CB)
+        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId")] CBc1580 c1580CB)
         {
             if (id != c1580CB.CatchBasinId)
             {
@@ -189,7 +189,9 @@ namespace SmallStructuresTakeOffs.Controllers
                     PurchConcrete = l.PurchConcrete(l.CBHeight),
                     ResVMFormFab = l.FabForms(l.CBHeight),
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
-                    ResVMFormWall = l.InstTopForms()
+                    ResVMFormWall = l.InstTopForms(),
+                    ResVMRebNo4Purch = l.CBRebPurch
+
                 };
                 results.Add(thisStr);
             }

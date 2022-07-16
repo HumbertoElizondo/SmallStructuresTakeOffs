@@ -20,15 +20,16 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal CBWidth { get => 2m; set { decimal W = 2m; } }
         public override decimal CBBaseThickness { get => .5m; set { decimal T = .5m; } }
         public override decimal CBWallThickness { get => .5m; set { decimal T = .5m; } }
-        public override int CBVertBars { get => 14; set { decimal Bars = .5m; } }
+        public override int CBVertBars { get => 14; set { decimal Bars = 14m; } }
 
         public override decimal CBSqRingL { get => 160m/12m; set { decimal R = 160m/12m; } }
 
         public override decimal PourBottom(decimal CBHeight) {
             if (CBHeight < 8)
             {
-                return ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
-                2M * ((CBLength + 2M * CBWallThickness) + CBWidth) * CBWallThickness * CBHeight /*Walls*/
+                return (
+                    (CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                    2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * CBHeight /*Walls*/
                 ) / 27M; /*CY*/
             }
             else
