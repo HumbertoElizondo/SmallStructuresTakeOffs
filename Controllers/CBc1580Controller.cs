@@ -142,9 +142,10 @@ namespace SmallStructuresTakeOffs.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var c1580CB = await _context.CBc1580s.FindAsync(id);
+            var prjId = c1580CB.ProjId;
             _context.CBc1580s.Remove(c1580CB);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { id = prjId });
         }
 
         private bool C1580CBExists(int id)
@@ -190,7 +191,10 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormFab = l.FabForms(l.CBHeight),
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
                     ResVMFormWall = l.InstTopForms(),
-                    ResVMRebNo4Purch = l.CBRebPurch
+                    ResVMRebNo4Purch = l.CBRebPurch,
+                    ResVMRebPurch = (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight)) * .668m * 1.25m,
+                    ResVMRebFandI = (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight)) * .668m
+
 
                 };
                 results.Add(thisStr);

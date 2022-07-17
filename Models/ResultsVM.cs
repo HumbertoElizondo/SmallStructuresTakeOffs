@@ -72,6 +72,12 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Reb#3 Buy (lb)")]
         public decimal ResVMRebNo3Purch { get; set; }
 
+        [Display(Name = "Reb Buy (lb)")]
+        public decimal ResVMRebPurch { get; set;  }
+
+        [Display(Name = "Reb F&I (lb)")]
+        public decimal ResVMRebFandI { get; set; }
+
 
 
         //public decimal Concrete => PourApron + ResVMPourBottomCY + ResVMPourWallCY;

@@ -20,8 +20,8 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal CBSqRingL { get; set; }
         public decimal CBRebFandI { get; set; }
         public decimal CBRebPurch { get; set; }
-        [ForeignKey("Project")]
 
+        [ForeignKey("Project")]
         public long ProjId { get; set; }
         public Project Project { get; set; }
 

@@ -33,13 +33,16 @@ namespace SmallStructuresTakeOffs.Models
         }
         public decimal PourApron()
         {
-            return (((2M * 4M + 3M) * 2M + (2M * 4M + 2M - .5M * 2M) * 2M) * (0.25M + 0.5M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
-                ((2M * (4M + 3M) * (0.25M + 0.5M) * .5M / 2M))/ 27M + /* Inside Perfimeter CY*/
-                ((11M * 10M - 4M * 3M) * 2M / 12M) / 27M; /*Apron*/
+            return ((11m * 10m) * 2m/12m  +
+                    (2m * (11m + 10M) + 2m * (4m + 3m)) * ((3m + 9m) * (6m / 2m) / 144)) / 27m;
+
+            //return (((2M * 4M + 3M) * 2M + (2M * 4M + 2M - .5M * 2M) * 2M) * (0.25M + 0.5M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
+            //    ((2M * (4M + 3M) * (0.25M + 0.5M) * .5M / 2M))/ 27M + /* Inside Perfimeter CY*/
+            //    ((11M * 10M - 4M * 3M) * 2M / 12M) / 27M; /*Apron*/
         }
         public decimal PurchConcrete(decimal C1580CBHeight)
         {
-            return (PourApron() * 1.087M + PourTop() + PourBottom(C1580CBHeight)) * 1.15M;
+            return (PourApron() + PourTop() + PourBottom(C1580CBHeight)) * 1.25M;
         }
         public decimal FabForms(decimal C1580CBHeight)
         { 
