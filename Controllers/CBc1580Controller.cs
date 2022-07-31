@@ -166,12 +166,6 @@ namespace SmallStructuresTakeOffs.Controllers
 
             foreach (var l in CBList)
             {
-                //SD630Headwall thisHDStr = 
-                //    from t in SD630Headwall.SeedHWInfo.sD630Headwalls
-
-                //var takeOff =
-                //     SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630Id == l.ThisStructure).PourBase();
-
                 ResultsVM thisStr = new()
                 {
                     ResVMHWcode = l.CBCode,
@@ -192,10 +186,8 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
                     ResVMFormWall = l.InstTopForms(),
                     ResVMRebNo4Purch = l.CBRebPurch,
-                    ResVMRebPurch = (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight)) * .668m * 1.25m,
+                    ResVMRebPurch = (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight)) * .668m * 1.15m,
                     ResVMRebFandI = (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight)) * .668m
-
-
                 };
                 results.Add(thisStr);
             }
