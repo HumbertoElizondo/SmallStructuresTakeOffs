@@ -39,25 +39,28 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Reb#4 Buy (lb)")]
         public decimal ResVMRebNo4Purch { get; set; }
 
-        [Display(Name = "Sq Ring (ea)")]
+        [Display(Name = "SqRing #4 (ea)")]
         public int SqRingRebEa { get; set; }
 
-        [Display(Name = "Vert L's (ea)")]
+        [Display(Name = "VertL's #4 (ea)")]
         public int VertLsRebEa { get; set; }
 
-        [Display(Name = "Vert L's (ft)")]
+        [Display(Name = "VertL's #4 (ft)")]
         public decimal VertLsRebL { get; set; }
 
-        [Display(Name = "Sq Ring (ft)")]
+        [Display(Name = "SqRing #4 (ft)")]
         public decimal SqRingRebL { get; set; }
 
         [Display(Name = "Pour Apron (cy)")]
         public decimal PourApron { get; set; }
 
-        [Display(Name = "Purch Concr(cy)")]
+        [Display(Name = "Purch Concrete (cy)")]
         public decimal PurchConcrete { get; set; }
 
+        [Display(Name = "Reb #3 (ea)")]
         public int RebNo3LengthEa { get; set; }
+
+        [Display(Name = "Reb #3 (ft)")]
         public decimal RebNo3Length  { get; set; }
 
         public int RebNo3WidthEa { get; set; }
@@ -77,6 +80,12 @@ namespace SmallStructuresTakeOffs.Models
 
         [Display(Name = "Reb F&I (lb)")]
         public decimal ResVMRebFandI { get; set; }
+        [Display(Name = "Straight #4 (ft)")]
+
+        public decimal RebNo4StgthL { get; set; }
+        [Display(Name = "Straight #4 (ea)")]
+
+        public int RebNo4StgthEa { get; set; }
 
 
 
