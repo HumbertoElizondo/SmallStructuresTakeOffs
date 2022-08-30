@@ -24,6 +24,10 @@ namespace SmallStructuresTakeOffs.Models
 
         public override decimal CBSqRingL { get => (CBLength + CBWidth + 1m/3m) * 2 + 1; set { decimal R = (CBLength + CBWidth + 1m/3m) * 2 + 1; } }
 
+        public override ICollection<CBreinforcement> CBreinforcements { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        //public override ICollection<CBreinforcement> CBreinforcements { }
+
         public override decimal PourBottom(decimal CBHeight) {
             if (CBHeight < 8)
             {
@@ -80,6 +84,11 @@ namespace SmallStructuresTakeOffs.Models
         public override int RebSqRingEa (decimal CBHeight)
         {
             return (int)(Math.Ceiling(CBHeight + CBBaseThickness))+1;
+        }
+
+        public override decimal CBRebarTakeOfflb(decimal CBHeight)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,10 +11,27 @@ namespace SmallStructuresTakeOffs.Models
         public int RebarId { get; set; }
         public RebarNomination RebarNom { get; set; }
         public RebarNomLength RebarLength { get; set; }
-        public RebarNomWeight RebarWeight { get; set; }
-    }
+        public decimal RebarWeight { get; set; }
+        //public RebarNomWeight RebarWeight { get; }
 
-    public enum RebarNomLength
+        //public Dictionary<string, decimal> Weights { get; }
+
+        //public Dictionary<string, decimal> Weights = new Dictionary<string, decimal>
+        //        {
+        //            {"RebWeightNo2", 0.167M},
+        //            {"RebWeightNo3", 0.376M},
+        //            {"RebWeightNo4", 0.668M},
+        //            {"RebWeightNo5", 1.050M},
+        //        };
+
+    }
+}
+
+
+
+
+
+public enum RebarNomLength
     {
         StickL8 = 8,
         StickL16 = 16,
@@ -24,7 +41,9 @@ namespace SmallStructuresTakeOffs.Models
         RebL60 = 60
     }
 
+
     // enum doesn't take decimal values...
+    // static classes can not used as return ones
     public class RebarNomWeight
     {
         static decimal RebWNo2Weight => 0.167M;
@@ -33,6 +52,7 @@ namespace SmallStructuresTakeOffs.Models
         static decimal RebWNo5Weight => 1.050M;
     }
 
+    //public IList<RebarNomWeight> RebWghts = new();
     public enum RebarNomination
     {
         No2,
@@ -41,4 +61,3 @@ namespace SmallStructuresTakeOffs.Models
         No5
     }
    
-}

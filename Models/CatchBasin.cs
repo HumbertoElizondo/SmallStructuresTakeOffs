@@ -25,6 +25,18 @@ namespace SmallStructuresTakeOffs.Models
         public long ProjId { get; set; }
         public Project Project { get; set; }
 
+        public abstract ICollection<CBreinforcement> CBreinforcements { get; set; }
+
+        // Dictionary that all catch basins use
+        public Dictionary<string, decimal> WeightDict = new Dictionary<string, decimal>
+        {
+            {"RebWeightNo2", 0.167M},
+            {"RebWeightNo3", 0.376M},
+            {"RebWeightNo4", 0.668M},
+            {"RebWeightNo5", 1.050M},
+        };
+
+
         /********** These are The Methods ***************/
         public abstract decimal PourBottom(decimal CBHeight);
         public abstract decimal PourTop();
@@ -35,5 +47,6 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal InstTopForms();
         public abstract decimal RebVertLength(decimal CBHeight);
         public abstract int RebSqRingEa(decimal CBheight);
+        public abstract decimal CBRebarTakeOfflb(decimal CBHeight);
     }
 }

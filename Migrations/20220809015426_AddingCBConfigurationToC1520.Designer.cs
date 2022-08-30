@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20220809015426_AddingCBConfigurationToC1520")]
+    partial class AddingCBConfigurationToC1520
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,47 +46,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasKey("C1580CBId");
 
                     b.ToTable("C1580CBs");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBreinforcement", b =>
-                {
-                    b.Property<int>("CBreinforcementId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CBId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CBRebarNom")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CBreinfCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("CBreinfLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CBreinfQty")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CBreinfShape")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CatchBasinId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalWeight")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("CBreinforcementId");
-
-                    b.HasIndex("CatchBasinId");
-
-                    b.ToTable("CBreinforcement");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
@@ -377,9 +338,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<int>("CBConfg")
                         .HasColumnType("int");
 
-                    b.Property<int>("CBwings")
-                        .HasColumnType("int");
-
                     b.Property<string>("Genres")
                         .HasColumnType("nvarchar(max)");
 
@@ -391,13 +349,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
 
                     b.HasDiscriminator().HasValue("CBc1580");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBreinforcement", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.CatchBasin", null)
-                        .WithMany("CBreinforcements")
-                        .HasForeignKey("CatchBasinId");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
@@ -425,11 +376,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
                         .WithMany("RebarRequests")
                         .HasForeignKey("ProjectId");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
-                {
-                    b.Navigation("CBreinforcements");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>

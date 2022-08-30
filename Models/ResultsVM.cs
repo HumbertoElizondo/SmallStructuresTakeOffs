@@ -57,11 +57,17 @@ namespace SmallStructuresTakeOffs.Models
         [Display(Name = "Purch Concrete (cy)")]
         public decimal PurchConcrete { get; set; }
 
-        [Display(Name = "Reb #3 (ea)")]
+        [Display(Name = "Reb #3 (Lng-ea)")]
         public int RebNo3LengthEa { get; set; }
 
-        [Display(Name = "Reb #3 (ft)")]
+        [Display(Name = "Reb #3 (Lng-ft)")]
         public decimal RebNo3Length  { get; set; }
+
+        [Display(Name = "Reb #3 (Trn-ea)")]
+        public int RebNo3TrnLengthEa { get; set; }
+
+        [Display(Name = "Reb #3 (Trn-ft)")]
+        public decimal RebNo3TrnLength { get; set; }
 
         public int RebNo3WidthEa { get; set; }
         public decimal RebNo3Width { get; set; }
@@ -80,12 +86,20 @@ namespace SmallStructuresTakeOffs.Models
 
         [Display(Name = "Reb F&I (lb)")]
         public decimal ResVMRebFandI { get; set; }
-        [Display(Name = "Straight #4 (ft)")]
 
+        [Display(Name = "Reb #4 (Lng-ft)")]
         public decimal RebNo4StgthL { get; set; }
-        [Display(Name = "Straight #4 (ea)")]
 
+        [Display(Name = "Reb #4 (Lng-ea)")]
         public int RebNo4StgthEa { get; set; }
+
+        [Display(Name = "Reb #4 (Trn-ft)")]
+        public decimal RebNo4TrnL { get; set; }
+
+        [Display(Name = "Reb #4 (Trn-ea)")]
+        public int RebNo4TrnEa { get; set; }
+
+        public IList<CBreinforcement> CBreinforcementsVM { get; set; }
 
 
 
