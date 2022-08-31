@@ -27,61 +27,51 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         // GET: C1580CB/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
             //SelectList cbs = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList());
-            if (id == null)
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var cb = await _context.CBc1520T3s
+            //    .FirstOrDefaultAsync(m => m.CatchBasinId == id);
+            //if (cb == null)
+
+            //{ return NotFound(); }
+
+            var cb = (from r in _context.CBc1520T3s
+                     where r.CatchBasinId == id
+                     select r).FirstOrDefault();
+
+
+            var thisStr =
+            new ResultsVM
             {
-                return NotFound();
-            }
+                ResVMHWcode = cb.CBCode,
+                ResVMHWDescription = cb.Description,
+                ResVMHWStrId = cb.CatchBasinId,
+                ResVMId = cb.CatchBasinId,
+                ResVMPourWallCY = cb.PourTop(),
+                ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
+                PourApron = cb.PourApron(),
+                PurchConcrete = cb.PurchConcrete(cb.CBHeight),
+                ResVMFormFab = cb.FabForms(cb.CBHeight),
+                ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
+                ResVMFormWall = cb.InstTopForms(),
+                ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
+                ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
+                CBreinforcementsVM = cb.theReinforcements().ToList()
 
-            var cb = await _context.CBc1520T3s
-                .FirstOrDefaultAsync(m => m.CatchBasinId == id);
-            if (cb == null)
+            };
+            return View(thisStr);
 
-            { return NotFound(); }
-
-
-            //var CBList =
-            //    from hw in _context.CBc1520T3s.Where(p => p.ProjId == id)
-            //    select hw;
-
-            //List<ResultsVM> results = new();
-
-            //foreach (var l in cb)
-            //{
-            //public ResultsVM thisStr = new
-            //ResultsVM
-            //{
-            //    ResVMHWcode = cb.CBCode,
-            //    ResVMHWDescription = cb.Description,
-            //    ResVMHWStrId = cb.CatchBasinId,
-            //    ResVMId = cb.CatchBasinId,
-            //    ResVMPourWallCY = cb.PourTop(),
-            //    ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
-            //    PourApron = cb.PourApron(),
-            //    PurchConcrete = cb.PurchConcrete(cb.CBHeight),
-            //    ResVMFormFab = cb.FabForms(cb.CBHeight),
-            //    ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
-            //    ResVMFormWall = cb.InstTopForms(),
-            //    ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight) * 1.15m,
-            //    ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
-            //    CBreinforcementsVM = cb.CBreinforcements.ToList()
-            //};
-            ////results.Add(thisStr);
-            ////}
-            //return View(thisStr);
-
-            return null;
+        }
 
 
-
-    }
-
-
-
-    // GET: C1580CB/Create
-    public IActionResult Create(long id)
+            // GET: C1580CB/Create
+            public IActionResult Create(long id)
         {
 
             //ViewBag.ResourceList = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList(),"CBConfig");

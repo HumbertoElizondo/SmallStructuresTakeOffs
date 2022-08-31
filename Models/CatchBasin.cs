@@ -25,7 +25,9 @@ namespace SmallStructuresTakeOffs.Models
         public long ProjId { get; set; }
         public Project Project { get; set; }
 
-        public abstract ICollection<CBreinforcement> CBreinforcements { get; set; }
+        //public abstract ICollection<CBreinforcement> CBreinforcements { get; /*set; */}
+        [NotMapped]
+        public abstract ICollection<CBreinforcement> CBreinforcements { get; set;  }
 
         // Dictionary that all catch basins use
         public Dictionary<string, decimal> WeightDict = new Dictionary<string, decimal>
