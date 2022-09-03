@@ -27,22 +27,64 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         // GET: C1580CB/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var c1580CB = await _context.CBc1580s
+        //        .FirstOrDefaultAsync(m => m.CatchBasinId == id);
+        //    if (c1580CB == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(c1580CB);
+        //}
+
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //SelectList cbs = new SelectList(_context.CBc1591.Select(s => s.CBConfg).ToList());
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var c1580CB = await _context.CBc1580s
-                .FirstOrDefaultAsync(m => m.CatchBasinId == id);
-            if (c1580CB == null)
-            {
-                return NotFound();
-            }
+            //var cb = await _context.CBc1520T3s
+            //    .FirstOrDefaultAsync(m => m.CatchBasinId == id);
+            //if (cb == null)
 
-            return View(c1580CB);
+            //{ return NotFound(); }
+
+            var cb = (from r in _context.CBc1580s
+                      where r.CatchBasinId == id
+                      select r).FirstOrDefault();
+
+
+            var thisStr =
+            new ResultsVM
+            {
+                ResVMHWcode = cb.CBCode,
+                ResVMHWDescription = cb.Description,
+                ResVMHWStrId = cb.CatchBasinId,
+                ResVMId = cb.CatchBasinId,
+                ResVMPourWallCY = cb.PourTop(),
+                ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
+                PourApron = cb.PourApron(),
+                PurchConcrete = cb.PurchConcrete(cb.CBHeight),
+                ResVMFormFab = cb.FabForms(cb.CBHeight),
+                ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
+                ResVMFormWall = cb.InstTopForms(),
+                ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
+                ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
+                CBreinforcementsVM = cb.theReinforcements().ToList()
+
+            };
+            return View(thisStr);
         }
+
 
         // GET: C1580CB/Create
         public IActionResult Create(long id)

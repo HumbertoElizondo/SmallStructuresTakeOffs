@@ -2,7 +2,7 @@
 {
     public enum CurbType
     {
-        C,
-        C_D
+        B,
+        CorD
     }
 }
