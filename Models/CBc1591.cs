@@ -67,8 +67,6 @@ namespace SmallStructuresTakeOffs.Models
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
-                    if (CBHeight <=8)
-                    {
                         cbReinf.Add(
                                 new CBreinforcement
                                 {
@@ -95,14 +93,7 @@ namespace SmallStructuresTakeOffs.Models
                                 });
 
                         return cbReinf;
-                    }
-                    else
-                    {
-                        return
-                            null;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
+                    
         }
 
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>
@@ -297,133 +288,169 @@ namespace SmallStructuresTakeOffs.Models
                     {
                         switch (this.CBCurbType)
                         {
-                            case CurbType.C:
+                            case CurbType.B:
                             {
                                 return
-                                2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWidth * (CBHeight - (3m/12m + 2.5m)) / 27;
+                                2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (CBHeight - (3m/12m + 2.5m)) / 27 +
+                                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m / 27;
+                            }
+
+                            case CurbType.CorD:
+                            {
+                                return
+                                2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (CBHeight - (1.625m/12m + 2.5m)) / 27 +
+                                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m / 27;
                             }
 
                             default:
                                 return 0;
                         }
                     }
+                    case SlottedDrain.Dia24in:
+                    {
+                        switch (this.CBCurbType)
+                        {
+                            case CurbType.B:
+                            {
+                                return
+                                2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (CBHeight - (3m/12m + 3m)) / 27 +
+                                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m / 27;
+                                    }
+
+                            case CurbType.CorD:
+                            {
+                                return
+                                2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (CBHeight - (1.625m/12m + 3m)) / 27 +
+                                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m / 27;
+                                    }
+
+                            default:
+                                return 0;
+                        }
+                    }
+                    case SlottedDrain.None:
+                    {
+                        return
+                        2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (CBHeight - 2m) / 27 +
+                        (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m / 27;
+                        }
                     default:
                         return 0;
                 }
             }
             else
             {
-                return
-                    0;
-                //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                switch (this.CBSlottedDrain)
+                {
+                    case SlottedDrain.Dia18in:
+                        {
+                            switch (this.CBCurbType)
+                            {
+                                case CurbType.B:
+                                    {
+                                        return
+                                        2 * (CBLength + 2*(CBWallThickness + 2m/12m) + CBWidth) * (CBWallThickness + 2m/12m) * (CBHeight - (3m/12m + 2.5m)) / 27 +
+                                        (CBLength + 2m * ((CBWallThickness + 2m/12m) + 3m/12m)) * (CBWidth + 2m * (CBWallThickness + 4m/12m)) * .5m / 27;
+                                    }
+
+                                case CurbType.CorD:
+                                    {
+                                        return
+                                        2 * (CBLength + 2*(CBWallThickness + 2m/12m) + CBWidth) * (CBWallThickness + 2m/12m) * (CBHeight - (1.625m/12m + 2.5m)) / 27 +
+                                        (CBLength + 2m * (CBWallThickness + 2m/12m)) * (CBWidth + 2m * (CBWallThickness + 4m/12m)) * .5m / 27;
+                                    }
+
+                                default:
+                                    return 0;
+                            }
+                        }
+                    case SlottedDrain.Dia24in:
+                        {
+                            switch (this.CBCurbType)
+                            {
+                                case CurbType.B:
+                                    {
+                                        return
+                                        2 * (CBLength + 2*(CBWallThickness + 2m/12m) + CBWidth) * (CBWallThickness + 2m/12m) * (CBHeight - (3m/12m + 3m)) / 27 +
+                                        (CBLength + 2m * (CBWallThickness + 2m/12m)) * (CBWidth + 2m * (CBWallThickness + 2m/12m)) * .5m / 27;
+                                    }
+
+                                case CurbType.CorD:
+                                    {
+                                        return
+                                        2 * (CBLength + 2*(CBWallThickness + 2m/12m) + CBWidth) * (CBWallThickness + 2m/12m) * (CBHeight - (1.625m/12m + 3m)) / 27 +
+                                        (CBLength + 2m * (CBWallThickness + 2m/12m)) * (CBWidth + 2m * (CBWallThickness + 2m/12m)) * .5m / 27;
+                                    }
+
+                                default:
+                                    return 0;
+                            }
+                        }
+                    case SlottedDrain.None:
+                        {
+                            return
+                            2 * (CBLength + 2*(CBWallThickness + 2m/12m) + CBWidth) * (CBWallThickness + 2m/12m) * (CBHeight - 2m) / 27 +
+                            (CBLength + 2m * (CBWallThickness + 2m/12m)) * (CBWidth + 2m * (CBWallThickness + 2m/12m)) * .5m / 27;
+                        }
+                    default:
+                        return 0;
+                }
             }
 
         }
         public override decimal PourTop()
         {
-            switch (this.CBConfg)
+            switch (this.CBSlottedDrain)
             {
-                case CBConfig.SumpOnly:
-                {
-                    if (CBHeight <= 5)
+                case SlottedDrain.Dia18in:
                     {
-                        return
-                            0;
-                    }
-                    else if (CBHeight <= 8)
-                    {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
-                    else
-                    {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
-                }
-                case CBConfig.SingleWing:
-                {
-                    if (CBHeight <= 5)
-                    {
-                        switch (this.CBwings)
+                        switch (this.CBCurbType)
                         {
-                            case CBWing.w3ft6in:
-                            {
-                                const decimal wing = 3.5m;
-                                return
-                                    0;
-                            }
+                            case CurbType.B:
+                                {
+                                    return
+                                    2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * ((3m/12m + 2.5m)) / 27;
+                                }
+
+                            case CurbType.CorD:
+                                {
+                                    return
+                                    2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * ((1.625m/12m + 2.5m)) / 27;
+                                }
+
                             default:
-                            {
-                                return
-                                    0;
-                            }
+                                return 0;
                         }
                     }
-                    else if (CBHeight <= 8)
+                case SlottedDrain.Dia24in:
                     {
-                        switch (this.CBwings)
+                        switch (this.CBCurbType)
                         {
-                            case CBWing.w3ft6in:
-                            {
-                                const decimal wing = 3.5m;
-                                return
-                                    3.5m;
-                            }
-                            case CBWing.w7ft6in:
-                            {
-                                const decimal wing = 7.5m;
-                                decimal T = 1.5m;
+                            case CurbType.B:
+                                {
+                                    return
+                                    2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * ((3m/12m + 3m)) / 27;
+                                }
 
-                                return
-                                    (
-                                    /*T Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * T  +
-                                    /*Toop Slab */ (CBLength + wing + 3m * CBWallThickness) * CBWidth * .5m +
-                                    /* Gutter Width */ (CBLength + wing + 3m * CBWallThickness) * 2.5m * 7m/12m ) / 27m;
-                                //7.5m; Test
-                            }
-                            case CBWing.w11ft6in:
-                            {
-                                const decimal wing = 11.5m;
-                                return
-                                    11.5m;
-                            }
-                            case CBWing.w19ft6in:
-                            {
-                                const decimal wing = 19.5m;
-                                return
-                                    19.5m;
-                            }
+                            case CurbType.CorD:
+                                {
+                                    return
+                                    2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * ((1.625m/12m + 3m)) / 27;
+                                }
+
                             default:
-                            {
-                                return
-                                    0;
-                            }
+                                return 0;
                         }
                     }
-                    else
+                case SlottedDrain.None:
                     {
                         return
-                            0;
-
+                        2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (2m) / 27;
                     }
-                }
-                case CBConfig.DoubleWing:
-                {
-                    return
-                        0;
-                }
                 default:
-                {
-                    return
-                        0;
-                }
+                    return 0;
             }
+
         }
         public override decimal PourApron()
         {
