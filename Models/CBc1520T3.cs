@@ -77,12 +77,12 @@ namespace SmallStructuresTakeOffs.Models
 
         //private IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
-        public override ICollection<CBreinforcement> CBreinforcements 
+        public override ICollection<CBreinforcement> CBreinforcements
         {
-            get; set;
+            get => this.theReinforcements(); set => this.theReinforcements();
         }
 
-        public ICollection<CBreinforcement> theReinforcements()
+        public override ICollection<CBreinforcement> theReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 

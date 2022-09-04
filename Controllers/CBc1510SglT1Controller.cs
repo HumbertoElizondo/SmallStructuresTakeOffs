@@ -186,10 +186,9 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
                     ResVMFormWall = l.InstTopForms(),
                     ResVMRebNo4Purch = l.CBRebPurch,
-                    ResVMRebPurch = 
-                        (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight) + l.RebNo4StrthEa() * l.RebNo4Strth()) * .668m * 1.15m + l.RebNo3Length() * l.RebNo3Qty() * .376m *1.15m,
-                    ResVMRebFandI = 
-                        (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight) + l.RebNo4StrthEa() * l.RebNo4Strth()) * .668m + l.RebNo3Length() * l.RebNo3Qty() * .376m,
+                    ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
+                    ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum(),
+
                     RebNo3Length = l.RebNo3Length(),
                     RebNo3LengthEa = (int)l.RebNo3Qty(),
                     RebNo4StgthEa = (int)l.RebNo4StrthEa(),

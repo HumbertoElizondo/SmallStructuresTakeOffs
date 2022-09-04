@@ -213,8 +213,8 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
                     ResVMFormWall = l.InstTopForms(),
                     ResVMRebNo4Purch = l.CBRebPurch,
-                    ResVMRebPurch = l.CBRebarTakeOfflb(l.CBHeight) * 1.15m,
-                    ResVMRebFandI = l.CBRebarTakeOfflb(l.CBHeight),
+                    ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
+                    ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum(),
 
 
                     //ResVMRebPurch = 

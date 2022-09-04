@@ -40,6 +40,8 @@ namespace SmallStructuresTakeOffs.Models
 
 
         /********** These are The Methods ***************/
+
+        public abstract ICollection<CBreinforcement> theReinforcements();
         public abstract decimal PourBottom(decimal CBHeight);
         public abstract decimal PourTop();
         public abstract decimal PourApron();

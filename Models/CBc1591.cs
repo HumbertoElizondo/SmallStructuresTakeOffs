@@ -59,11 +59,11 @@ namespace SmallStructuresTakeOffs.Models
         public string Genres { get; set; }/* = string.Empty*/
         public CBConfig CBConfg { get; set; }
         public CBWing CBwings { get; set; }
-        public override ICollection<CBreinforcement> CBreinforcements 
+        public override ICollection<CBreinforcement> CBreinforcements
         {
-            get; set;
+            get => this.theReinforcements(); set => this.theReinforcements();
         }
-        public ICollection<CBreinforcement> theReinforcements()
+        public override ICollection<CBreinforcement> theReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
@@ -93,7 +93,6 @@ namespace SmallStructuresTakeOffs.Models
                                 });
 
                         return cbReinf;
-                    
         }
 
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>

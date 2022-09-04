@@ -15,7 +15,44 @@ namespace SmallStructuresTakeOffs.Models
 
         public override decimal CBSqRingL { get => (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; set { decimal R = (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; } }
 
-        public override ICollection<CBreinforcement> CBreinforcements { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override ICollection<CBreinforcement> CBreinforcements
+        {
+            get => this.theReinforcements(); set => this.theReinforcements();
+        }
+
+        public override ICollection<CBreinforcement> theReinforcements()
+        {
+            IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
+
+            cbReinf.Add(
+                    new CBreinforcement
+                    {
+                        CBId = CatchBasinId,
+                        CBRebarNom = RebarNomination.No4,
+                        CBreinfCode = "rb01",
+                        CBreinfQty = 12,
+                        CBreinfLength = CBHeight + CBBaseThickness - (5m/12m) + .5m,
+                        CBreinfShape = "L Shape, Vertical, 6\" x L = Length",
+                        TotalLength =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m),
+                        TotalWeight =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m) * .668m
+                    });
+            cbReinf.Add(
+                    new CBreinforcement
+                    {
+                        CBId = CatchBasinId,
+                        CBRebarNom = RebarNomination.No4,
+                        CBreinfCode = "rb02",
+                        CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
+                        CBreinfLength = 2m * (CBLength + CBWidth + (5m/12m)) + 2,
+                        CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                        TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2),
+                        TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2) * .668m
+                    });
+
+            return cbReinf;
+
+        }
+
 
         //public override ICollection<CBreinforcement> CBreinforcements { set => throw new NotImplementedException(); }
 

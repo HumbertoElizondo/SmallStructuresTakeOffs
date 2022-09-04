@@ -7,8 +7,6 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBc1580 : CatchBasin
     {
-        //private decimal V = 3m;
-
         public override decimal CBLength
         {
             get => 3m; 
@@ -24,24 +22,61 @@ namespace SmallStructuresTakeOffs.Models
 
         public override decimal CBSqRingL { get => (CBLength + CBWidth + 1m/3m) * 2 + 1; set { decimal R = (CBLength + CBWidth + 1m/3m) * 2 + 1; } }
 
-        public override ICollection<CBreinforcement> CBreinforcements { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override ICollection<CBreinforcement> CBreinforcements
+        {
+            get => this.theReinforcements(); set => this.theReinforcements();
+        }
 
-        //public override ICollection<CBreinforcement> CBreinforcements { }
+        public override ICollection<CBreinforcement> theReinforcements()
+        {
+            IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
+
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No4,
+                    CBreinfCode = "rb01",
+                    CBreinfQty = 14,
+                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m) + .5m,
+                    CBreinfShape = "L Shape, Vertical, 6\" x L = Length",
+                    TotalLength =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m),
+                    TotalWeight =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m) * .668m
+                });
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No4,
+                    CBreinfCode = "rb02",
+                    CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
+                    CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2m,
+                    CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                    TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2),
+                    TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2) * .668m
+                });
+
+            return cbReinf;
+
+        }
+
 
         public override decimal PourBottom(decimal CBHeight) {
-            if (CBHeight < 8)
+            if (CBHeight <= 8)
             {
-                return (
-                    (CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                return 
+                    ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
                     2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * CBHeight /*Walls*/
                 ) / 27M; /*CY*/
             }
             else
             {
 
-                return ((CBLength + 2M * (8m/12m)) * (CBWidth + 2M * (8m/12m)) * (8m/12m) + /*Base*/
-                2M * ((CBLength + 2M * (8m/12m)) + CBWidth) * (8m/12m) * base.CBHeight /*Walls*/
-                ) / 27M; /*CY*/
+                return 
+                    (
+                        (CBLength + 2M * (CBWallThickness + 2m/12m)) * (CBWidth + 2M * (CBWallThickness + 2m/12m)) * (CBWallThickness + 2m/12m) + /*Base*/
+                        2M * ((CBLength + 2M * (CBWallThickness + 2m/12m)) + CBWidth) * (CBWallThickness + 2m/12m) * CBHeight /*Walls*/
+                    ) / 27M; /*CY*/
             }
         }
         public override decimal PourTop()
@@ -88,7 +123,9 @@ namespace SmallStructuresTakeOffs.Models
 
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
-            throw new NotImplementedException();
+            return
+                0;
+            //throw new NotImplementedException();
         }
     }
 }
