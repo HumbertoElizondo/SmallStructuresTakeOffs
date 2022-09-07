@@ -1,0 +1,59 @@
+﻿@using SmallStructuresTakeOffs.Enums
+@model SmallStructuresTakeOffs.Models.CBc1592
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>@Model.GetType().Name</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CatchBasinId" />
+            <div class="form-group">
+                <label asp-for="CBCode" class="control-label"></label>
+                <input asp-for="CBCode" class="form-control" />
+                <span asp-validation-for="CBCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CBHeight" class="control-label"></label>
+                <input asp-for="CBHeight" class="form-control" />
+                <span asp-validation-for="CBHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CBCurbType" class="control-label"></label>
+                <select asp-for="CBCurbType" class="form-control" asp-items="Html.GetEnumSelectList<CurbType>()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CBSlottedDrain" class="control-label"></label>
+                <select asp-for="CBSlottedDrain" class="form-control" asp-items="Html.GetEnumSelectList<SlottedDrain>()"></select>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CBRebPurch" class="control-label"></label>*@
+                <input asp-for="ProjId" type="hidden" class="form-control" />
+                <span asp-validation-for="CBRebPurch" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" asp-route-id=@Model.CatchBasinId/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id=@Model.ProjId>Back to List</a>
+</div>
+
