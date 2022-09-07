@@ -74,10 +74,10 @@ namespace SmallStructuresTakeOffs.Models
                                     CBRebarNom = RebarNomination.No4,
                                     CBreinfCode = "rb01",
                                     CBreinfQty = 12,
-                                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m) + .5m,
-                                    CBreinfShape = "L Shape, Vertical, 6\" x L = Length",
-                                    TotalLength =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m),
-                                    TotalWeight =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m) * .668m
+                                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m),
+                                    CBreinfShape = "Straight, Vertical",
+                                    TotalLength =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m)),
+                                    TotalWeight =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m)) * .668m
                                 });
                         cbReinf.Add(
                                 new CBreinforcement
