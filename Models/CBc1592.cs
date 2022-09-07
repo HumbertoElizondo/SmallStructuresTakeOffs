@@ -91,8 +91,32 @@ namespace SmallStructuresTakeOffs.Models
                                     TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2),
                                     TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2) * .668m
                                 });
+            cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb03",
+                                    CBreinfQty = (int)Math.Ceiling((CBLength + 2m * CBWallThickness) / .5m) + 1,
+                                    CBreinfLength = 2m + 1m,
+                                    CBreinfShape = "L Shape 12\" x 24\", Vertical at Top",
+                                    TotalLength = (2m + 1m) * ((int)Math.Ceiling((CBLength + 2m * CBWallThickness) / .5m) + 1),
+                                    TotalWeight = (2m + 1m) * ((int)Math.Ceiling((CBLength + 2m * CBWallThickness) / .5m) + 1) * .668m
+                                });
+                    cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb04",
+                                CBreinfQty = 2,
+                                CBreinfLength = CBLength + 2m * 2m / 12m,
+                                CBreinfShape = "Straight, Horizontal at Top",
+                                TotalLength = (2) * (CBLength + 2m * 2m / 12m),
+                                TotalWeight = (2) * (CBLength + 2m * 2m / 12m) * .668m
+                            });
 
-                        return cbReinf;
+            return cbReinf;
         }
 
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>
@@ -444,7 +468,8 @@ namespace SmallStructuresTakeOffs.Models
                 case SlottedDrain.None:
                     {
                         return
-                        2 * (CBLength + 2*CBWallThickness + CBWidth) * CBWallThickness * (2m) / 27;
+                        2 * (CBLength + 2 * CBWallThickness + CBWidth) * CBWallThickness * (2m) / 27 +
+                        (.5m * .5m / 2m + 1m * .5m) * (CBLength + 2m * CBWallThickness) / 27;
                     }
                 default:
                     return 0;
