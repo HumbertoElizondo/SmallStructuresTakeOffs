@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 
 namespace SmallStructuresTakeOffs.Models
 {
-    public class CBc1580 : CatchBasin
+    public class CBd21 : CatchBasin
     {
         public override decimal CBLength
         {
-            get => 3m; 
+            get => 5m + (6m + 5m / 8m) / 12m; 
             set
             {
                 decimal L = 3m;
             }
         }
-        public override decimal CBWidth { get => 2m; set { decimal W = 2m; } }
-        public override decimal CBBaseThickness { get => .5m; set { decimal T = .5m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal T = .5m; } }
+        public override decimal CBWidth { get => 3m; set { decimal W = 2m; } }
+        public override decimal CBBaseThickness { get => 1m; set { decimal T = .5m; } }
+        public override decimal CBWallThickness { get => 1m; set { decimal T = .5m; } }
         public override int CBVertBars { get => 14; set { decimal Bars = 14m; } }
 
         public override decimal CBSqRingL { get => (CBLength + CBWidth + 1m/3m) * 2 + 1; set { decimal R = (CBLength + CBWidth + 1m/3m) * 2 + 1; } }
@@ -61,23 +61,12 @@ namespace SmallStructuresTakeOffs.Models
         }
 
 
-        public override decimal PourBottom(decimal CBHeight) {
-            if (CBHeight <= 8)
-            {
+        public override decimal PourBottom(decimal CBHeight) 
+        {
                 return 
-                    ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                    ((CBLength + 2M * CBWallThickness + 8m/12m) * (CBWidth + 2M * CBWallThickness + 8m/12m) * CBBaseThickness + /*Base*/
                     2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * CBHeight /*Walls*/
-                ) / 27M; /*CY*/
-            }
-            else
-            {
-
-                return 
-                    (
-                        (CBLength + 2M * (CBWallThickness + 2m/12m)) * (CBWidth + 2M * (CBWallThickness + 2m/12m)) * (CBWallThickness + 2m/12m) + /*Base*/
-                        2M * ((CBLength + 2M * (CBWallThickness + 2m/12m)) + CBWidth) * (CBWallThickness + 2m/12m) * CBHeight /*Walls*/
                     ) / 27M; /*CY*/
-            }
         }
         public override decimal PourTop()
         {
@@ -86,11 +75,19 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal PourApron()
 
         {
-            return ((11m * 10m * 2m/12m  -
-                3m * 4M * 2m/12m +
-                (2m * (11m + 10M) + 2m * (4m + 3m)) * (((3m + 9m) * (6m / 2m) )/ 144))) / 27m;
+            return
+                ((CBLength + 2m * 4m) * (CBWidth + 2m * 4m) - /*ApronSize*/
+                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness)) * 3m / 12m / 27m + /*InsideBox*/ +
+                (2m * (CBLength + 2m * 4m)  + 2m * (CBWidth + 2m * 4m) ) * ((0.25M + 0.75M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
+                (2M * ((CBLength + 2m * CBWallThickness) + (CBWidth + 2m * CBWallThickness)) * ((0.25M + 0.75M) * .5M / 2M)) / 27M;  /* Inside Perfimeter CY*/
 
-            //return (((2M * 4M + 3M) * 2M + (2M * 4M + 2M - .5M * 2M) * 2M) * (0.25M + 0.5M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
+
+            //((11m * 10m * 2m/12m  -
+            //3m * 4M * 2m/12m +
+            //(2m * (11m + 10M) + 2m * (4m + 3m)) * (((3m + 9m) * (6m / 2m) )/ 144))) / 27m;
+
+            //return
+            //      (((2M * 4M + 3M) * 2M + (2M * 4M + 2M - .5M * 2M) * 2M) * (0.25M + 0.5M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
             //    ((2M * (4M + 3M) * (0.25M + 0.5M) * .5M / 2M))/ 27M + /* Inside Perfimeter CY*/
             //    ((11M * 10M - 4M * 3M) * 2M / 12M) / 27M; /*Apron*/
         }

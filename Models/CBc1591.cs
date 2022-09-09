@@ -68,29 +68,29 @@ namespace SmallStructuresTakeOffs.Models
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
                         cbReinf.Add(
-                                new CBreinforcement
-                                {
-                                    CBId = CatchBasinId,
-                                    CBRebarNom = RebarNomination.No4,
-                                    CBreinfCode = "rb01",
-                                    CBreinfQty = 12,
-                                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m) + .5m,
-                                    CBreinfShape = "L Shape, Vertical, 6\" x L = Length",
-                                    TotalLength =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m),
-                                    TotalWeight =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m) + .5m) * .668m
-                                });
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb01",
+                                CBreinfQty = 12,
+                                CBreinfLength = CBHeight + CBBaseThickness - (5m/12m),
+                                CBreinfShape = "Straight, Vertical",
+                                TotalLength =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m)),
+                                TotalWeight =  (12m) *  (CBHeight + CBBaseThickness - (5m/12m)) * .668m
+                            });
                         cbReinf.Add(
-                                new CBreinforcement
-                                {
-                                    CBId = CatchBasinId,
-                                    CBRebarNom = RebarNomination.No4,
-                                    CBreinfCode = "rb02",
-                                    CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
-                                    CBreinfLength = 2m * (CBLength + CBWidth + (5m/12m)) + 2,
-                                    CBreinfShape = "Square Ring Shape, 2'-Overlap",
-                                    TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2),
-                                    TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2) * .668m
-                                });
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
+                                CBreinfLength = 2m * (CBLength + CBWidth + (5m/12m)) + 2,
+                                CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                                TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2),
+                                TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + (5m/12m)) + 2) * .668m
+                            });
 
                         return cbReinf;
         }
