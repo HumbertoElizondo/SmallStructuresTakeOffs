@@ -37,11 +37,11 @@ namespace SmallStructuresTakeOffs.Models
                     CBId = CatchBasinId,
                     CBRebarNom = RebarNomination.No4,
                     CBreinfCode = "rb01",
-                    CBreinfQty = 14,
-                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m),
-                    CBreinfShape = "Straight, Vertical",
-                    TotalLength =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m)),
-                    TotalWeight =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m)) * .668m
+                    CBreinfQty = 38,
+                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m) + 1m,
+                    CBreinfShape = "L Shape (12\" x Long = Length, Vertical, Inside and Outside",
+                    TotalLength =  (38m) *  (CBHeight + CBBaseThickness - (5m / 12m) + 1m),
+                    TotalWeight =  (38m) *  (CBHeight + CBBaseThickness - (5m / 12m) + 1m) * .668m
                 });
             cbReinf.Add(
                 new CBreinforcement
@@ -49,12 +49,74 @@ namespace SmallStructuresTakeOffs.Models
                     CBId = CatchBasinId,
                     CBRebarNom = RebarNomination.No4,
                     CBreinfCode = "rb02",
-                    CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
-                    CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2m,
-                    CBreinfShape = "Square Ring Shape, 2'-Overlap",
-                    TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2),
-                    TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2) * .668m
+                    CBreinfQty = (int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 4,
+                    CBreinfLength = 2m * (CBLength + 2m * 1.5m/12m),
+                    CBreinfShape = "Straight Horizontal, Inside Wall",
+                    TotalLength =  ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * 1.5m / 12m)),
+                    TotalWeight =  ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * 1.5m / 12m)) * .668m
                 });
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No4,
+                    CBreinfCode = "rb03",
+                    CBreinfQty = (int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4,
+                    CBreinfLength = 2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m),
+                    CBreinfShape = "Straight Horizontal, Outside Wall",
+                    TotalLength = ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m)),
+                    TotalWeight = ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m)) * .668m
+                });
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No4,
+                    CBreinfCode = "rb04",
+                    CBreinfQty = 2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1),
+                    CBreinfLength = 2m * (CBWidth + 2m * CBWallThickness - 2m * 1.5m / 12m),
+                    CBreinfShape = "C Shape Horizontal Outside Wall, 24\"-Overlap",
+                    TotalLength = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1)) * (2m * (CBWidth + 2m * CBWallThickness - 2m * 1.5m / 12m)),
+                    TotalWeight = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1)) * (2m * (CBWidth + 2m * CBWallThickness - 2m * 1.5m / 12m)) * .668m
+                });
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No4,
+                    CBreinfCode = "rb05",
+                    CBreinfQty = 2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1),
+                    CBreinfLength = 2m * (CBWidth + 2m * 1.5m / 12m),
+                    CBreinfShape = "C Shape Horizontal Inside Wall, 24\"-Overlap",
+                    TotalLength = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1)) * (2m * (CBWidth + 2m * 1.5m / 12m)),
+                    TotalWeight = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1)) * (2m * (CBWidth + 2m * 1.5m / 12m)) * .668m
+                });
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No5,
+                    CBreinfCode = "rb06",
+                    CBreinfQty = 14,
+                    CBreinfLength = CBLength + 2m * CBWallThickness + 8m/12 - 2m * 1.5m / 12m,
+                    CBreinfShape = "Longitudinal Straight T&B, at Base",
+                    TotalLength = (14m) * (CBLength + 2m * CBWallThickness + 8m / 12 - 2m * 1.5m / 12m),
+                    TotalWeight = (14m) * (CBLength + 2m * CBWallThickness + 8m / 12 - 2m * 1.5m / 12m) * .668m
+                });
+
+            cbReinf.Add(
+                new CBreinforcement
+                {
+                    CBId = CatchBasinId,
+                    CBRebarNom = RebarNomination.No5,
+                    CBreinfCode = "rb07",
+                    CBreinfQty = 18,
+                    CBreinfLength = CBWidth + 2m * CBWallThickness + 8m / 12 - 2m * 1.5m / 12m,
+                    CBreinfShape = "Longitudinal Straight T&B, at Base",
+                    TotalLength = (18m) * (CBWidth + 2m * CBWallThickness + 8m / 12 - 2m * 1.5m / 12m),
+                    TotalWeight = (18m) * (CBWidth + 2m * CBWallThickness + 8m / 12 - 2m * 1.5m / 12m) * .668m
+                });
+
 
             return cbReinf;
 
@@ -76,20 +138,11 @@ namespace SmallStructuresTakeOffs.Models
 
         {
             return
-                ((CBLength + 2m * 4m) * (CBWidth + 2m * 4m) - /*ApronSize*/
-                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness)) * 3m / 12m / 27m + /*InsideBox*/ +
+                (CBLength + 2m * 4m) * (CBWidth + 2m * 4m) * (2m / 12m) / 27m - /*ApronSize*/
+                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * (2m / 12m) / 27m + /*InsideBox*/ +
                 (2m * (CBLength + 2m * 4m)  + 2m * (CBWidth + 2m * 4m) ) * ((0.25M + 0.75M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
-                (2M * ((CBLength + 2m * CBWallThickness) + (CBWidth + 2m * CBWallThickness)) * ((0.25M + 0.75M) * .5M / 2M)) / 27M;  /* Inside Perfimeter CY*/
+                (2M * (CBLength + 2m * CBWallThickness) + 2m * (CBWidth + 2m * CBWallThickness)) * ((0.25M + 0.75M) * .5M / 2M) / 27M;  /* Inside Perfimeter CY*/
 
-
-            //((11m * 10m * 2m/12m  -
-            //3m * 4M * 2m/12m +
-            //(2m * (11m + 10M) + 2m * (4m + 3m)) * (((3m + 9m) * (6m / 2m) )/ 144))) / 27m;
-
-            //return
-            //      (((2M * 4M + 3M) * 2M + (2M * 4M + 2M - .5M * 2M) * 2M) * (0.25M + 0.5M) * .5M / 2M) / 27M + /* Outside Perfimeter CY*/
-            //    ((2M * (4M + 3M) * (0.25M + 0.5M) * .5M / 2M))/ 27M + /* Inside Perfimeter CY*/
-            //    ((11M * 10M - 4M * 3M) * 2M / 12M) / 27M; /*Apron*/
         }
         public override decimal PurchConcrete(decimal CBHeight)
         {
