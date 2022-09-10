@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBp1569>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-route-id=@ViewBag.ProjectId>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CBCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBHeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBp1569Types)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBp1569Wings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBRebFandI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBRebPurch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBp1569Types)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBp1569Wings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBRebFandI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBRebPurch)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Results" asp-route-id=@ViewBag.ProjectId>Results</a>
+</div>
+
+

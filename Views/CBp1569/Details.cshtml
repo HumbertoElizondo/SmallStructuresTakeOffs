@@ -1,0 +1,73 @@
+﻿@model SmallStructuresTakeOffs.Models.ResultsVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details: @Model.ResVMHWcode, @Model.ResVMHWDescription</h1>
+
+<div>
+    <h4>@Model.GetType().Name</h4>
+    <hr />
+    <dl class="row" >
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMPourBottomCY)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMPourBottomCY)</dd>
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMPourWallCY)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMPourWallCY)</dd>
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.PurchConcrete)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.PurchConcrete)</dd>
+    </dl>
+    <dl class="row">
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMFormFab)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMFormFab)</dd>
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMFormBase)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMFormBase)</dd>
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMFormWall)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMFormWall)</dd>
+
+     </dl> 
+<table class="table">
+    <thead>
+    <bold>Catch Basin Reinforcement</bold>
+        <tr>
+            <th>RebarCode</th>
+            <th>Nom</th>
+            <th>Shape</th>
+            <th class="text-right">Length</th>
+            <th class="text-right">Ea</th>
+            <th class="text-right">Total (ft)</th>
+            <th class="text-right">Total (lb)</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach(var l in Model.CBreinforcementsVM)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => l.CBreinfCode)</td>
+                    <td>@Html.DisplayFor(modelItem => l.CBRebarNom)</td>
+                    <td>@Html.DisplayFor(modelItem => l.CBreinfShape)</td>
+                    <td class="text-right">@Html.DisplayFor(modelItem => l.CBreinfLength)</td>
+                    <td class="text-right">@Html.DisplayFor(modelItem => l.CBreinfQty)</td>
+                    <td class="text-right">@Html.DisplayFor(modelItem => l.TotalLength)</td>
+                    <td class="text-right">@Html.DisplayFor(modelItem => l.TotalWeight)</td>
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-right" colspan="6">
+                        @Model.CBreinforcementsVM.Select(s => s.TotalLength).Sum().ToString("0.00")
+                    </td>
+
+                    <td class="text-right" >
+                        @Model.CBreinforcementsVM.Select(s => s.TotalWeight).Sum().ToString("0.00")
+                    </td>
+                </tr>
+            </tfoot>
+</table>
+        
+    
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.CatchBasinId">Edit</a> |*@
+    @*<a asp-action="Index" asp-route-id=@Model.ProjId>Back to List</a>*@
+</div>

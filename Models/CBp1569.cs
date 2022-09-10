@@ -7,10 +7,10 @@ using SmallStructuresTakeOffs.Enums;
 
 namespace SmallStructuresTakeOffs.Models
 {
-    public class CBc1520T3 : CatchBasin
+    public class CBp1569 : CatchBasin
     {
-        public override decimal CBLength { get => 2m + 11.75m/12m; set { decimal L = 2m + 11.75m/12m; } }
-        public override decimal CBWidth { get => 2m + 11.5m/12m; set { decimal W = 2m; } }
+        public override decimal CBLength { get => 3m; set { decimal L = 3m; } }
+        public override decimal CBWidth { get => 2.75m; set { decimal W = 2.75m; } }
         public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
         public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
         public override int CBVertBars
@@ -73,6 +73,10 @@ namespace SmallStructuresTakeOffs.Models
 
         public CBWing CBwings { get; set; }
 
+        public CBp1569Type CBp1569Types { get; set; }
+
+        public CBp1569Wing CBp1569Wings { get; set; }
+
         //public override ICollection<CBreinforcement> CBreinforcements => throw new NotImplementedException();
 
         //private IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
@@ -86,17 +90,10 @@ namespace SmallStructuresTakeOffs.Models
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
-            switch (this.CBConfg)
+            switch (this.CBp1569Types)
             {
-                case CBConfig.SumpOnly:
+                case CBp1569Type.M_NoWing:
                 {
-                    if (CBHeight <= 5)
-                    {
-                        return
-                            null;
-                    }
-                    else if (CBHeight <=8)
-                    {
                         cbReinf.Add(
                                 new CBreinforcement
                                 {
@@ -119,228 +116,56 @@ namespace SmallStructuresTakeOffs.Models
                                 });
 
                         return cbReinf;
-                    }
-                    else
-                    {
-                        return
-                            null;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
                 }
-                case CBConfig.SingleWing:
+                case CBp1569Type.M1_OneWing:
                 {
-                    if (CBHeight <= 5)
-                    {
-                        return
-                            null;
-                    }
-                    else if (CBHeight <= 8)
-                    {
-                        switch (this.CBwings)
-                        {
-                            case CBWing.w3ft6in:
-                            {
-                                const decimal wing = 3.5m;
-                                return
-                                    null;
-                            }
-                            case CBWing.w7ft6in:
-                            {
-                                const decimal wing = 7.5m;
-                                decimal S = 1m + wing / 20m;
-                                decimal F = CBHeight - (2.5m + wing / 20m);
-                                decimal T = 1m + .5m;
+                        cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb01",
+                                    CBreinfQty = ((int)Math.Ceiling(CBHeight /1.5m) +1) * 2,
+                                    CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m/12m),
+                                    CBreinfShape = "Straight",
+                                });
+                        cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb02",
+                                    CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight /1.5m) +1),
+                                    CBreinfLength = CBWidth + 4m + 5m/12m,
+                                    CBreinfShape = "C Shape, 2'-Overlap",
+                                });
 
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb01",
-                                        CBreinfQty = ((int)Math.Ceiling(F /1.5m) +1) * 2,
-                                        CBreinfLength = CBLength + CBWallThickness + (5m/12m),
-                                        CBreinfShape = "Straight, horiz, sump",
-                                        TotalLength =  (((int)Math.Ceiling(F /1.5m) +1)) * 2 * (CBLength + CBWallThickness + (5m/12m)),
-                                        TotalWeight =  (((int)Math.Ceiling(F /1.5m) +1)) * 2 * (CBLength + CBWallThickness + (5m/12m)) * .668m
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb02",
-                                        CBreinfQty = ((int)Math.Ceiling(CBHeight /1.5m) +1)   + (int)Math.Ceiling(F/1.5m) + (int)Math.Ceiling((S+T)/1.5m),
-                                        CBreinfLength = CBWidth + 4m + 5m/12m,
-                                        CBreinfShape = "C Shape, horiz, 2'-Overlap",
-                                        TotalLength =  (((int)Math.Ceiling(CBHeight /1.5m) +1)   + (int)Math.Ceiling(F/1.5m) + (int)Math.Ceiling((S+T)/1.5m)) *
-                                                (CBWidth + 4m + 5m/12m),
-                                        TotalWeight =  (((int)Math.Ceiling(CBHeight /1.5m) +1)   + (int)Math.Ceiling(F/1.5m) + (int)Math.Ceiling((S+T)/1.5m)) *
-                                                (CBWidth + 4m + 5m/12m) * .668m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb03",
-                                        CBreinfQty = 10,
-                                        CBreinfLength = CBHeight +.5m - 5m/12m,
-                                        CBreinfShape = "L Shape, Vert, Sump, L=.5' x 5.58'",
-                                        TotalLength = 10m * (CBHeight +.5m - 5m/12m),
-                                        TotalWeight =  10m * (CBHeight +.5m - 5m/12m) * .668m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb04",
-                                        CBreinfQty = 14,
-                                        CBreinfLength = (S + T) +.5m - 5m/12m,
-                                        CBreinfShape = "L Shape, Vert, Wing, L=.5' x 2.46'",
-                                        TotalLength = 14m * ((S + T) +.5m - 5m/12m),
-                                        TotalWeight =  14m * ((S + T) +.5m - 5m/12m) * .668m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb05",
-                                        CBreinfQty = ((int)Math.Ceiling((S + T)/1.5m) +1) * 2,
-                                        CBreinfLength =  (CBLength + 1m * CBWallThickness + WingDict["Wing7'-6\""] + 5m/12m),
-                                        CBreinfShape = "Straight, horiz, Sump & Wing",
-                                        TotalLength = (((int)Math.Ceiling((S + T)/1.5m) +1) * 2) * ((CBLength + 1m * CBWallThickness + WingDict["Wing7'-6\""] + 5m/12m)),
-                                        TotalWeight =  (((int)Math.Ceiling((S + T)/1.5m) +1) * 2) * ((CBLength + 1m * CBWallThickness + WingDict["Wing7'-6\""] + 5m/12m)) * .668m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No3,
-                                        CBreinfCode = "rb06",
-                                        CBreinfQty = 11,
-                                        CBreinfLength =  (CBLength + 3m * CBWallThickness + WingDict["Wing7'-6\""] - 4m/12m),
-                                        CBreinfShape = "Straight, slab longitudinal, Sump & Wing",
-                                        TotalLength = 11m * ((CBLength + 3m * CBWallThickness + WingDict["Wing7'-6\""] - 4m/12m)),
-                                        TotalWeight =  (11m) * ((CBLength + 3m * CBWallThickness + WingDict["Wing7'-6\""] - 4m/12m)) * .376m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No3,
-                                        CBreinfCode = "rb07",
-                                        CBreinfQty = 2,
-                                        CBreinfLength =  (CBLength + 2m * CBWallThickness - 4m/12m),
-                                        CBreinfShape = "Straight, slab-sump longitudinal, additional",
-                                        TotalLength = 2m * (CBLength + 2m * CBWallThickness - 4m/12m),
-                                        TotalWeight =  (2m) * (CBLength + 2m * CBWallThickness - 4m/12m) * .376m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No3,
-                                        CBreinfCode = "rb08",
-                                        CBreinfQty = 24,
-                                        CBreinfLength =  CBWidth + 2m * CBWallThickness - 5.5m/12m + ((decimal)Math.PI * 3m / 2m) / 12m + 6m/12m,
-                                        CBreinfShape = "Hooked, slab transverse",
-                                        TotalLength = 24m * (CBWidth + 2m * CBWallThickness - 5.5m/12m + ((decimal)Math.PI * 3m / 2m) / 12m + 6m/12m),
-                                        TotalWeight =  (24m) * (CBWidth + 2m * CBWallThickness - 5.5m/12m + ((decimal)Math.PI * 3m / 2m) / 12m + 6m/12m) * .376m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No3,
-                                        CBreinfCode = "rb09",
-                                        CBreinfQty = 2,
-                                        CBreinfLength =  CBWidth + 2m * CBWallThickness - 4m/12m,
-                                        CBreinfShape = "Straight, slab transverse, additional",
-                                        TotalLength = 2m * (CBWidth + 2m * CBWallThickness - 4m/12m),
-                                        TotalWeight =  (2m) * (CBWidth + 2m * CBWallThickness - 4m/12m) * .376m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb10",
-                                        CBreinfQty = 1,
-                                        CBreinfLength = WingDict["Wing7'-6\""] * 20.025m/20m -4m/12m,
-                                        CBreinfShape = "Straight, wing bottom, longitudinal",
-                                        TotalLength = 1m * (WingDict["Wing7'-6\""] * 20.025m/20m -4m/12m),
-                                        TotalWeight =  (1m) * (WingDict["Wing7'-6\""] * 20.025m/20m -4m/12m) * .668m
-
-                                    });
-
-                                cbReinf.Add(
-                                    new CBreinforcement
-                                    {
-                                        CBId = CatchBasinId,
-                                        CBRebarNom = RebarNomination.No4,
-                                        CBreinfCode = "rb11",
-                                        CBreinfQty = 6,
-                                        CBreinfLength =  CBWidth + 2m * CBWallThickness - 4m/12m,
-                                        CBreinfShape = "Straight, wing bottom, transverse",
-                                        TotalLength = 6m * (CBWidth + 2m * CBWallThickness - 4m/12m),
-                                        TotalWeight =  (6m) * (CBWidth + 2m * CBWallThickness - 4m/12m) * .668m
-
-                                    });
-
-                                return cbReinf;
-                            }
-                            case CBWing.w11ft6in:
-                            {
-                                const decimal wing = 11.5m;
-                                return
-                                    null;
-                            }
-                            case CBWing.w19ft6in:
-                            {
-                                const decimal wing = 19.5m;
-                                return
-                                    null;
-                            }
-                            default:
-                            {
-                                return
-                                    null;
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        return
-                            null;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
+                        return cbReinf;
                 }
-                case CBConfig.DoubleWing:
+                case CBp1569Type.M2_TwoWing:
                 {
-                    return
-                        null;
+                    cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb01",
+                                CBreinfQty = ((int)Math.Ceiling(CBHeight /1.5m) +1) * 2,
+                                CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m/12m),
+                                CBreinfShape = "Straight",
+                            });
+                    cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight /1.5m) +1),
+                                CBreinfLength = CBWidth + 4m + 5m/12m,
+                                CBreinfShape = "C Shape, 2'-Overlap",
+                            });
+
+                    return cbReinf;
                 }
                 default:
                 {
@@ -367,12 +192,7 @@ namespace SmallStructuresTakeOffs.Models
             {
                 case CBConfig.SumpOnly:
                 {
-                    if (CBHeight <= 5)
-                    {
-                        return
-                            0;
-                    }
-                    else if (CBHeight < 8)
+                    if (CBHeight < 8)
                     {
                         IList<CBreinforcement> cbReinf = new List<CBreinforcement>
                             {
@@ -449,29 +269,6 @@ namespace SmallStructuresTakeOffs.Models
                                 decimal S = 1m + wing / 20m;
                                 decimal F = CBHeight - (2.5m + wing / 20m);
 
-                                //IList<CBreinforcement> cbReinf = new List<CBreinforcement>
-                                //{
-                                //    new CBreinforcement
-                                //    {
-                                //        CBId = this.CatchBasinId,
-                                //        //CBreinforcementId =1,
-                                //        CBRebarNom = RebarNomination.No4,
-                                //        CBreinfCode = "rb01",
-                                //        CBreinfQty = ((int)Math.Ceiling(CBHeight /1.5m) +1) * 2,
-                                //        CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m/12m),
-                                //        CBreinfShape = "Straight",
-                                //    },
-                                //    new CBreinforcement
-                                //    {
-                                //        CBId = this.CatchBasinId,
-                                //        //CBreinforcementId = 2,
-                                //        CBRebarNom = RebarNomination.No4,
-                                //        CBreinfCode = "rb02",
-                                //        CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight /1.5m) +1),
-                                //        CBreinfLength = CBWidth + 4m + 5m/12m,
-                                //        CBreinfShape = "C Shape, 2'-Overlap",
-                                //    }
-                                //};
 
                                 decimal CBTotalWeight = 0;
 
@@ -492,8 +289,6 @@ namespace SmallStructuresTakeOffs.Models
                                 }
                                 return CBTotalWeight;
 
-                                //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                                //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
 
                             }
                             case CBWing.w11ft6in:
@@ -539,16 +334,11 @@ namespace SmallStructuresTakeOffs.Models
 
         public override decimal PourBottom(decimal CBHeight) 
         {
-            switch (this.CBConfg)
+            switch (this.CBp1569Types)
             {
-                case CBConfig.SumpOnly:
+                case CBp1569Type.M_NoWing:
                 {
-                    if (CBHeight <= 5)
-                    {
-                        return
-                            0;
-                    }
-                    else if (CBHeight <= 8)
+                    if (CBHeight <= 8)
                     {
                         return
                             0;
@@ -563,55 +353,44 @@ namespace SmallStructuresTakeOffs.Models
                         //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
                     }
                 }
-                case CBConfig.SingleWing:
+                case CBp1569Type.M1_OneWing:
                 {
-                    if (CBHeight <= 5)
+                    if (CBHeight <= 4)
                     {
-                        switch (this.CBwings)
+                        switch (this.CBp1569Wings)
                         {
-                            case CBWing.w3ft6in:
-                                {
-                                    const decimal wing = 3.5m;
-                                    return
-                                        0;
-                                }
-                            default:
-                                {
-                                    return
-                                        0;
-                                }
-                        }
-                    }
-                    else if (CBHeight <= 8)
-                    {
-                        switch (this.CBwings)
-                        {
-                            case CBWing.w3ft6in:
+                            case CBp1569Wing.Three3:
                             {
                                 const decimal wing = 3.5m;
                                 return
                                     3.5m;
                             }
-                            case CBWing.w7ft6in:
+                            case CBp1569Wing.Six6:
                             {
-                                const decimal wing = 7.5m;
+                                const decimal wing = 6m;
                                 decimal S = 1m + wing / 20m;
-                                decimal F = CBHeight - (2.5m + wing / 20m);
+                                decimal F = CBHeight - (1m + 10m/12m + wing / 10m);
 
-                                return
-                                    (/*F Bottom Walls */ 2m * (CBLength  + 2m * CBWallThickness + CBWidth) * CBWallThickness * F +
-                                    /*S Bottom Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * S  +
-                                    /* Sump Bottom */ CBLength * CBWidth * CBBaseThickness + 
-                                    /* Wing Bottom */ (wing * 20.025m / 20m+ CBWallThickness) * CBWidth * .5m) / 27m;
-                                    //7.5m; Test
-                            }
-                            case CBWing.w11ft6in:
+                                return 
+                                    ((CBLength + 2m * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                                    2M * ((CBLength + 2M * CBWallThickness) + CBWidth) * CBWallThickness * (CBHeight-2M) /*Walls*/
+                                    ) / 27M; /*CY*/
+
+
+                                        //return
+                                        //    (/*F Bottom Walls */ 2m * (CBLength  + 2m * CBWallThickness + CBWidth) * CBWallThickness * F +
+                                        //    /*S Bottom Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * S  +
+                                        //    /* Sump Bottom */ CBLength * CBWidth * CBBaseThickness + 
+                                        //    /* Wing Bottom */ (wing * 20.025m / 20m+ CBWallThickness) * CBWidth * .5m) / 27m;
+                                        //    //7.5m; Test
+                                    }
+                                case CBp1569Wing.Ten10:
                             {
                                 const decimal wing = 11.5m;
                                 return
                                     11.5m;
                             }
-                            case CBWing.w19ft6in:
+                            case CBp1569Wing.Seventeen17:
                             {
                                 const decimal wing = 19.5m;
                                 return
@@ -624,6 +403,54 @@ namespace SmallStructuresTakeOffs.Models
                             }
                         }
                     }
+                    else if (CBHeight <= 8)
+                    {
+                        switch (this.CBp1569Wings)
+                            {
+                                case CBp1569Wing.Three3:
+                                    {
+                                        const decimal wing = 3.5m;
+                                        return
+                                            3.5m;
+                                    }
+                                case CBp1569Wing.Six6:
+                                    {
+                                        const decimal wing = 6m;
+                                        const decimal T = 16m/12m;
+                                        decimal S = .5m + wing / 10m;
+                                        decimal F = (decimal)this.CBHeight - (T + S);
+
+                                        return
+                                            (
+                                                (CBLength + 2m * (CBWallThickness + 2m/12m)) * (CBWidth + 2M * (CBWallThickness + 2m/12m)) * CBBaseThickness + /*Base*/
+                                                2M * ((CBLength + 2M * (CBWallThickness + 2m / 12m)) + CBWidth) * (CBWallThickness + 2m/12m) * (F) + /*Sump Walls*/
+                                                4m * ((wing + (CBWallThickness + 2m/12m)) * (CBWallThickness + 2m/12m) * S) + /*Long WingWalls*/
+                                                2m * ( 18m/12m * (CBWallThickness + 2m/12m) * S) + /*Short WingWalls*/
+                                                2m * (CBLength * (CBWallThickness + 2m/12m) * S) + /*Long SumpWalls*/
+                                                2m * (15m/12m * (CBWallThickness + 2m/12m) * S) + /*Short SumpWalls*/
+                                                wing * (decimal)Math.Sqrt(Math.Pow(1, 2) +  Math.Pow(10, 2)) / 10m * 18m/12m * .5m  /*Wing Bottom*/
+                                            ) / 27M; /*CY*/
+                                    }
+                                case CBp1569Wing.Ten10:
+                                    {
+                                        const decimal wing = 11.5m;
+                                        return
+                                            11.5m;
+                                    }
+                                case CBp1569Wing.Seventeen17:
+                                    {
+                                        const decimal wing = 19.5m;
+                                        return
+                                            19.5m;
+                                    }
+                                default:
+                                    {
+                                        return
+                                            0;
+                                    }
+                            }
+
+                    }
                     else
                     {
                         return
@@ -631,7 +458,7 @@ namespace SmallStructuresTakeOffs.Models
 
                     }
                 }
-                case CBConfig.DoubleWing:
+                case CBp1569Type.M2_TwoWing :
                 {
                     return
                         0;
@@ -645,108 +472,147 @@ namespace SmallStructuresTakeOffs.Models
         }
         public override decimal PourTop()
         {
-            switch (this.CBConfg)
+            switch (this.CBp1569Types)
             {
-                case CBConfig.SumpOnly:
-                {
-                    if (CBHeight <= 5)
+                case CBp1569Type.M_NoWing:
                     {
-                        return
-                            0;
-                    }
-                    else if (CBHeight <= 8)
-                    {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
-                    else
-                    {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
-                }
-                case CBConfig.SingleWing:
-                {
-                    if (CBHeight <= 5)
-                    {
-                        switch (this.CBwings)
+                        if (CBHeight <= 4)
                         {
-                            case CBWing.w3ft6in:
-                                {
-                                    const decimal wing = 3.5m;
-                                    return
-                                        0;
-                                }
-                            default:
-                                {
-                                    return
-                                        0;
-                                }
+                            return
+                                0;
+                            //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
+                            //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                        }
+                        else if (CBHeight <= 8)
+                        {
+                            return
+                                0;
+                            //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
+                            //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                        }
+                        else
+                        {
+                            return
+                                0;
+                            //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
+                            //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
                         }
                     }
-                    else if (CBHeight <= 8)
+                case CBp1569Type.M1_OneWing:
                     {
-                        switch (this.CBwings)
+                        if (CBHeight <= 4)
                         {
-                            case CBWing.w3ft6in:
-                                {
-                                    const decimal wing = 3.5m;
-                                    return
-                                        3.5m;
-                                }
-                            case CBWing.w7ft6in:
-                                {
-                                    const decimal wing = 7.5m;
-                                    decimal T = 1.5m;
+                            switch (this.CBp1569Wings)
+                            {
+                                case CBp1569Wing.Three3:
+                                    {
+                                        const decimal wing = 3.5m;
+                                        return
+                                            3.5m;
+                                    }
+                                case CBp1569Wing.Six6:
+                                    {
+                                        const decimal wing = 6m;
+                                        decimal S = 1m + wing / 20m;
+                                        decimal F = CBHeight - (1m + 10m/12m + wing / 10m);
 
-                                    return
-                                        (
-                                        /*T Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * T  +
-                                        /*Toop Slab */ (CBLength + wing + 3m * CBWallThickness) * CBWidth * .5m +
-                                        /* Gutter Width */ (CBLength + wing + 3m * CBWallThickness) * 2.5m * 7m/12m ) / 27m;
-                                    //7.5m; Test
-                                }
-                            case CBWing.w11ft6in:
-                                {
-                                    const decimal wing = 11.5m;
-                                    return
-                                        11.5m;
-                                }
-                            case CBWing.w19ft6in:
-                                {
-                                    const decimal wing = 19.5m;
-                                    return
-                                        19.5m;
-                                }
-                            default:
-                                {
-                                    return
-                                        0;
-                                }
+                                        return
+                                            ((CBLength + 2m * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                                            2M * ((CBLength + 2M * CBWallThickness) + CBWidth) * CBWallThickness * (CBHeight-2M) /*Walls*/
+                                            ) / 27M; /*CY*/
+
+
+                                        //return
+                                        //    (/*F Bottom Walls */ 2m * (CBLength  + 2m * CBWallThickness + CBWidth) * CBWallThickness * F +
+                                        //    /*S Bottom Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * S  +
+                                        //    /* Sump Bottom */ CBLength * CBWidth * CBBaseThickness + 
+                                        //    /* Wing Bottom */ (wing * 20.025m / 20m+ CBWallThickness) * CBWidth * .5m) / 27m;
+                                        //    //7.5m; Test
+                                    }
+                                case CBp1569Wing.Ten10:
+                                    {
+                                        const decimal wing = 11.5m;
+                                        return
+                                            11.5m;
+                                    }
+                                case CBp1569Wing.Seventeen17:
+                                    {
+                                        const decimal wing = 19.5m;
+                                        return
+                                            19.5m;
+                                    }
+                                default:
+                                    {
+                                        return
+                                            0;
+                                    }
+                            }
+                        }
+                        else if (CBHeight <= 8)
+                        {
+                            switch (this.CBp1569Wings)
+                            {
+                                case CBp1569Wing.Three3:
+                                    {
+                                        const decimal wing = 3.5m;
+                                        return
+                                            3.5m;
+                                    }
+                                case CBp1569Wing.Six6:
+                                    {
+                                        const decimal wing = 6m;
+                                        const decimal T = 16m/12m;
+                                        decimal S = .5m + wing / 10m;
+                                        decimal F = (decimal)this.CBHeight - (T + S);
+
+                                        return
+                                            (
+                                                4m * ((wing + (CBWallThickness + 2m/12m)) * (CBWallThickness + 2m/12m) * T) + /*Long WingWalls*/
+                                                2m * (18m/12m * (CBWallThickness + 2m/12m) * T) + /*Short WingWalls*/
+                                                2m * (CBLength * (CBWallThickness + 2m/12m) * T) + /*Long SumpWalls*/
+                                                2m * (15m/12m * (CBWallThickness + 2m/12m) * T) + /*Short SumpWalls*/
+                                                (wing + CBLength + 2m * (CBWallThickness + 2m/12m)) * (5m + (CBWallThickness + 2m/12m)) * 8.25m/12m  /*Wing Slab*/
+                                            )   / 27M; /*CY*/
+                                    }
+                                case CBp1569Wing.Ten10:
+                                    {
+                                        const decimal wing = 11.5m;
+                                        return
+                                            11.5m;
+                                    }
+                                case CBp1569Wing.Seventeen17:
+                                    {
+                                        const decimal wing = 19.5m;
+                                        return
+                                            19.5m;
+                                    }
+                                default:
+                                    {
+                                        return
+                                            0;
+                                    }
+                            }
+
+                        }
+                        else
+                        {
+                            return
+                                0;
+
                         }
                     }
-                    else
+                case CBp1569Type.M2_TwoWing:
                     {
                         return
                             0;
-
                     }
-                }
-                case CBConfig.DoubleWing:
-                {
-                    return
-                        0;
-                }
                 default:
-                {
-                    return
-                        0;
-                }
+                    {
+                        return
+                            0;
+                    }
             }
+
         }
         public override decimal PourApron()
 

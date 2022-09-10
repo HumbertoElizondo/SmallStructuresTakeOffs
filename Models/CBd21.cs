@@ -49,11 +49,11 @@ namespace SmallStructuresTakeOffs.Models
                     CBId = CatchBasinId,
                     CBRebarNom = RebarNomination.No4,
                     CBreinfCode = "rb02",
-                    CBreinfQty = (int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 4,
-                    CBreinfLength = 2m * (CBLength + 2m * 1.5m/12m),
+                    CBreinfQty = 2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2),
+                    CBreinfLength = CBLength + 2m * 1.5m/12m,
                     CBreinfShape = "Straight Horizontal, Inside Wall",
-                    TotalLength =  ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * 1.5m / 12m)),
-                    TotalWeight =  ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * 1.5m / 12m)) * .668m
+                    TotalLength =  (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2)) * (CBLength + 2m * 1.5m/12m),
+                    TotalWeight =  (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2)) * (CBLength + 2m * 1.5m/12m) * .668m
                 });
             cbReinf.Add(
                 new CBreinforcement
@@ -61,11 +61,11 @@ namespace SmallStructuresTakeOffs.Models
                     CBId = CatchBasinId,
                     CBRebarNom = RebarNomination.No4,
                     CBreinfCode = "rb03",
-                    CBreinfQty = (int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4,
-                    CBreinfLength = 2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m),
+                    CBreinfQty = 2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2),
+                    CBreinfLength = CBLength + 2m * CBWallThickness - 2m * 1.5m / 12m,
                     CBreinfShape = "Straight Horizontal, Outside Wall",
-                    TotalLength = ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m)),
-                    TotalWeight = ((int)Math.Ceiling(CBHeight + CBBaseThickness) + 1 + 4) * (2m * (CBLength + 2m * CBWidth - 2m * 1.5m / 12m)) * .668m
+                    TotalLength = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2)) * (CBLength + 2m * CBWallThickness - 2m * 1.5m / 12m),
+                    TotalWeight = (2 * ((int)Math.Ceiling(CBHeight + CBBaseThickness) +1 + 2)) * (CBLength + 2m * CBWallThickness - 2m * 1.5m / 12m) * .668m
                 });
             cbReinf.Add(
                 new CBreinforcement
