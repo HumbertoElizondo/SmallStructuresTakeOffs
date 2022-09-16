@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SmallStructuresTakeOffs.Models;
 
-namespace SmallStructuresTakeOffs
+namespace SmallStructuresTakeOffs.Models
 {
     public class RebarFabrication
     {
@@ -21,7 +20,7 @@ namespace SmallStructuresTakeOffs
     }
 
     public enum FabricationSource
-    { 
+    {
         FullStick,
         Waste
     }

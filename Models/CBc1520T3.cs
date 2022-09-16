@@ -33,15 +33,6 @@ namespace SmallStructuresTakeOffs.Models
 
         }
 
-        //public override int CBVertBars
-        //{
-        //    get =>
-
-
-        //set { decimal Bars = 10m; }
-
-        //}
-
         public override decimal CBSqRingL 
         {
             get
