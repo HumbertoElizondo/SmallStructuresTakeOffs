@@ -56,7 +56,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId")] CBc1510SglT1 cb)
+        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBc1510Confs")] CBc1510SglT1 cb)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId")] CBc1510SglT1 cb)
+        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBc1510Confs")] CBc1510SglT1 cb)
         {
             if (id != cb.CatchBasinId)
             {

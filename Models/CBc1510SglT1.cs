@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmallStructuresTakeOffs.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace SmallStructuresTakeOffs.Models
         {
             get => this.theReinforcements(); set => this.theReinforcements();
         }
+
+        public CBc1510Conf CBc1510Confs { get; set; }
 
         public override ICollection<CBreinforcement> theReinforcements()
         {
@@ -58,30 +61,78 @@ namespace SmallStructuresTakeOffs.Models
 
         //public override ICollection<CBreinforcement> CBreinforcements { get => throw new NotImplementedException(); }
 
-        public override decimal PourBottom(decimal CBHeight) {
-            if (CBHeight < 8)
+        public override decimal PourBottom(decimal CBHeight) 
+        {
+            switch(CBc1510Confs)
             {
-                return 
-                    (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                    CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-            }
-            else
-            {
-                return
-                    (2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                    CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                case CBc1510Conf.Single:
+                    {
+                        if (CBHeight < 8)
+                        {
+                            return
+                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
+                                CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                        }
+                        else
+                        {
+                            return
+                                (2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
+                                CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
 
-                //    ((CBLength + 2M * (8m/12m)) * (CBWidth + 2M * (8m/12m)) * (8m/12m) + /*Base*/
-                //2M * ((CBLength + 2M * (8m/12m)) + CBWidth) * (8m/12m) * base.CBHeight /*Walls*/
-                //) / 27M; /*CY*/
+                            //    ((CBLength + 2M * (8m/12m)) * (CBWidth + 2M * (8m/12m)) * (8m/12m) + /*Base*/
+                            //2M * ((CBLength + 2M * (8m/12m)) + CBWidth) * (8m/12m) * base.CBHeight /*Walls*/
+                            //) / 27M; /*CY*/
+                        }
+
+                    }
+                case CBc1510Conf.Double:
+                    {
+                        if (CBHeight < 8)
+                        {
+                            return
+                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
+                                CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                        }
+                        else
+                        {
+                            return
+                                (2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
+                                CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+
+                            //    ((CBLength + 2M * (8m/12m)) * (CBWidth + 2M * (8m/12m)) * (8m/12m) + /*Base*/
+                            //2M * ((CBLength + 2M * (8m/12m)) + CBWidth) * (8m/12m) * base.CBHeight /*Walls*/
+                            //) / 27M; /*CY*/
+                        }
+
+                    }
+                default:
+                    return 0;
             }
+
         }
         public override decimal PourTop()
         {
-            return
-                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * 2m  /*Walls*/ +
-                (CBLength + 2m * CBWallThickness) * (2m * CBWallThickness + .5m) * .5m * .5m /*Curb Portion*/ + 
-                (CBLength + 2m * CBWallThickness) * 2.5m * 7m/12m /*Pan Portion*/) / 27m; 
+            switch (CBc1510Confs)
+            {
+                case CBc1510Conf.Single:
+                    {
+                        return
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * 2m  /*Walls*/ +
+                            (CBLength + 2m * CBWallThickness) * (2m * CBWallThickness + .5m) * .5m * .5m /*Curb Portion*/ +
+                            (CBLength + 2m * CBWallThickness) * 2.5m * 7m/12m /*Pan Portion*/) / 27m;
+
+                    }
+                case CBc1510Conf.Double:
+                    {
+                        return
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * 2m  /*Walls*/ +
+                            (CBLength + 2m * CBWallThickness) * (2m * CBWallThickness + .5m) * .5m * .5m /*Curb Portion*/ +
+                            (CBLength + 2m * CBWallThickness) * 2.5m * 7m/12m /*Pan Portion*/) / 27m;
+
+                    }
+                default:
+                    return 0;
+            }
         }
         public override decimal PourApron()
 
