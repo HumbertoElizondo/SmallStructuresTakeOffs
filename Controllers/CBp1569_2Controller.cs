@@ -9,11 +9,11 @@ using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Controllers
 {
-    public class CBp1569Controller : Controller
+    public class CBp1569_2Controller : Controller
     {
         private readonly EFCoreDBcontext _context;
 
-        public CBp1569Controller(EFCoreDBcontext context)
+        public CBp1569_2Controller(EFCoreDBcontext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             ViewBag.ProjectId = id;
-            return View(await _context.CatchBasins.OfType<CBp1569>().Where(i => i.ProjId == id).ToListAsync());
+            return View(await _context.CatchBasins.OfType<CBp1569_2>().Where(i => i.ProjId == id).ToListAsync());
         }
 
         // GET: C1580CB/Details/5
@@ -41,7 +41,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
             //{ return NotFound(); }
 
-            var cb = (from r in _context.CBp1569s
+            var cb = (from r in _context.CBp1569_2s
                      where r.CatchBasinId == id
                      select r).FirstOrDefault();
 
@@ -87,7 +87,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBp1569Types,CBp1569Wings")] CBp1569 cb)
+        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBp1569Types,CBp1569Wings")] CBp1569_2 cb)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var cb = await _context.CBp1569s.FindAsync(id);
+            var cb = await _context.CBp1569_2s.FindAsync(id);
             if (cb == null)
             {
                 return NotFound();
@@ -119,7 +119,8 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBp1569Types,CBp1569Wings")] CBp1569 cb)
+        public async Task<IActionResult> Edit(int id, 
+            [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBp1569Types,CBp1569Wings")] CBp1569_2 cb)
         {
             if (id != cb.CatchBasinId)
             {
@@ -159,7 +160,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var cb = await _context.CBp1569s
+            var cb = await _context.CBp1569_2s
                 .FirstOrDefaultAsync(m => m.CatchBasinId == id);
             if (cb == null)
             {
@@ -174,16 +175,16 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cb = await _context.CBp1569s.FindAsync(id);
+            var cb = await _context.CBp1569_2s.FindAsync(id);
             var prjId = cb.ProjId;
-            _context.CBp1569s.Remove(cb);
+            _context.CBp1569_2s.Remove(cb);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index), new { id = prjId });
         }
 
         private bool CBExists(int id)
         {
-            return _context.CBp1569s.Any(e => e.CatchBasinId == id);
+            return _context.CBp1569_2s.Any(e => e.CatchBasinId == id);
         }
 
         #region Result Action
@@ -192,7 +193,7 @@ namespace SmallStructuresTakeOffs.Controllers
             ViewBag.ProjectId = id;
 
             var CBList =
-                from hw in _context.CBp1569s.Where(p => p.ProjId == id)
+                from hw in _context.CBp1569_2s.Where(p => p.ProjId == id)
                 select hw;
 
             List<ResultsVM> results = new();

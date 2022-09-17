@@ -1,10 +1,10 @@
-﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBp1569>
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBp1569_2>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Index @Model.GetType().Name</h1>
 
 <p>
     <a asp-action="Create" asp-route-id=@ViewBag.ProjectId>Create New</a>

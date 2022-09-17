@@ -66,6 +66,20 @@ namespace SmallStructuresTakeOffs.Models
                                 TotalLength = (8m) * (2m),
                                 TotalWeight = (8m) * (2m) * .376m
                             });
+                        cbReinf.Add(
+                        new CBreinforcement
+                        {
+                            CBId = CatchBasinId,
+                            CBRebarNom = RebarNomination.No4,
+                            CBreinfCode = "rb04",
+                            CBreinfQty = 2,
+                            CBreinfLength = CBLength + 2m * CBWallThickness - 4m/12,
+                            CBreinfShape = "Straight Shape, Longitudinal, at Curb",
+                            TotalLength = (2m) * (CBLength + 2m * CBWallThickness - 4m / 12),
+                            TotalWeight = (2m) * (CBLength + 2m * CBWallThickness - 4m / 12) * .668m
+                        });
+
+
                         return cbReinf;
                     }
                 case CBc1510Confg.Double:
@@ -106,6 +120,19 @@ namespace SmallStructuresTakeOffs.Models
                                 TotalLength = (15m) * (2m),
                                 TotalWeight = (15m) * (2m) * .376m
                             });
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb04",
+                                CBreinfQty = 2,
+                                CBreinfLength = 2m * CBLength + 3m * CBWallThickness - 4m / 12,
+                                CBreinfShape = "Straight Shape, Longitudinal, at Curb",
+                                TotalLength = (2m) * (2m * CBLength + 3m * CBWallThickness - 4m / 12),
+                                TotalWeight = (2m) * (2m * CBLength + 3m * CBWallThickness - 4m / 12) * .668m
+                            });
+
                         return cbReinf;
                     }
                 default:

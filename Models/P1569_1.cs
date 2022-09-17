@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SmallStructuresTakeOffs.Models
+﻿namespace SmallStructuresTakeOffs.Models
 {
-    public class P1569_1M
+    public class P1569_1
     {
-        public int P1569_1MId { get; set; }
+        public int P1569_1Id { get; set; }
         public string P1569_1MCode { get; set; }
         public string P1569_1MDescription { get; set; }
         public decimal Height { get; set; }
