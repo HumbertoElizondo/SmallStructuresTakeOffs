@@ -21,8 +21,8 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: C1580CB
         public async Task<IActionResult> Index()
         {
-            ViewBag.StructureName = _context.P1569_1Ms.GetType().Name;
-            return View(await _context.P1569_1Ms.ToListAsync());
+            ViewBag.StructureName = _context.P1569_1s.GetType().Name;
+            return View(await _context.P1569_1s.ToListAsync());
         }
 
         // GET: C1580CB/Details/5
@@ -33,8 +33,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var c1580CB = await _context.P1569_1Ms
-                .FirstOrDefaultAsync(m => m.P1569_1MId == id);
+            var c1580CB = await _context.P1569_1s
+                .FirstOrDefaultAsync(m => m.P1569_1Id == id);
             if (c1580CB == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("P1569_1MCode,P1569_1MDescription,Height")] P1569_1M p1569_1M)
+        public async Task<IActionResult> Create([Bind("P1569_1MCode,P1569_1MDescription,Height")] P1569_1 p1569_1M)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var p1569_1M = await _context.P1569_1Ms.FindAsync(id);
+            var p1569_1M = await _context.P1569_1s.FindAsync(id);
             if (p1569_1M == null)
             {
                 return NotFound();
@@ -86,9 +86,9 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("P1569_1MId,P1569_1MCode,P1569_1MDescription,Height")] P1569_1M p1569_1M)
+        public async Task<IActionResult> Edit(int id, [Bind("P1569_1MId,P1569_1MCode,P1569_1MDescription,Height")] P1569_1 p1569_1M)
         {
-            if (id != p1569_1M.P1569_1MId)
+            if (id != p1569_1M.P1569_1Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ThisStructureExists(p1569_1M.P1569_1MId))
+                    if (!ThisStructureExists(p1569_1M.P1569_1Id))
                     {
                         return NotFound();
                     }
@@ -124,8 +124,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var p1569_1M = await _context.P1569_1Ms
-                .FirstOrDefaultAsync(m => m.P1569_1MId == id);
+            var p1569_1M = await _context.P1569_1s
+                .FirstOrDefaultAsync(m => m.P1569_1Id == id);
             if (p1569_1M == null)
             {
                 return NotFound();
@@ -139,15 +139,15 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var p1569_1M = await _context.P1569_1Ms.FindAsync(id);
-            _context.P1569_1Ms.Remove(p1569_1M);
+            var p1569_1M = await _context.P1569_1s.FindAsync(id);
+            _context.P1569_1s.Remove(p1569_1M);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ThisStructureExists(int id)
         {
-            return _context.P1569_1Ms.Any(e => e.P1569_1MId == id);
+            return _context.P1569_1s.Any(e => e.P1569_1Id == id);
         }
 
         #region Result Action
@@ -155,7 +155,7 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             var CBList =
-                from hw in _context.P1569_1Ms
+                from hw in _context.P1569_1s
                 select hw;
 
             List<ResultsVM> results = new();
@@ -172,8 +172,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 {
                     ResVMHWcode = l.P1569_1MCode,
                     ResVMHWDescription = l.P1569_1MDescription,
-                    ResVMHWStrId = l.P1569_1MId,
-                    ResVMId = l.P1569_1MId,
+                    ResVMHWStrId = l.P1569_1Id,
+                    ResVMId = l.P1569_1Id,
                     //SqRingRebEa = 0,
                     //SqRingRebL = 0,
                     //VertLsRebEa = 0,

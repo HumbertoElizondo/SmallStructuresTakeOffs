@@ -27,21 +27,46 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         // GET: C1580CB/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //SelectList cbs = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList());
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var cb = await _context.CBc1510SglT1s
-                .FirstOrDefaultAsync(m => m.CatchBasinId == id);
-            if (cb == null)
-            {
-                return NotFound();
-            }
+            //var cb = await _context.CBc1520T3s
+            //    .FirstOrDefaultAsync(m => m.CatchBasinId == id);
+            //if (cb == null)
 
-            return View(cb);
+            //{ return NotFound(); }
+
+            var cb = (from r in _context.CBc1510SglT1s
+                      where r.CatchBasinId == id
+                      select r).FirstOrDefault();
+
+
+            var thisStr =
+            new ResultsVM
+            {
+                ResVMHWcode = cb.CBCode,
+                ResVMHWDescription = cb.Description,
+                ResVMHWStrId = cb.CatchBasinId,
+                ResVMId = cb.CatchBasinId,
+                ResVMPourWallCY = cb.PourTop(),
+                ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
+                PourApron = cb.PourApron(),
+                PurchConcrete = cb.PurchConcrete(cb.CBHeight),
+                ResVMFormFab = cb.FabForms(cb.CBHeight),
+                ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
+                ResVMFormWall = cb.InstTopForms(),
+                ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight) * 1.15m,
+                ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
+                CBreinforcementsVM = cb.theReinforcements().ToList()
+
+            };
+            return View(thisStr);
+
         }
 
         // GET: C1580CB/Create
@@ -56,7 +81,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBc1510Confs")] CBc1510SglT1 cb)
+        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBc1510Confgs")] CBc1510SglT1 cb)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +113,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBc1510Confs")] CBc1510SglT1 cb)
+        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBc1510Confgs")] CBc1510SglT1 cb)
         {
             if (id != cb.CatchBasinId)
             {

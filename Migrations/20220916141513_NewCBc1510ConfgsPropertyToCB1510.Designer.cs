@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,9 +12,10 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20220916141513_NewCBc1510ConfgsPropertyToCB1510")]
+    partial class NewCBc1510ConfgsPropertyToCB1510
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,13 +81,13 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("CatchBasin");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1M", b =>
                 {
-                    b.Property<int>("P1569_1Id")
+                    b.Property<int>("P1569_1MId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("P1569_1Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("P1569_1MId"), 1L, 1);
 
                     b.Property<decimal>("Height")
                         .HasColumnType("decimal(18,2)");
@@ -108,9 +110,9 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<decimal>("Reb4Purch")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("P1569_1Id");
+                    b.HasKey("P1569_1MId");
 
-                    b.ToTable("P1569_1s");
+                    b.ToTable("P1569_1Ms");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
@@ -130,42 +132,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
-                {
-                    b.Property<int>("RebarRequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RebarRequestId"), 1L, 1);
-
-                    b.Property<long?>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("RebReqDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("RebReqProjId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("RebarRequestLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RebarRequestNomination")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RebarRequestQty")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Structure")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RebarRequestId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("RebarRequests");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarToPurchase", b =>
@@ -306,11 +272,47 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.ToTable("SmallStructures");
                 });
 
+            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
+                {
+                    b.Property<int>("RebarRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RebarRequestId"), 1L, 1);
+
+                    b.Property<long?>("ProjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RebReqDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("RebReqProjId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("RebarRequestLength")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RebarRequestNomination")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RebarRequestQty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Structure")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RebarRequestId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("RebarRequests");
+                });
+
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1510SglT1", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
 
-                    b.Property<int>("CBc1510Confgs")
+                    b.Property<int>("Cbc1510Confgs")
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("CBc1510SglT1");
@@ -401,7 +403,7 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBd21");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBp1569_2", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBp1569", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
 
@@ -420,7 +422,7 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<string>("Genres")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("CBp1569_2");
+                    b.HasDiscriminator().HasValue("CBp1569");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
@@ -434,20 +436,20 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
-                        .WithMany("RebarRequests")
-                        .HasForeignKey("ProjectId");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
                 {
-                    b.HasOne("SmallStructuresTakeOffs.Models.RebarRequest", "RebarRequest")
+                    b.HasOne("SmallStructuresTakeOffs.RebarRequest", "RebarRequest")
                         .WithMany("RebarWastings")
                         .HasForeignKey("RebarRequestId");
 
                     b.Navigation("RebarRequest");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
+                {
+                    b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
+                        .WithMany("RebarRequests")
+                        .HasForeignKey("ProjectId");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
@@ -457,7 +459,7 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Navigation("RebarRequests");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
                 {
                     b.Navigation("RebarWastings");
                 });
