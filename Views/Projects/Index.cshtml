@@ -25,8 +25,8 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @*@Html.DisplayFor(modelItem => item.ProjectCode)*@
-                <a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.ProjectCode)</a>
+                @Html.DisplayFor(modelItem => item.ProjectCode)
+                @*<a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.ProjectCode)</a>*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectName)

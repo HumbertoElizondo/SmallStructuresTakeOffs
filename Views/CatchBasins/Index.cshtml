@@ -7,7 +7,22 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create">Create New</a>*@
+    <bold>Create a Catch Basin</bold>
+</p>
+<p>
+<div class="text-center">
+        <a class="btn btn-primary" asp-controller="RebarRequests" asp-action="Index" asp-route-id="ViewBag.ProjectId">Rebar BreakDown</a>
+        <a class="btn btn-primary" asp-controller="SD630Headwall" asp-action="Index">SD-6.30HW</a>
+        <a class="btn btn-primary" asp-controller="CBc1510SglT1" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.10</a>
+        <a class="btn btn-primary" asp-controller="CBc1520T3" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.20</a>
+        <a class="btn btn-primary" asp-controller="CBc1580" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.80</a>
+        <a class="btn btn-primary" asp-controller="CBc1591" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.91</a>
+        <a class="btn btn-primary" asp-controller="CBc1592" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.92</a>
+        <a class="btn btn-primary" asp-controller="CBd21" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB D21</a>
+        <a class="btn btn-primary" asp-controller="CBp1569_2" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1569-2</a>
+    @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.30 CATCH BASIN</a>*@
+</div>
 </p>
 <table class="table">
     <thead>
@@ -37,35 +52,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CBCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CBHeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CBLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CBWidth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CBWallThickness)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GetType().Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CBCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CBHeight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CBLength)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CBWidth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CBWallThickness)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GetType().Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+                    </td>
+                </tr>
+        }
     </tbody>
+    <tfoot>
+        <tr>
+            <td>Total Catch Basins: @Model.Select(s => s.CBCode).Count().ToString()</td>
+        </tr>
+    </tfoot>
 </table>
