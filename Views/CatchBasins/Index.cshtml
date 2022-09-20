@@ -52,36 +52,36 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBHeight)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBLength)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBWidth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBWallThickness)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GetType().Name)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
-                    </td>
-                </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBWidth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBWallThickness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GetType().Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
     <tfoot>
         <tr>
