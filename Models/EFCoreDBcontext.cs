@@ -21,6 +21,7 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<SD630Headwall> SD630Headwalls { get; set; }
         public DbSet<SmallStructure> SmallStructures { get; set; }
         public DbSet<P1569_1> P1569_1s { get; set; }
+        public DbSet<CBp1570> CBp1570s { get; set; }
         public DbSet<CBp1569_2> CBp1569_2s { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<RebarRequest> RebarRequests { get; set; }
@@ -39,6 +40,7 @@ namespace SmallStructuresTakeOffs.Models
             modelBuilder.Entity<CBc1592>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBd21>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBp1569_2>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
+            modelBuilder.Entity<CBp1570>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
 
         }
     }

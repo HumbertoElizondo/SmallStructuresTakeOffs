@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBp1570>
+
+@{
+    ViewData["Title"] = "Index: Catch Basin P1570";
+}
+
+<p>
+    <a asp-action="Create" asp-route-id=@ViewBag.ProjectId>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CBCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBHeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CBp1570Typ)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBHeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBp1570Typ)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total Catch Basins: @Model.Select(s => s.CBCode).Count().ToString()</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+<div>
+    <a asp-action="Results" asp-route-id=@ViewBag.ProjectId>Results</a> |
+    <a asp-action="Index" asp-controller="CatchBasins" asp-route-id="@ViewBag.ProjectId">To All Catch Basins</a>
+</div>
+
+
