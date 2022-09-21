@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CatchBasin>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index: Catch Basins";
 }
-
-<h1>Index</h1>
 
 <p>
     @*<a asp-action="Create">Create New</a>*@
@@ -75,11 +73,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.GetType().Name)
                     </td>
-                    <td>
+                    @*<td>
                         <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
-                    </td>
+                    </td>*@
                 </tr>
         }
     </tbody>
