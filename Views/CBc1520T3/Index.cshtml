@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBc1520T3>
 
 @{
-    ViewData["Title"] = "Index: Catch Basin C-15.20";
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create" asp-route-id=@ViewBag.ProjectId>Create New</a>
@@ -25,12 +27,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.CBwings)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.CBRebFandI)
-            </th>*@
-            @*<th>
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CBRebPurch)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -53,12 +55,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CBwings)
             </td>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CBRebFandI)
-            </td>*@
-            @*<td>
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CBRebPurch)
-            </td>*@
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
