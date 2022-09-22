@@ -9,17 +9,20 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBc1581 : CatchBasin
     {
-        public override decimal CBLength
-        {
-            get => 3m; 
-            set
-            {
-                decimal L = 3m;
-            }
-        }
-        public override decimal CBWidth { get => 2m; set { decimal W = 2m; } }
-        public override decimal CBBaseThickness { get => .5m; set { decimal T = .5m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal T = .5m; } }
+        public override decimal CBLength { get; set; } = 3m;
+        //{
+        //    get => 3m; 
+        //    set
+        //    {
+        //        decimal L = 3m;
+        //    }
+        //}
+        public override decimal CBWidth { get; set; } = 2m;
+        //{ get => 2m; set { decimal W = 2m; } }
+        public override decimal CBBaseThickness { get; set; } = .5m;
+        //{ get => .5m; set { decimal T = .5m; } }
+        public override decimal CBWallThickness { get; set; } = .5m;
+        //{ get => .5m; set { decimal T = .5m; } }
 
         public CBc1581Slope CBc1581Slps { get; set; }
 
@@ -37,52 +40,230 @@ namespace SmallStructuresTakeOffs.Models
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
-            cbReinf.Add(
-                new CBreinforcement
-                {
-                    CBId = CatchBasinId,
-                    CBRebarNom = RebarNomination.No4,
-                    CBreinfCode = "rb01",
-                    CBreinfQty = 14,
-                    CBreinfLength = CBHeight + CBBaseThickness - (5m/12m),
-                    CBreinfShape = "Straight, Vertical",
-                    TotalLength =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m)),
-                    TotalWeight =  (14m) *  (CBHeight + CBBaseThickness - (5m/12m)) * .668m
-                });
-            cbReinf.Add(
-                new CBreinforcement
-                {
-                    CBId = CatchBasinId,
-                    CBRebarNom = RebarNomination.No4,
-                    CBreinfCode = "rb02",
-                    CBreinfQty = (int)Math.Ceiling(CBHeight) +1,
-                    CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2m,
-                    CBreinfShape = "Square Ring Shape, 2'-Overlap",
-                    TotalLength =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2),
-                    TotalWeight =  ((int)Math.Ceiling(CBHeight) +1) * (2m * (CBLength + CBWidth + 2m * (5m/12m)) + 2) * .668m
-                });
+            switch (this.CBc1581Slps)
+            {
+                case CBc1581Slope.Slope10_1:
+                    {
+                        decimal A = 3.6m / 12m;
 
-            return cbReinf;
+                        cbReinf.Add(
+                        new CBreinforcement
+                        {
+                            CBId = CatchBasinId,
+                            CBRebarNom = RebarNomination.No4,
+                            CBreinfCode = "rb01",
+                            CBreinfQty = 14,
+                            CBreinfLength = CBHeight + A  + CBBaseThickness - (5m / 12m),
+                            CBreinfShape = "Straight, Vertical",
+                            TotalLength = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)),
+                            TotalWeight = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)) * .668m
+                        });
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = (int)Math.Ceiling(CBHeight + A) + 1,
+                                CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2m,
+                                CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                                TotalLength = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2),
+                                TotalWeight = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2) * .668m
+                            });
 
+                        return cbReinf;
+
+
+                    }
+                case CBc1581Slope.Slope8_1:
+                    {
+                        decimal A = 4.5m / 12m;
+
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb01",
+                                CBreinfQty = 14,
+                                CBreinfLength = CBHeight + A + CBBaseThickness - (5m / 12m),
+                                CBreinfShape = "Straight, Vertical",
+                                TotalLength = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)),
+                                TotalWeight = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)) * .668m
+                            });
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = (int)Math.Ceiling(CBHeight + A) + 1,
+                                CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2m,
+                                CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                                TotalLength = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2),
+                                TotalWeight = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2) * .668m
+                            });
+
+                        return cbReinf;
+
+                    }
+                case CBc1581Slope.Slope6_1:
+                    {
+                        decimal A = 6m / 12m;
+
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb01",
+                                CBreinfQty = 14,
+                                CBreinfLength = CBHeight + A + CBBaseThickness - (5m / 12m),
+                                CBreinfShape = "Straight, Vertical",
+                                TotalLength = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)),
+                                TotalWeight = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)) * .668m
+                            });
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = (int)Math.Ceiling(CBHeight + A) + 1,
+                                CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2m,
+                                CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                                TotalLength = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2),
+                                TotalWeight = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2) * .668m
+                            });
+
+                        return cbReinf;
+
+                    }
+                case CBc1581Slope.Slope4_1:
+                    {
+                        decimal A = 9m / 12m;
+
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb01",
+                                CBreinfQty = 14,
+                                CBreinfLength = CBHeight + A + CBBaseThickness - (5m / 12m),
+                                CBreinfShape = "Straight, Vertical",
+                                TotalLength = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)),
+                                TotalWeight = (14m) * (CBHeight + A + CBBaseThickness - (5m / 12m)) * .668m
+                            });
+                        cbReinf.Add(
+                            new CBreinforcement
+                            {
+                                CBId = CatchBasinId,
+                                CBRebarNom = RebarNomination.No4,
+                                CBreinfCode = "rb02",
+                                CBreinfQty = (int)Math.Ceiling(CBHeight + A) + 1,
+                                CBreinfLength = 2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2m,
+                                CBreinfShape = "Square Ring Shape, 2'-Overlap",
+                                TotalLength = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2),
+                                TotalWeight = ((int)Math.Ceiling(CBHeight + A) + 1) * (2m * (CBLength + CBWidth + 2m * (5m / 12m)) + 2) * .668m
+                            });
+
+                        return cbReinf;
+
+                    }
+                default: { return null; }
+            }
         }
 
 
-        public override decimal PourBottom(decimal CBHeight) {
-            if (CBHeight <= 8)
+        public override decimal PourBottom(decimal CBHeight) 
+        {
+            switch (this.CBc1581Slps)
             {
-                return 
-                    ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
-                    2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * CBHeight /*Walls*/
-                ) / 27M; /*CY*/
-            }
-            else
-            {
+                case CBc1581Slope.Slope10_1:
+                {
+                        decimal A = 3.6m / 12m;
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + A/2m) /*Walls*/
+                            ) / 27M; /*CY*/
+                        }
+                        else
+                        {
 
-                return 
-                    (
-                        (CBLength + 2M * (CBWallThickness + 2m/12m)) * (CBWidth + 2M * (CBWallThickness + 2m/12m)) * (CBWallThickness + 2m/12m) + /*Base*/
-                        2M * ((CBLength + 2M * (CBWallThickness + 2m/12m)) + CBWidth) * (CBWallThickness + 2m/12m) * CBHeight /*Walls*/
-                    ) / 27M; /*CY*/
+                            return
+                                (
+                                    (CBLength + 2M * (CBWallThickness + 2m / 12m)) * (CBWidth + 2M * (CBWallThickness + 2m / 12m)) * (CBWallThickness + 2m / 12m) + /*Base*/
+                                    2M * ((CBLength + 2M * (CBWallThickness + 2m / 12m)) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight + A / 2m) /*Walls*/
+                                ) / 27M; /*CY*/
+                        }
+                    }
+                case CBc1581Slope.Slope8_1:
+                {
+                    decimal A = 4.5m / 12m;
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + A / 2m) /*Walls*/
+                            ) / 27M; /*CY*/
+                        }
+                        else
+                        {
+
+                            return
+                                (
+                                    (CBLength + 2M * (CBWallThickness + 2m / 12m)) * (CBWidth + 2M * (CBWallThickness + 2m / 12m)) * (CBWallThickness + 2m / 12m) + /*Base*/
+                                    2M * ((CBLength + 2M * (CBWallThickness + 2m / 12m)) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight + A / 2m) /*Walls*/
+                                ) / 27M; /*CY*/
+                        }
+                    }
+                case CBc1581Slope.Slope6_1:
+                {
+                    decimal A = 6m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness + /*Base*/
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + A / 2m) /*Walls*/
+                            ) / 27M; /*CY*/
+                        }
+                        else
+                        {
+
+                            return
+                                (
+                                    (CBLength + 2M * (CBWallThickness + 2m / 12m)) * (CBWidth + 2M * (CBWallThickness + 2m / 12m)) * (CBWallThickness + 2m / 12m) + /*Base*/
+                                    2M * ((CBLength + 2M * (CBWallThickness + 2m / 12m)) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight + A / 2m) /*Walls*/
+                                ) / 27M; /*CY*/
+                        }
+                    }
+                case CBc1581Slope.Slope4_1:
+                {
+                    decimal A = 9m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                ((CBLength + 2M * CBWallThickness) * (CBWidth + 2M * CBWallThickness) * CBBaseThickness  /*Base*/
+                                + 2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + A / 2m) /*Walls*/
+                                ) / 27M;
+                            /*CY*/
+                        }
+                        else
+                        {
+
+                            return
+                                (
+                                    (CBLength + 2M * (CBWallThickness + 2m / 12m)) * (CBWidth + 2M * (CBWallThickness + 2m / 12m)) * (CBWallThickness + 2m / 12m) + /*Base*/
+                                    2M * ((CBLength + 2M * (CBWallThickness + 2m / 12m)) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight + A / 2m) /*Walls*/
+                                ) / 27M; /*CY*/
+                        }
+                }
+                default: { return 0; }
             }
         }
         public override decimal PourTop()
@@ -105,14 +286,162 @@ namespace SmallStructuresTakeOffs.Models
             return (PourApron()  + PourTop() + PourBottom(CBHeight)) * 1.25M;
         }
         public override decimal FabForms(decimal CBHeight)
-        { 
-            return 2M * (CBLength + 2M *  CBWallThickness + CBWidth ) * (CBHeight + CBBaseThickness) + /*OutsideWalls*/
-                2M * (CBLength + CBWidth) * (CBHeight); /*InsideWalls*/
+        {
+            switch (this.CBc1581Slps)
+            {
+                case CBc1581Slope.Slope10_1:
+                    {
+                        decimal A = 3.6m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m/12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope8_1:
+                    {
+                        decimal A = 4.5m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope6_1:
+                    {
+                        decimal A = 6m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope4_1:
+                    {
+                        decimal A = 9m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                default: return 0;
+            }
         }
         public override decimal InstBottomForms(decimal CBHeight)
         {
-            return 2M * (CBLength + 2M *  CBWallThickness + CBWidth) * (CBHeight + CBBaseThickness) + /*OutsideWalls*/
-                2M * (CBLength + CBWidth) * (CBHeight); /*InsideWalls*/
+            switch (this.CBc1581Slps)
+            {
+                case CBc1581Slope.Slope10_1:
+                    {
+                        decimal A = 3.6m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope8_1:
+                    {
+                        decimal A = 4.5m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope6_1:
+                    {
+                        decimal A = 6m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                case CBc1581Slope.Slope4_1:
+                    {
+                        decimal A = 9m / 12m;
+
+                        if (CBHeight <= 8)
+                        {
+                            return
+                                2M * (CBLength + 2M * CBWallThickness + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+
+                        }
+                        else
+                        {
+                            return
+                                2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBHeight + A + CBBaseThickness) + /*OutsideWalls*/
+                                2M * (CBLength + CBWidth) * (CBHeight + A); /*InsideWalls*/
+                        }
+                    }
+                default: return 0;
+            }
         }
         public override decimal InstTopForms()
         {
