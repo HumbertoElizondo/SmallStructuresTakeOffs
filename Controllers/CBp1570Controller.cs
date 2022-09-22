@@ -89,7 +89,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var cb = await _context.CBp1569_2s.FindAsync(id);
+            var cb = await _context.CBp1570s.FindAsync(id);
             if (cb == null)
             {
                 return NotFound();

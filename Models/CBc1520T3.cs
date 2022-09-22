@@ -10,7 +10,8 @@ namespace SmallStructuresTakeOffs.Models
     public class CBc1520T3 : CatchBasin
     {
         public override decimal CBLength { get => 2m + 11.75m/12m; set { decimal L = 2m + 11.75m/12m; } }
-        public override decimal CBWidth { get => 2m + 11.5m/12m; set { decimal W = 2m; } }
+        public override decimal CBWidth { get; set; } = 2m + 11.5m / 12m;
+        //{ get => 2m + 11.5m/12m; set { decimal W = 2m; } }
         public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
         public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
         public override int CBVertBars
@@ -83,12 +84,38 @@ namespace SmallStructuresTakeOffs.Models
                 {
                     if (CBHeight <= 5)
                     {
-                        return
-                            null;
+                            cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb01",
+                                    CBreinfQty = ((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2,
+                                    CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m),
+                                    CBreinfShape = "Not Verified",
+                                    TotalLength = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)),
+                                    TotalWeight = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)) * .376m
+
+                                });
+                            cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb02",
+                                    CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1),
+                                    CBreinfLength = 2m * (CBWidth + CBLength + 5m / 12m) + 2m,
+                                    CBreinfShape = "Not Verified",
+                                    TotalLength = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m),
+                                    TotalWeight = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m) * .376m
+
+                                });
+
+                            return cbReinf;
                     }
                     else if (CBHeight <=8)
                     {
-                        cbReinf.Add(
+                            cbReinf.Add(
                                 new CBreinforcement
                                 {
                                     CBId = CatchBasinId,
@@ -97,6 +124,9 @@ namespace SmallStructuresTakeOffs.Models
                                     CBreinfQty = ((int)Math.Ceiling(CBHeight /1.5m) +1) * 2,
                                     CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m/12m),
                                     CBreinfShape = "Straight",
+                                    TotalLength = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)),
+                                    TotalWeight = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)) * .376m
+
                                 });
                         cbReinf.Add(
                                 new CBreinforcement
@@ -107,6 +137,9 @@ namespace SmallStructuresTakeOffs.Models
                                     CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight /1.5m) +1),
                                     CBreinfLength = CBWidth + 4m + 5m/12m,
                                     CBreinfShape = "C Shape, 2'-Overlap",
+                                    TotalLength = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m),
+                                    TotalWeight = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m) * .376m
+
                                 });
 
                         return cbReinf;
@@ -536,16 +569,23 @@ namespace SmallStructuresTakeOffs.Models
                 {
                     if (CBHeight <= 5)
                     {
-                        return
-                            0;
+                            const decimal wing = 0m;
+                            decimal S = 1m + wing / 20m;
+                            decimal F = CBHeight - (2.5m + wing / 20m);
+                            decimal T = 1.5m;
+
+                            return
+                                (2m * (CBLength + 2m * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + .5m - T) + /*F + S Bottom Walls */
+                                + CBLength * CBWidth * CBBaseThickness) / 27m;/* Sump Bottom */
                     }
                     else if (CBHeight <= 8)
                     {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
+                            decimal T = 1.5m;
+
+                            return
+                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight + .5m - T) +/*Walls*/
+                            CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                        }
                     else
                     {
                         return
@@ -642,17 +682,39 @@ namespace SmallStructuresTakeOffs.Models
                 {
                     if (CBHeight <= 5)
                     {
-                        return
-                            0;
-                    }
-                    else if (CBHeight <= 8)
+                            const decimal wing = 0m;
+                            decimal S = 1m + wing / 20m;
+                            decimal F = CBHeight - (2.5m + wing / 20m);
+                            decimal T = 1.5m;
+
+                            return
+                            /*T Walls */ (2m * (CBLength + wing + 2m * CBWallThickness + CBWidth) * CBWallThickness * T +
+                            /*Top Slab */ (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m +
+                            /* Gutter Width */ (CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m) / 27m;
+                            //7.5m; Test
+
+
+                            //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
+                            //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+
+
+                            //(/*F Bottom Walls */ 2m * (CBLength + 2m * CBWallThickness + CBWidth) * CBWallThickness * F +
+                            ///*S Bottom Walls */ 2m * (CBLength + wing + 3m * CBWallThickness + CBWidth) * CBWallThickness * S +
+                            ///* Sump Bottom */ CBLength * CBWidth * CBBaseThickness +
+                            ///* Wing Bottom */ (wing * 20.025m / 20m + CBWallThickness) * CBWidth * .5m) / 27m;
+                            //7.5m; Test
+                        }
+                        else if (CBHeight <= 8)
                     {
-                        return
-                            0;
-                        //(2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                    }
-                    else
+                            decimal T = 1.5m;
+
+                            return
+                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * ( T) +/*Walls*/
+                                (CBLength + 2m * CBWallThickness) * (CBWidth + 2m * CBWallThickness) * .5m + /*Top Slab */
+                                (CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m) / 27m; /* Gutter Width */
+
+                        }
+                        else
                     {
                         return
                             0;

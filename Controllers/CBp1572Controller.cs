@@ -9,11 +9,11 @@ using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Controllers
 {
-    public class CBc1520T3Controller : Controller
+    public class CBp1572Controller : Controller
     {
         private readonly EFCoreDBcontext _context;
 
-        public CBc1520T3Controller(EFCoreDBcontext context)
+        public CBp1572Controller(EFCoreDBcontext context)
         {
             _context = context;
         }
@@ -23,57 +23,15 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             ViewBag.ProjectId = id;
-            return View(await _context.CatchBasins.OfType<CBc1520T3>().Where(i => i.ProjId == id).ToListAsync());
+            return View(await _context.CatchBasins.OfType<CBp1572>().Where(i => i.ProjId == id).ToListAsync());
         }
 
         // GET: C1580CB/Details/5
-        //public IActionResult Details(int id)
-        //{
-        //    //SelectList cbs = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList());
-        //    //if (id == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-
-        //    //var cb = await _context.CBc1520T3s
-        //    //    .FirstOrDefaultAsync(m => m.CatchBasinId == id);
-        //    //if (cb == null)
-
-        //    //{ return NotFound(); }
-
-        //    var cb = (from r in _context.CBc1520T3s
-        //             where r.CatchBasinId == id
-        //             select r).FirstOrDefault();
-
-
-        //    var thisStr =
-        //    new ResultsVM
-        //    {
-        //        ResVMHWcode = cb.CBCode,
-        //        ResVMHWDescription = cb.Description,
-        //        ResVMHWStrId = cb.CatchBasinId,
-        //        ResVMId = cb.CatchBasinId,
-        //        ResVMPourWallCY = cb.PourTop(),
-        //        ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
-        //        PourApron = cb.PourApron(),
-        //        PurchConcrete = cb.PurchConcrete(cb.CBHeight),
-        //        ResVMFormFab = cb.FabForms(cb.CBHeight),
-        //        ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
-        //        ResVMFormWall = cb.InstTopForms(),
-        //        ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
-        //        ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
-        //        CBreinforcementsVM = cb.theReinforcements().ToList()
-
-        //    };
-        //    return View(thisStr);
-
-        //}
-
         public IActionResult Details(int id)
         {
-            var cb = (from r in _context.CBc1520T3s
-                      where r.CatchBasinId == id
-                      select r).FirstOrDefault();
+            var cb = (from r in _context.CBp1572s
+                     where r.CatchBasinId == id
+                     select r).FirstOrDefault();
 
 
             var thisStr =
@@ -90,7 +48,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 ResVMFormFab = cb.FabForms(cb.CBHeight),
                 ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
                 ResVMFormWall = cb.InstTopForms(),
-                ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight) * 1.15m,
+                ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
                 ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
                 CBreinforcementsVM = cb.theReinforcements().ToList()
 
@@ -99,14 +57,10 @@ namespace SmallStructuresTakeOffs.Controllers
 
         }
 
-        // GET: C1580CB/Create
+
+        // GET: CatchBasin/Create
         public IActionResult Create(long id)
         {
-
-            //ViewBag.ResourceList = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList(),"CBConfig");
-            //ViewBag.ResourceList = new SelectList(_context.CBc1520T3s.Select(s => s.), "CBConfg", "Name");
-
-
             ViewBag.ProjectId = id;
             return View();
         }
@@ -116,7 +70,7 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBConfg,CBwings")] CBc1520T3 cb)
+        public async Task<IActionResult> Create([Bind("Description,CBHeight,CBCode,ProjId,CBp1570Typ1")] CBp1572 cb)
         {
             if (ModelState.IsValid)
             {
@@ -135,7 +89,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var cb = await _context.CBc1520T3s.FindAsync(id);
+            var cb = await _context.CBp1572s.FindAsync(id);
             if (cb == null)
             {
                 return NotFound();
@@ -148,7 +102,8 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBConfg,CBwings")] CBc1520T3 cb)
+        public async Task<IActionResult> Edit(int id, 
+            [Bind("CatchBasinId,Description,CBHeight,CBCode,CBRebFandI,CBRebPurch,ProjId,CBp1570Typ1")] CBp1572 cb)
         {
             if (id != cb.CatchBasinId)
             {
@@ -188,7 +143,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var cb = await _context.CBc1520T3s
+            var cb = await _context.CBp1572s
                 .FirstOrDefaultAsync(m => m.CatchBasinId == id);
             if (cb == null)
             {
@@ -203,16 +158,16 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cb = await _context.CBc1520T3s.FindAsync(id);
+            var cb = await _context.CBp1572s.FindAsync(id);
             var prjId = cb.ProjId;
-            _context.CBc1520T3s.Remove(cb);
+            _context.CBp1572s.Remove(cb);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index), new { id = prjId });
         }
 
         private bool CBExists(int id)
         {
-            return _context.CBc1520T3s.Any(e => e.CatchBasinId == id);
+            return _context.CBp1572s.Any(e => e.CatchBasinId == id);
         }
 
         #region Result Action
@@ -221,7 +176,7 @@ namespace SmallStructuresTakeOffs.Controllers
             ViewBag.ProjectId = id;
 
             var CBList =
-                from hw in _context.CBc1520T3s.Where(p => p.ProjId == id)
+                from hw in _context.CBp1572s.Where(p => p.ProjId == id)
                 select hw;
 
             List<ResultsVM> results = new();

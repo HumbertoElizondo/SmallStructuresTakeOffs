@@ -183,7 +183,7 @@ namespace SmallStructuresTakeOffs.Controllers
             ViewBag.ProjectId = id;
 
             var CBList =
-                from hw in _context.CBc1580s.Where(p => p.ProjId == id)
+                from hw in _context.CBd21s.Where(p => p.ProjId == id)
                 select hw;
 
             List<ResultsVM> results = new();
