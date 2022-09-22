@@ -13,6 +13,7 @@ namespace SmallStructuresTakeOffs.Models
 
         public DbSet<CatchBasin> CatchBasins { get; set; }
         public DbSet<CBc1580> CBc1580s { get; set; }
+        public DbSet<CBc1581> CBc1581s { get; set; }
         public DbSet<CBc1510SglT1> CBc1510SglT1s { get; set; }
         public DbSet<CBc1520T3> CBc1520T3s { get; set; }
         public DbSet<CBc1591> CBc1591s { get; set; }
@@ -41,6 +42,8 @@ namespace SmallStructuresTakeOffs.Models
             modelBuilder.Entity<CBd21>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBp1569_2>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBp1570>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
+            modelBuilder.Entity<CBc1581>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
+
 
         }
     }

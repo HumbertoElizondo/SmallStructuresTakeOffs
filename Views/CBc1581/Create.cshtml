@@ -1,0 +1,53 @@
+﻿@using SmallStructuresTakeOffs.Enums
+@model SmallStructuresTakeOffs.Models.CBc1581
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>C1580CB</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CBCode" class="control-label"></label>
+                <input asp-for="CBCode" class="form-control" />
+                <span asp-validation-for="CBCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CBHeight" class="control-label"></label>
+                <input asp-for="CBHeight" class="form-control" />
+                <span asp-validation-for="CBHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CBc1581Slps" class="control-label"></label>
+                <select asp-for="CBc1581Slps" class="form-control" asp-items="Html.GetEnumSelectList<CBc1581Slope>()"></select>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="ProjId" type="hidden" value="@ViewBag.ProjectId" />
+                @*<label asp-for="ProjectId" class="control-label"></label>*@
+                @*<select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>*@
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

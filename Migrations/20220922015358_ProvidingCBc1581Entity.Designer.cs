@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,9 +12,10 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20220922015358_ProvidingCBc1581Entity")]
+    partial class ProvidingCBc1581Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,9 +347,6 @@ namespace SmallStructuresTakeOffs.Migrations
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1581", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
-
-                    b.Property<int>("CBc1581Slps")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("CBc1581");
                 });
