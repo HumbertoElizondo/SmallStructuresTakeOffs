@@ -196,49 +196,49 @@ namespace SmallStructuresTakeOffs.Controllers
         //}
 
         #region Result Action
-        //public IActionResult Results(long id)
-        //{
-        //    ViewBag.ProjectId = id;
+        public IActionResult Results(long id)
+        {
+            ViewBag.ProjectId = id;
 
-        //    var CBList =
-        //        from hw in _context.CBc1580s.Where(p => p.ProjId == id)
-        //        select hw;
+            var CBList =
+                from hw in _context.CatchBasins.Where(p => p.ProjId == id).OrderBy(o => o.CBCode)
+                select hw;
 
-        //    List<ResultsVM> results = new();
+            List<ResultsVM> results = new();
 
-        //    foreach (var l in CBList)
-        //    {
-        //        ResultsVM thisStr = new()
-        //        {
-        //            ResVMHWcode = l.CBCode,
-        //            ResVMHWDescription = l.Description,
-        //            ResVMHWStrId = l.CatchBasinId,
-        //            ResVMId = l.CatchBasinId,
-        //            SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-        //            SqRingRebL = l.CBSqRingL,
-        //            VertLsRebEa = l.CBVertBars,
-        //            VertLsRebL = l.RebVertLength(l.CBHeight),
-        //            ResVMRebNo4Req = l.CBRebFandI,
-        //            ResVMRebNo3Purch = l.CBRebPurch,
-        //            ResVMPourWallCY = l.PourTop(),
-        //            ResVMPourBottomCY = l.PourBottom(l.CBHeight),
-        //            PourApron = l.PourApron(),
-        //            PurchConcrete = l.PurchConcrete(l.CBHeight),
-        //            ResVMFormFab = l.FabForms(l.CBHeight),
-        //            ResVMFormBase = l.InstBottomForms(l.CBHeight),
-        //            ResVMFormWall = l.InstTopForms(),
-        //            ResVMRebNo4Purch = l.CBRebPurch,
-        //            ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
-        //            ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() 
-        //        };
-        //        results.Add(thisStr);
-        //    }
+            foreach (var l in CBList)
+            {
+                ResultsVM thisStr = new()
+                {
+                    ResVMHWcode = l.CBCode,
+                    ResVMHWDescription = l.Description,
+                    ResVMHWStrId = l.CatchBasinId,
+                    ResVMId = l.CatchBasinId,
+                    SqRingRebEa = l.RebSqRingEa(l.CBHeight),
+                    SqRingRebL = l.CBSqRingL,
+                    VertLsRebEa = l.CBVertBars,
+                    VertLsRebL = l.RebVertLength(l.CBHeight),
+                    ResVMRebNo4Req = l.CBRebFandI,
+                    ResVMRebNo3Purch = l.CBRebPurch,
+                    ResVMPourWallCY = l.PourTop(),
+                    ResVMPourBottomCY = l.PourBottom(l.CBHeight),
+                    PourApron = l.PourApron(),
+                    PurchConcrete = l.PurchConcrete(l.CBHeight),
+                    ResVMFormFab = l.FabForms(l.CBHeight),
+                    ResVMFormBase = l.InstBottomForms(l.CBHeight),
+                    ResVMFormWall = l.InstTopForms(),
+                    ResVMRebNo4Purch = l.CBRebPurch,
+                    ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
+                    ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum()
+                };
+                results.Add(thisStr);
+            }
 
 
-        //    //return View(await _context.SmallStructures.ToListAsync());
-        //    return View(results.ToList());
+            //return View(await _context.SmallStructures.ToListAsync());
+            return View(results.ToList());
 
-        //}
+        }
 
         #endregion
 
