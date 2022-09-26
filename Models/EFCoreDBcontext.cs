@@ -16,6 +16,7 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<CBc1581> CBc1581s { get; set; }
         public DbSet<CBc1510SglT1> CBc1510SglT1s { get; set; }
         public DbSet<CBc1520T3> CBc1520T3s { get; set; }
+        public DbSet<CBc1530> CBc1530s { get; set; }
         public DbSet<CBc1591> CBc1591s { get; set; }
         public DbSet<CBc1592> CBc1592s { get; set; }
         public DbSet<CBd21> CBd21s { get; set; }
@@ -38,6 +39,7 @@ namespace SmallStructuresTakeOffs.Models
             modelBuilder.Entity<CBc1580>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBc1510SglT1>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBc1520T3>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
+            modelBuilder.Entity<CBc1530>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBc1591>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBc1592>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBd21>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));

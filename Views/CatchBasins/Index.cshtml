@@ -16,6 +16,7 @@
         <a class="btn btn-primary" asp-controller="SD630Headwall" asp-action="Index">SD-6.30HW</a>
         <a class="btn btn-primary" asp-controller="CBc1510SglT1" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.10</a>
         <a class="btn btn-primary" asp-controller="CBc1520T3" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.20</a>
+        <a class="btn btn-primary" asp-controller="CBc1530" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.30</a>
         <a class="btn btn-primary" asp-controller="CBc1580" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.80</a>
         <a class="btn btn-primary" asp-controller="CBc1581" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.81</a>
         <a class="btn btn-primary" asp-controller="CBc1591" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.91</a>
@@ -78,11 +79,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.GetType().Name)
                     </td>
-                    <td>
+                    @*<td>
                         <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
-                    </td>
+                    </td>*@
                 </tr>
         }
     </tbody>
