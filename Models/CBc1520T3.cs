@@ -1198,8 +1198,6 @@ namespace SmallStructuresTakeOffs.Models
             }
         }
 
-    
-
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>
         {
             {"Wing3'-6\"", 3.5M},
@@ -1465,8 +1463,9 @@ namespace SmallStructuresTakeOffs.Models
                             {
                                 const decimal wing = 19.5m;
                                 decimal T = 1.5m + .5m;
-                                decimal S = CBHeight + 0.5m - T;
-                                decimal F = 0;
+                                decimal S = .5m + wing / 20m;
+                                decimal F = CBHeight + 0.5m - (T + S);
+
 
                                 return
                                     (2m * (CBLength + 2m * CBWallThickness + CBWidth) * CBWallThickness * F  /*F Bottom Walls => None*/

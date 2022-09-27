@@ -22,6 +22,7 @@
         <a class="btn btn-primary" asp-controller="CBc1591" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.91</a>
         <a class="btn btn-primary" asp-controller="CBc1592" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.92</a>
         <a class="btn btn-primary" asp-controller="CBd21" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB D21</a>
+        <a class="btn btn-primary" asp-controller="CBdetD" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB Detail D</a>
         <a class="btn btn-primary" asp-controller="CBp1569_2" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1569-2</a>
         <a class="btn btn-primary" asp-controller="CBp1570" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1570</a>
         <a class="btn btn-primary" asp-controller="CBp1572" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1572</a>
@@ -57,34 +58,34 @@
     </thead>
     <tbody>
         @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBHeight)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBLength)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBWidth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CBWallThickness)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GetType().Name)
-                    </td>
-                    @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
-                    </td>*@
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBHeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBWidth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBWallThickness)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetType().Name)
+                </td>
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+                </td>*@
+            </tr>
         }
     </tbody>
     <tfoot>
