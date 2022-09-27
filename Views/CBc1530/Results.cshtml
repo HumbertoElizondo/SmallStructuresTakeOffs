@@ -3,7 +3,7 @@
     ViewData["Title"] = "Results";
 }
 
-<h1>CATCH BASINS: Adot Standard Detail C-15.10 Type 1</h1>
+<h1>CATCH BASINS: Adot Standard Detail C-15.30</h1>
 
 @if (Model.Count() == 0)
 {
@@ -40,7 +40,7 @@ else
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMFormWall)
                 </th>
-                <th class="text-right">
+                @*<th class="text-right">
                     @Html.DisplayNameFor(model => model.RebNo3LengthEa)
                 </th>
                 <th class="text-right">
@@ -63,7 +63,7 @@ else
                 </th>
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.RebNo4StgthL)
-                </th>
+                </th>*@
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMRebFandI)
                 </th>
@@ -103,7 +103,7 @@ else
                 <td class="text-right">
                     @Html.DisplayFor(modelItem => item.ResVMFormWall)
                 </td>
-                <td class="text-right">
+                @*<td class="text-right">
                     @Html.DisplayFor(modelItem => item.RebNo3LengthEa)
                 </td>
                 <td class="text-right">
@@ -126,7 +126,7 @@ else
                 </td>
                 <td class="text-right">
                     @Html.DisplayFor(modelItem => item.RebNo4StgthL)
-                </td>
+                </td>*@
 
                 <td class="text-right">
                     @Html.DisplayFor(modelItem => item.ResVMRebFandI)
@@ -154,7 +154,7 @@ else
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormBase).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormWall).ToString("0.00")</td>
 
-                <td class="text-right" colspan="1">@Model.Sum(i => i.RebNo3LengthEa).ToString("0")</td>
+                @*<td class="text-right" colspan="1">@Model.Sum(i => i.RebNo3LengthEa).ToString("0")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.RebNo3Length).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.SqRingRebEa).ToString("0")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.SqRingRebL).ToString("0.00")</td>
@@ -162,7 +162,7 @@ else
                 <td class="text-right" colspan="1">@Model.Sum(i => i.VertLsRebL).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.RebNo4StgthEa).ToString("0")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.RebNo4StgthL).ToString("0.00")</td>
-
+*@
 
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebFandI).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebPurch).ToString("0.00")</td>

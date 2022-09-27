@@ -3,7 +3,7 @@
     ViewData["Title"] = "Results";
 }
 
-<h1>Results: Detail 21 (Special)</h1>
+<h1>Detail E Junction Box</h1>
 
 @if (Model.Count() == 0)
 {
@@ -93,10 +93,10 @@ else
                 </td>
 
                 @*<td>
-            <a asp-action="Edit" asp-route-id="@item.ResourceVMFKId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ResourceVMFKId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ResourceVMFKId">Delete</a>
-        </td>*@
+                <a asp-action="Edit" asp-route-id="@item.ResourceVMFKId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ResourceVMFKId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ResourceVMFKId">Delete</a>
+                </td>*@
             </tr>
             }
         </tbody>
@@ -113,9 +113,6 @@ else
 
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebFandI).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebPurch).ToString("0.00")</td>
-
-
-
             </tr>
         </tfoot>
     </table>

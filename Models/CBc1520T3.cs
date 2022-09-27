@@ -11,7 +11,6 @@ namespace SmallStructuresTakeOffs.Models
     {
         public override decimal CBLength { get => 2m + 11.75m/12m; set { decimal L = 2m + 11.75m/12m; } }
         public override decimal CBWidth { get; set; } = 2m + 11.5m / 12m;
-        //{ get => 2m + 11.5m/12m; set { decimal W = 2m; } }
         public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
         public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
         public override int CBVertBars
@@ -33,7 +32,6 @@ namespace SmallStructuresTakeOffs.Models
             set { decimal Bars = 10m; }
 
         }
-
         public override decimal CBSqRingL 
         {
             get
@@ -59,21 +57,13 @@ namespace SmallStructuresTakeOffs.Models
 
             set { decimal R = (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; } 
         }
-
         public string Genres { get; set; }/* = string.Empty*/
         public CBConfig CBConfg { get; set; }
-
         public CBWing CBwings { get; set; }
-
-        //public override ICollection<CBreinforcement> CBreinforcements => throw new NotImplementedException();
-
-        //private IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
-
         public override ICollection<CBreinforcement> CBreinforcements
         {
             get => this.theReinforcements(); set => this.theReinforcements();
         }
-
         public override ICollection<CBreinforcement> theReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
@@ -146,10 +136,34 @@ namespace SmallStructuresTakeOffs.Models
                     }
                     else
                     {
-                        return
-                            null;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                            cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb01",
+                                    CBreinfQty = ((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2,
+                                    CBreinfLength = CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m),
+                                    CBreinfShape = "Straight",
+                                    TotalLength = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)),
+                                    TotalWeight = (((int)Math.Ceiling(CBHeight / 1.5m) + 1) * 2) * (CBLength + CBWallThickness + WingDict["Wing3'-6\""] + (5m / 12m)) * .376m
+
+                                });
+                            cbReinf.Add(
+                                new CBreinforcement
+                                {
+                                    CBId = CatchBasinId,
+                                    CBRebarNom = RebarNomination.No4,
+                                    CBreinfCode = "rb02",
+                                    CBreinfQty = 3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1),
+                                    CBreinfLength = CBWidth + 4m + 5m / 12m,
+                                    CBreinfShape = "C Shape, 2'-Overlap",
+                                    TotalLength = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m),
+                                    TotalWeight = (3 * ((int)Math.Ceiling(CBHeight / 1.5m) + 1)) * (CBWidth + 4m + 5m / 12m) * .376m
+
+                                });
+
+                            return cbReinf;
                     }
                 }
                 case CBConfig.SingleWing:
@@ -1197,7 +1211,6 @@ namespace SmallStructuresTakeOffs.Models
                 }
             }
         }
-
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>
         {
             {"Wing3'-6\"", 3.5M},
@@ -1205,8 +1218,6 @@ namespace SmallStructuresTakeOffs.Models
             {"Wing11'-6\"", 11.5M},
             {"Wing19'-6\"", 19.5M},
         };
-
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight) 
         {
             switch (this.CBConfg)
@@ -1382,7 +1393,6 @@ namespace SmallStructuresTakeOffs.Models
                     }
             }
         }
-
         public override decimal PourBottom(decimal CBHeight) 
         {
             switch (this.CBConfg)
@@ -1401,21 +1411,24 @@ namespace SmallStructuresTakeOffs.Models
                     }
                     else if (CBHeight <= 8)
                     {
-                            decimal T = 1.5m + .5m;
-                            decimal S = 0;
-                            decimal F = CBHeight + .5m - (T + S);
+                        decimal T = 1.5m + .5m;
+                        decimal S = 0;
+                        decimal F = CBHeight + .5m - (T + S);
 
 
-                            return
-                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (F + S) +/*Walls*/
+                        return
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (F + S) +/*Walls*/
                             CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
-                        }
+                    }
                     else
                     {
+                        decimal T = 1.5m + .5m;
+                        decimal S = 0;
+                        decimal F = CBHeight + .5m - (T + S);
+
                         return
-                            0;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (F + S) +/*Walls*/
+                            CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
                     }
                 }
                 case CBConfig.SingleWing:
@@ -1594,23 +1607,25 @@ namespace SmallStructuresTakeOffs.Models
                         }
                     else if (CBHeight <= 8)
                     {
-                            decimal T = 1.5m + .5m;
-                            decimal S = 0;
-                            decimal F = CBHeight - (T + S);
+                        decimal T = 1.5m + .5m;
+                        decimal S = 0;
+                        decimal F = CBHeight - (T + S);
 
-
-                            return
-                                (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * ( T) +/*Walls*/
-                                (CBLength ) * (CBWidth ) * .5m + /*Top Slab */
-                                (CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m) / 27m; /* Gutter Width */
-
-                        }
+                        return
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * ( T) +/*Walls*/
+                            (CBLength ) * (CBWidth ) * .5m + /*Top Slab */
+                            (CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m) / 27m; /* Gutter Width */
+                    }
                     else
                     {
+                        decimal T = 1.5m + .5m;
+                        decimal S = 0;
+                        decimal F = CBHeight - (T + S);
+
                         return
-                            0;
-                        //(2M * (CBLength + 2M * (CBWallThickness + 2m / 12m) + CBWidth) * (CBWallThickness + 2m / 12m) * (CBHeight +.5m - 2m) +/*Walls*/
-                        //CBLength * CBWidth * .75m  /*Base*/) / 27M; /*CY*/
+                            (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * (T) +/*Walls*/
+                            (CBLength) * (CBWidth) * .5m + /*Top Slab */
+                            (CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m) / 27m; /* Gutter Width */
                     }
                 }
                 case CBConfig.SingleWing:
