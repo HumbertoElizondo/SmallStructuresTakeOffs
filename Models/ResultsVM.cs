@@ -101,6 +101,8 @@ namespace SmallStructuresTakeOffs.Models
 
         public IList<CBreinforcement> CBreinforcementsVM { get; set; }
 
+        public decimal HeightCB { get; set; }
+
 
 
         //public decimal Concrete => PourApron + ResVMPourBottomCY + ResVMPourWallCY;

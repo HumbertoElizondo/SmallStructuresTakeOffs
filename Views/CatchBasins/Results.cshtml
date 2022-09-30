@@ -23,6 +23,10 @@ else
                     @Html.DisplayNameFor(model => model.ResVMHWDescription)
                 </th>
                 <th class="text-right">
+                    @Html.DisplayNameFor(model => model.HeightCB)
+                </th>
+
+                <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMPourBottomCY)
                 </th>
                 <th class="text-right">
@@ -88,6 +92,9 @@ else
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ResVMHWDescription)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.HeightCB)
                 </td>
                 <td class="text-right">
                     @Html.DisplayFor(modelItem => item.ResVMPourBottomCY)
@@ -157,7 +164,9 @@ else
 
             <tr>
                 <td>Total</td>
-                <td class="text-right" colspan="2">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
+                <td class="text-right" colspan="2">@Model.Sum(i => i.HeightCB).ToString("0.00")</td>
+
+                <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourWallCY).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.PourApron).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.PurchConcrete).ToString("0.00")</td>

@@ -145,6 +145,10 @@ else
         </tbody>
         <tfoot>
             <tr>
+                <td>Total Catch Basins: @Model.Select(s => s.ResVMHWcode).Count().ToString()</td>
+            </tr>
+
+            <tr>
                 <td>Total</td>
                 <td class="text-right" colspan="2">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourWallCY).ToString("0.00")</td>

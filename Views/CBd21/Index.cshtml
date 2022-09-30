@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+            <th class="text-right">
                 @Html.DisplayNameFor(model => model.CBHeight)
             </th>
             <th></th>
@@ -34,7 +34,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td class="text-right">
                 @Html.DisplayFor(modelItem => item.CBHeight)
             </td>
             <td>
@@ -48,6 +48,8 @@
     <tfoot>
         <tr>
             <td>Total Catch Basins: @Model.Select(s => s.CBCode).Count().ToString()</td>
+            <td class="text-right" colspan="2">Total of Heights: @Model.Select(s => s.CBHeight).Sum().ToString("0.00")</td>
+
         </tr>
     </tfoot>
 

@@ -210,6 +210,7 @@ namespace SmallStructuresTakeOffs.Controllers
             {
                 ResultsVM thisStr = new()
                 {
+                    HeightCB = l.CBHeight,
                     ResVMHWcode = l.CBCode,
                     ResVMHWDescription = l.Description,
                     ResVMHWStrId = l.CatchBasinId,
