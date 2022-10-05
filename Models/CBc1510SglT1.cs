@@ -255,18 +255,6 @@ namespace SmallStructuresTakeOffs.Models
                 2M * (CBLength + CBWidth) * 2m; /*InsideWalls*/
 
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + .5m  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling((CBHeight + .5m - (3m + 1.5m)/12m) / 1.5m)) + 1;
-        }
-        public decimal RebNo3Length() { return 2m; }
-        public decimal RebNo3Qty() { return 9m; }
-        public decimal RebNo4Strth() { return CBLength + 2m * CBWallThickness - 1.5m * 2m / 12m;  }
-        public decimal RebNo4StrthEa() { return 1m; }
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
             return 0;

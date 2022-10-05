@@ -47,8 +47,6 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal FabForms(decimal CBHeight);
         public abstract decimal InstBottomForms(decimal CBHeight);
         public abstract decimal InstTopForms();
-        public abstract decimal RebVertLength(decimal CBHeight);
-        public abstract int RebSqRingEa(decimal CBheight);
         public abstract decimal CBRebarTakeOfflb(decimal CBHeight);
     }
 }

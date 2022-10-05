@@ -7,11 +7,8 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBc1580 : CatchBasin
     {
-        //public override decimal CBLength
         public override decimal CBLength { get; set; } = 3m;
-        //public override decimal CBWidth { get => 2m; set { decimal W = 2m; } }
         public override decimal CBWidth { get; set; } = 2m;
-        //public override decimal CBBaseThickness { get => .5m; set { decimal T = .5m; } }
         public override decimal CBBaseThickness { get; set; } = .5m;
         public override decimal CBWallThickness { get => .5m; set { decimal T = .5m; } }
         public override ICollection<CBreinforcement> CBreinforcements
@@ -114,14 +111,6 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal InstTopForms()
         {
             return 0M; /*No Tops in C-15.80*/
-        }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + CBBaseThickness  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling(CBHeight + CBBaseThickness))+1;
         }
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {

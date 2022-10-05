@@ -10,27 +10,14 @@ namespace SmallStructuresTakeOffs.Models
     public class CBc1581 : CatchBasin
     {
         public override decimal CBLength { get; set; } = 3m;
-        //{
-        //    get => 3m; 
-        //    set
-        //    {
-        //        decimal L = 3m;
-        //    }
-        //}
         public override decimal CBWidth { get; set; } = 2m;
-        //{ get => 2m; set { decimal W = 2m; } }
         public override decimal CBBaseThickness { get; set; } = .5m;
-        //{ get => .5m; set { decimal T = .5m; } }
         public override decimal CBWallThickness { get; set; } = .5m;
-        //{ get => .5m; set { decimal T = .5m; } }
-
         public CBc1581Slope CBc1581Slps { get; set; }
-
         public override ICollection<CBreinforcement> CBreinforcements
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
         }
-
         public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
@@ -169,8 +156,6 @@ namespace SmallStructuresTakeOffs.Models
                 default: { return null; }
             }
         }
-
-
         public override decimal PourBottom(decimal CBHeight) 
         {
             switch (this.CBc1581Slps)
@@ -442,15 +427,6 @@ namespace SmallStructuresTakeOffs.Models
         {
             return 0M; /*No Tops in C-15.80*/
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + CBBaseThickness  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling(CBHeight + CBBaseThickness))+1;
-        }
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
             return
