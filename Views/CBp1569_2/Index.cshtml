@@ -4,7 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index @Model.GetType().Name</h1>
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
 
 <p>
     <a asp-action="Create" asp-route-id=@ViewBag.ProjectId>Create New</a>

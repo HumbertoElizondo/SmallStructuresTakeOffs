@@ -9,62 +9,18 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBc1520T3 : CatchBasin
     {
-        public override decimal CBLength { get => 2m + 11.75m/12m; set { decimal L = 2m + 11.75m/12m; } }
+        public override decimal CBLength { get; set; } = 2m + 11.75m / 12m;
         public override decimal CBWidth { get; set; } = 2m + 11.5m / 12m;
-        public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
-        public override int CBVertBars
-        {
-            get
-            {
-                switch (this.CBwings)
-                {
-                    case CBWing.w3ft6in:
-                        { return 0; }
-                    case CBWing.w7ft6in:
-                        { return 24; }
-
-                    default:
-                        { return 0; }
-                }
-            }
-
-            set { decimal Bars = 10m; }
-
-        }
-        public override decimal CBSqRingL 
-        {
-            get
-            {
-                switch (this.CBwings)
-                {
-                    case CBWing.w3ft6in:
-                        { return 0; }
-                    case CBWing.w7ft6in:
-                        {
-                            decimal wing = 7.5m;
-                            return
-                                /* Long Side*/ (CBLength + wing + .5m + 4m/12m +
-                                /* Width Side */ CBWidth + 4m/12m) * 2m + 1m;
-                                //24m; Testing  
-                        }
-
-                    default:
-                        { return 0; }
-                }
-            }
-
-
-            set { decimal R = (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; } 
-        }
+        public override decimal CBBaseThickness { get; set; } = .75m;
+        public override decimal CBWallThickness { get; set; } = .5m;
         public string Genres { get; set; }/* = string.Empty*/
         public CBConfig CBConfg { get; set; }
         public CBWing CBwings { get; set; }
         public override ICollection<CBreinforcement> CBreinforcements
         {
-            get => this.theReinforcements(); set => this.theReinforcements();
+            get => this.TheReinforcements(); set => this.TheReinforcements();
         }
-        public override ICollection<CBreinforcement> theReinforcements()
+        public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
@@ -1332,7 +1288,7 @@ namespace SmallStructuresTakeOffs.Models
 
                                 decimal CBTotalWeight = 0;
 
-                                foreach (var cbR in this.theReinforcements().ToList())
+                                foreach (var cbR in this.TheReinforcements().ToList())
                                 //foreach (var cbR in cbReinf)
                                 {
                                     switch (cbR.CBRebarNom)

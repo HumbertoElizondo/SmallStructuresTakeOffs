@@ -3,12 +3,21 @@
     ViewData["Title"] = "Details";
 }
 
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
+
 <h1>Details: @Model.ResVMHWcode, @Model.ResVMHWDescription</h1>
 
 <div>
     <h4>@Model.GetType().Name</h4>
     <hr />
     <dl class="row">
+        <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.HeightCB)</dt>
+        <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.HeightCB)</dd>
+
         <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMPourBottomCY)</dt>
         <dd class="m-3" style="display:inline">@Html.DisplayFor(Model => Model.ResVMPourBottomCY)</dd>
         <dt class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.ResVMPourWallCY)</dt>

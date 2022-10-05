@@ -8,21 +8,16 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBc1510SglT1 : CatchBasin
     {
-        public override decimal CBLength { get => 2m + 11.75m/12m; set { decimal L = 2m + 11.75m/12m; } }
-        public override decimal CBWidth { get => 2m + 2.5m/12m; set { decimal W = 2m; } }
-        public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
-        public override int CBVertBars { get => 10; set { decimal Bars = 10m; } }
-
-        public override decimal CBSqRingL { get => (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; set { decimal R = (CBLength + CBWidth + 4m * 2m/12m) * 2 + 1m ; } }
-
+        public override decimal CBLength { get; set; } = 2m + 11.75m / 12m;
+        public override decimal CBWidth { get; set; } = 2m + 2.5m / 12m;
+        public override decimal CBBaseThickness { get; set; } = .75m;
+        public override decimal CBWallThickness { get; set; } = .5m;
         public override ICollection<CBreinforcement> CBreinforcements
         {
-            get => this.theReinforcements(); set => this.theReinforcements();
+            get => this.TheReinforcements(); set => this.TheReinforcements();
         }
         public CBc1510Confg CBc1510Confgs { get; set; }
-
-        public override ICollection<CBreinforcement> theReinforcements()
+        public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
 
@@ -139,10 +134,7 @@ namespace SmallStructuresTakeOffs.Models
                     return 
                         null;
             }
-
-
         }
-
         public override decimal PourBottom(decimal CBHeight) 
         {
             switch(this.CBc1510Confgs)
@@ -210,7 +202,6 @@ namespace SmallStructuresTakeOffs.Models
             }
         }
         public override decimal PourApron()
-
         {
             return 0m;
                 //((11m * 10m * 2m/12m  -
@@ -272,14 +263,10 @@ namespace SmallStructuresTakeOffs.Models
         {
             return (int)(Math.Ceiling((CBHeight + .5m - (3m + 1.5m)/12m) / 1.5m)) + 1;
         }
-
         public decimal RebNo3Length() { return 2m; }
         public decimal RebNo3Qty() { return 9m; }
-
         public decimal RebNo4Strth() { return CBLength + 2m * CBWallThickness - 1.5m * 2m / 12m;  }
-
         public decimal RebNo4StrthEa() { return 1m; }
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
             return 0;

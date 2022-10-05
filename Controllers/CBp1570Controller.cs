@@ -23,12 +23,19 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             ViewBag.ProjectId = id;
-            return View(await _context.CatchBasins.OfType<CBp1570>().Where(i => i.ProjId == id).ToListAsync());
+            ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
+
+            return View(await _context.CatchBasins.OfType<CBp1570>().Where(i => i.ProjId == id).OrderByDescending(d => d.CatchBasinId).ToListAsync());
         }
 
         // GET: C1580CB/Details/5
         public IActionResult Details(int id)
         {
+            ViewBag.ProjectName =
+                (from r in _context.CatchBasins
+                 where r.CatchBasinId == id
+                 select r.Project).FirstOrDefault().ProjectName;
+
             var cb = (from r in _context.CBp1570s
                      where r.CatchBasinId == id
                      select r).FirstOrDefault();
@@ -51,7 +58,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 ResVMFormWall = cb.InstTopForms(),
                 ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
                 ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
-                CBreinforcementsVM = cb.theReinforcements().ToList()
+                CBreinforcementsVM = cb.TheReinforcements().ToList()
 
             };
             return View(thisStr);
@@ -175,9 +182,11 @@ namespace SmallStructuresTakeOffs.Controllers
         public IActionResult Results(long id)
         {
             ViewBag.ProjectId = id;
+            ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
+
 
             var CBList =
-                from hw in _context.CBp1570s.Where(p => p.ProjId == id)
+                from hw in _context.CBp1570s.Where(p => p.ProjId == id).OrderBy(i => i.CBCode)
                 select hw;
 
             List<ResultsVM> results = new();
@@ -192,8 +201,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
                     SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    SqRingRebL = l.CBSqRingL,
-                    VertLsRebEa = l.CBVertBars,
                     VertLsRebL = l.RebVertLength(l.CBHeight),
                     ResVMRebNo4Req = l.CBRebFandI,
                     ResVMRebNo3Purch = l.CBRebPurch,

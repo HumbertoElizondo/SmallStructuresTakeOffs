@@ -16,8 +16,6 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal CBWidth { get; set; } // Interior Width Side of Catch Basin
         public abstract decimal CBWallThickness { get; set; } // Thickness of wall
         public abstract decimal CBBaseThickness { get; set; } // Thickness of Floor
-        public abstract int CBVertBars { get; set; } //Vertical Rebar qty
-        public abstract decimal CBSqRingL { get; set; }
         public decimal CBRebFandI { get; set; }
         public decimal CBRebPurch { get; set; }
 
@@ -41,7 +39,7 @@ namespace SmallStructuresTakeOffs.Models
 
         /********** These are The Methods ***************/
 
-        public abstract ICollection<CBreinforcement> theReinforcements();
+        public abstract ICollection<CBreinforcement> TheReinforcements();
         public abstract decimal PourBottom(decimal CBHeight);
         public abstract decimal PourTop();
         public abstract decimal PourApron();

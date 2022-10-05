@@ -23,12 +23,19 @@ namespace SmallStructuresTakeOffs.Controllers
         {
 
             ViewBag.ProjectId = id;
-            return View(await _context.CatchBasins.OfType<CBp1572>().Where(i => i.ProjId == id).ToListAsync());
+            ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
+
+            return View(await _context.CatchBasins.OfType<CBp1572>().Where(i => i.ProjId == id).OrderByDescending(d => d.CatchBasinId).ToListAsync());
         }
 
         // GET: C1580CB/Details/5
         public IActionResult Details(int id)
         {
+            ViewBag.ProjectName =
+                (from r in _context.CatchBasins
+                 where r.CatchBasinId == id
+                 select r.Project).FirstOrDefault().ProjectName;
+
             var cb = (from r in _context.CBp1572s
                      where r.CatchBasinId == id
                      select r).FirstOrDefault();
@@ -51,7 +58,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 ResVMFormWall = cb.InstTopForms(),
                 ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight)* 1.15m,
                 ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
-                CBreinforcementsVM = cb.theReinforcements().ToList()
+                CBreinforcementsVM = cb.TheReinforcements().ToList()
 
             };
             return View(thisStr);
@@ -175,9 +182,11 @@ namespace SmallStructuresTakeOffs.Controllers
         public IActionResult Results(long id)
         {
             ViewBag.ProjectId = id;
+            ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
+
 
             var CBList =
-                from hw in _context.CBp1572s.Where(p => p.ProjId == id)
+                from hw in _context.CBp1572s.Where(p => p.ProjId == id).OrderBy(i => i.CBCode)
                 select hw;
 
             List<ResultsVM> results = new();
@@ -192,8 +201,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
                     SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    SqRingRebL = l.CBSqRingL,
-                    VertLsRebEa = l.CBVertBars,
                     VertLsRebL = l.RebVertLength(l.CBHeight),
                     ResVMRebNo4Req = l.CBRebFandI,
                     ResVMRebNo3Purch = l.CBRebPurch,
@@ -207,12 +214,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMRebNo4Purch = l.CBRebPurch,
                     ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
                     ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum(),
-
-
-                    //ResVMRebPurch = 
-                    //    (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight) + l.RebNo4StrthEa() * l.RebNo4Strth()) * .668m * 1.15m + l.RebNo3Length() * l.RebNo3Qty() * .376m *1.15m,
-                    //ResVMRebFandI = 
-                    //    (l.CBSqRingL * l.RebSqRingEa(l.CBHeight) + (decimal)l.CBVertBars * l.RebVertLength(l.CBHeight) + l.RebNo4StrthEa() * l.RebNo4Strth()) * .668m + l.RebNo3Length() * l.RebNo3Qty() * .376m,
                     RebNo3Length = l.RebNo3Length(),
                     RebNo3LengthEa = (int)l.RebNo3Qty(),
                     RebNo4StgthEa = (int)l.RebNo4StrthEa(),
