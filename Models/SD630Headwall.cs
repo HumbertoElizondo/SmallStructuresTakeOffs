@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace SmallStructuresTakeOffs.Models
 {
-    public class SD630Headwall
+    public class SD630Headwall : Headwall
     {
 
         public int SD630HeadwallId { get; set; }
-        public int ThisHeadwall { get; set; }
-        public string HWCode { get; set; }
+        //public int ThisHeadwall { get; set; }
         public string SD630Description { get; set; }
         public PipeSet PipeNo { get; set; }
         public decimal SD630_I_D { get; set; }
@@ -26,12 +25,12 @@ namespace SmallStructuresTakeOffs.Models
         public decimal RebNo4Purch { get; set; }
         //public SeedHWInfo SD630Headwalls => SeedHWInfo.sD630Headwalls.ToList();
 
-        public decimal PourBase()
+        public override decimal PourBase()
         {
             return this.SD630_C * this.SD630_L * (8M / 12M) / 27M;
         }
 
-        public decimal PourWall()
+        public override decimal PourWall()
         {
             if (PipeNo == PipeSet.Single)
             {
@@ -44,17 +43,17 @@ namespace SmallStructuresTakeOffs.Models
 
         }
 
-        public decimal FormBase()
+        public override decimal FormBase()
         {
             return 2 * (this.SD630_C + this.SD630_L ) * (8M / 12M);
         }
 
-        public decimal FormWall()
+        public override decimal FormWall()
         {
             return 2 * (this.SD630_L + (8M / 12M) * this.SD630_D );
         }
 
-        public decimal FormFab()
+        public override decimal FormFab()
         {
             return FormBase() + FormWall();
         }
@@ -68,7 +67,17 @@ namespace SmallStructuresTakeOffs.Models
                 {
                     List<SD630Headwall> headwalls = new()
                     {
-                        new SD630Headwall { SD630HeadwallId = 0, SD630Description = "Single 18\" Pipe Straight Headwall", SD630_I_D = 18M / 12M, PipeNo = PipeSet.Single, SD630_A = 6M / 12M, SD630_B = 10M / 12M, SD630_C = 24M / 12M, SD630_D = 38M / 12M, SD630_E = 30M / 12M, SD630_F = 19M / 12M, SD630_G = 54M / 12M, SD630_L = 114M / 12M, RebNo4Req = 58.78M, RebNo4Purch = 80.16M},
+                        new SD630Headwall 
+                            { 
+                                SD630HeadwallId = 0, 
+                                SD630Description = "Single 18\" Pipe Straight Headwall", 
+                                SD630_I_D = 18M / 12M, PipeNo = PipeSet.Single, 
+                                SD630_A = 6M / 12M, SD630_B = 10M / 12M, 
+                                SD630_C = 24M / 12M, SD630_D = 38M / 12M, 
+                                SD630_E = 30M / 12M, SD630_F = 19M / 12M, 
+                                SD630_G = 54M / 12M, SD630_L = 114M / 12M, 
+                                RebNo4Req = 58.78M, RebNo4Purch = 80.16M
+                            },
                         new SD630Headwall { SD630HeadwallId = 1, SD630Description = "Single 24\" Pipe Straight Headwall", SD630_I_D = 24M / 12M, PipeNo = PipeSet.Single, SD630_A = 8M / 12M, SD630_B = 12M / 12M, SD630_C = 28M / 12M, SD630_D = 44M / 12M, SD630_E = 36M / 12M, SD630_F = 25M / 12M, SD630_G = 66M / 12M, SD630_L = 138M / 12M, RebNo4Req = 77.49M, RebNo4Purch = 100.2M },
                         new SD630Headwall { SD630HeadwallId = 2, SD630Description = "Single 30\" Pipe Straight Headwall", SD630_I_D = 30M / 12M, PipeNo = PipeSet.Single, SD630_A = 10M / 12M, SD630_B = 14M / 12M, SD630_C = 32M / 12M, SD630_D = 50M / 12M, SD630_E = 45M / 12M, SD630_F = 31M / 12M, SD630_G = 78M / 12M, SD630_L = 162M / 12M, RebNo4Req = 96.19M, RebNo4Purch = 120.24M },
                         new SD630Headwall { SD630HeadwallId = 3, SD630Description = "Single 36\" Pipe Straight Headwall", SD630_I_D = 36M / 12M, PipeNo = PipeSet.Single, SD630_A = 12M / 12M, SD630_B = 16M / 12M, SD630_C = 36M / 12M, SD630_D = 56M / 12M, SD630_E = 54M / 12M, SD630_F = 37M / 12M, SD630_G = 84M / 12M, SD630_L = 186M / 12M, RebNo4Req = 110.22M, RebNo4Purch = 120.24M },
