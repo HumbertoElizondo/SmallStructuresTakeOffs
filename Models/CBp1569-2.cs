@@ -9,25 +9,18 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBp1569_2 : CatchBasin
     {
-        public override decimal CBLength { get => 3m; set { decimal L = 3m; } }
-        public override decimal CBWidth { get => 2.75m; set { decimal W = 2.75m; } }
-        public override decimal CBBaseThickness { get => .75m; set { decimal Tb = .75m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
-        public string Genres { get; set; }/* = string.Empty*/
+        public override decimal CBLength { get; set; } = 3m;
+        public override decimal CBWidth { get; set; } = 2.75m;
+        public override decimal CBBaseThickness { get; set; } = .75m;
+        public override decimal CBWallThickness { get; set; } = .5m;
         public CBConfig CBConfg { get; set; }
-
         public CBWing CBwings { get; set; }
-
         public CBp1569Type CBp1569Types { get; set; }
-
         public CBp1569Wing CBp1569Wings { get; set; }
-
-
         public override ICollection<CBreinforcement> CBreinforcements
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
         }
-
         public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
@@ -345,7 +338,6 @@ namespace SmallStructuresTakeOffs.Models
                 }
             }
         }
-
         public Dictionary<string, decimal> WingDict = new Dictionary<string, decimal>
         {
             {"Wing3'-6\"", 3.5M},
@@ -353,7 +345,6 @@ namespace SmallStructuresTakeOffs.Models
             {"Wing11'-6\"", 11.5M},
             {"Wing19'-6\"", 19.5M},
         };
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight) 
         {
             switch (this.CBConfg)
@@ -499,7 +490,6 @@ namespace SmallStructuresTakeOffs.Models
                     }
             }
         }
-
         public override decimal PourBottom(decimal CBHeight) 
         {
             switch (this.CBp1569Types)
@@ -1130,20 +1120,5 @@ namespace SmallStructuresTakeOffs.Models
             }
 
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + .5m  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling((CBHeight + .5m - (3m + 1.5m)/12m) / 1.5m)) + 1;
-        }
-
-        public decimal RebNo3Length() { return 2m; }
-        public decimal RebNo3Qty() { return 9m; }
-
-        public decimal RebNo4Strth() { return CBLength + 2m * CBWallThickness - 1.5m * 2m / 12m;  }
-
-        public decimal RebNo4StrthEa() { return 1m; }
     }
 }

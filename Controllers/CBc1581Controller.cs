@@ -225,8 +225,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWDescription = l.Description,
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
-                    SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    VertLsRebL = l.RebVertLength(l.CBHeight),
                     ResVMRebNo4Req = l.CBRebFandI,
                     ResVMRebNo3Purch = l.CBRebPurch,
                     ResVMPourWallCY = l.PourTop(),
@@ -242,14 +240,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 };
                 results.Add(thisStr);
             }
-
-
-            //return View(await _context.SmallStructures.ToListAsync());
             return View(results.ToList());
-
         }
-
         #endregion
-
     }
 }

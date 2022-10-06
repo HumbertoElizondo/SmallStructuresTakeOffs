@@ -210,8 +210,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWDescription = l.Description,
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
-                    SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    VertLsRebL = l.RebVertLength(l.CBHeight),
                     ResVMRebNo4Req = l.CBRebFandI,
                     ResVMRebNo3Purch = l.CBRebPurch,
                     ResVMPourWallCY = l.PourTop(),
@@ -224,12 +222,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMRebNo4Purch = l.CBRebPurch,
                     ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
                     ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum(),
-
-                    RebNo3Length = l.RebNo3Length(),
-                    RebNo3LengthEa = (int)l.RebNo3Qty(),
-                    RebNo4StgthEa = (int)l.RebNo4StrthEa(),
-                    RebNo4StgthL = l.RebNo4Strth()
-                    
                 };
                 results.Add(thisStr);
             }

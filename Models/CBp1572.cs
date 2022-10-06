@@ -296,15 +296,6 @@ namespace SmallStructuresTakeOffs.Models
                 0;
 
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + .5m  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling((CBHeight + .5m - (3m + 1.5m)/12m) / 1.5m)) + 1;
-        }
-
         public decimal RebNo3Length() { return 2m; }
         public decimal RebNo3Qty() { return 9m; }
 

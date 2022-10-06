@@ -223,8 +223,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWDescription = l.Description,
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
-                    SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    VertLsRebL = l.RebVertLength(l.CBHeight),
                     ResVMRebNo4Req = l.CBRebFandI,
                     ResVMRebNo3Purch = l.CBRebPurch,
                     ResVMPourWallCY = l.PourTop(),

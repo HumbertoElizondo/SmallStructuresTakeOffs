@@ -111,15 +111,6 @@ namespace SmallStructuresTakeOffs.Models
         {
             return 0M; /*No Tops in C-15.80*/
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + CBBaseThickness  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling(CBHeight + CBBaseThickness))+1;
-        }
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
             return

@@ -7,23 +7,14 @@ namespace SmallStructuresTakeOffs.Models
 {
     public class CBd21 : CatchBasin
     {
-        public override decimal CBLength
-        {
-            get => 5m + (6m + 5m / 8m) / 12m; 
-            set
-            {
-                decimal L = 3m;
-            }
-        }
-        public override decimal CBWidth { get => 3m; set { decimal W = 2m; } }
-        public override decimal CBBaseThickness { get => 1m; set { decimal T = .5m; } }
-        public override decimal CBWallThickness { get => 1m; set { decimal T = .5m; } }
-
+        public override decimal CBLength { get; set; } = 5m + (6m + 5m / 8m) / 12m;
+        public override decimal CBWidth { get; set; } = 3m;
+        public override decimal CBBaseThickness { get; set; } = 1m;
+        public override decimal CBWallThickness { get; set; } = 1m;
         public override ICollection<CBreinforcement> CBreinforcements
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
         }
-
         public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();
@@ -118,8 +109,6 @@ namespace SmallStructuresTakeOffs.Models
             return cbReinf;
 
         }
-
-
         public override decimal PourBottom(decimal CBHeight) 
         {
                 return 
@@ -132,7 +121,6 @@ namespace SmallStructuresTakeOffs.Models
             return 0M; /*No Tops in C-15.80*/
         }
         public override decimal PourApron()
-
         {
             return
                 (CBLength + 2m * 4m) * (CBWidth + 2m * 4m) * (2m / 12m) / 27m - /*ApronSize*/
@@ -159,20 +147,10 @@ namespace SmallStructuresTakeOffs.Models
         {
             return 0M; /*No Tops in C-15.80*/
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + CBBaseThickness  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling(CBHeight + CBBaseThickness))+1;
-        }
-
         public override decimal CBRebarTakeOfflb(decimal CBHeight)
         {
             return
                 0;
-            //throw new NotImplementedException();
         }
     }
 }

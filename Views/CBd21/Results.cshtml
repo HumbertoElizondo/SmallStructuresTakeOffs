@@ -30,7 +30,6 @@ else
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.HeightCB)
                 </th>
-
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMPourBottomCY)
                 </th>
@@ -102,12 +101,10 @@ else
                 <td class="text-right" colspan="2">@Model.Sum(i => i.HeightCB).ToString("0.00")</td>
 
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
-                @*<td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourWallCY).ToString("0.00")</td>*@
                 <td class="text-right" colspan="1">@Model.Sum(i => i.PourApron).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.PurchConcrete).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormFab).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormBase).ToString("0.00")</td>
-                @*<td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormWall).ToString("0.00")</td>*@
 
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebFandI).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebPurch).ToString("0.00")</td>

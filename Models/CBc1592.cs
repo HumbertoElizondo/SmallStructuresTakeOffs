@@ -11,11 +11,10 @@ namespace SmallStructuresTakeOffs.Models
     {
         public SlottedDrain CBSlottedDrain { get; set; }
         public CurbType CBCurbType { get; set; }
-        public override decimal CBLength { get => 3m; set { decimal L = 3m; } }
-        public override decimal CBWidth { get => 3m; set { decimal W = 3m; } }
-        public override decimal CBBaseThickness { get => .5m; set { decimal Tb = .5m; } }
-        public override decimal CBWallThickness { get => .5m; set { decimal Tw = .5m; } }
-        public string Genres { get; set; }/* = string.Empty*/
+        public override decimal CBLength { get; set; } = 3m;
+        public override decimal CBWidth { get; set; } = 3m;
+        public override decimal CBBaseThickness { get; set; } = .5m;
+        public override decimal CBWallThickness { get; set; } = .5m;
         public CBConfig CBConfg { get; set; }
         public CBWing CBwings { get; set; }
         public override ICollection<CBreinforcement> CBreinforcements
@@ -169,9 +168,9 @@ namespace SmallStructuresTakeOffs.Models
                             }
                             case CBWing.w7ft6in:
                             {
-                                const decimal wing = 7.5m;
-                                decimal S = 1m + wing / 20m;
-                                decimal F = CBHeight - (2.5m + wing / 20m);
+                                //const decimal wing = 7.5m;
+                                //decimal S = 1m + wing / 20m;
+                                //decimal F = CBHeight - (2.5m + wing / 20m);
 
                                 //IList<CBreinforcement> cbReinf = new List<CBreinforcement>
                                 //{
@@ -774,17 +773,5 @@ namespace SmallStructuresTakeOffs.Models
                 }
             }
         }
-        public override decimal RebVertLength(decimal CBHeight)
-        {
-            return CBHeight + .5m  - (3m/12m + 1.5m/12m);
-        }
-        public override int RebSqRingEa (decimal CBHeight)
-        {
-            return (int)(Math.Ceiling((CBHeight + .5m - (3m + 1.5m)/12m) / 1.5m)) + 1;
-        }
-        public decimal RebNo3Length() { return 2m; }
-        public decimal RebNo3Qty() { return 9m; }
-        public decimal RebNo4Strth() { return CBLength + 2m * CBWallThickness - 1.5m * 2m / 12m;  }
-        public decimal RebNo4StrthEa() { return 1m; }
     }
 }

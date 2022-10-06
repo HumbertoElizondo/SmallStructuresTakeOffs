@@ -226,10 +226,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWDescription = l.Description,
                     ResVMHWStrId = l.CatchBasinId,
                     ResVMId = l.CatchBasinId,
-                    SqRingRebEa = l.RebSqRingEa(l.CBHeight),
-                    VertLsRebL = l.RebVertLength(l.CBHeight),
-                    ResVMRebNo4Req = l.CBRebFandI,
-                    ResVMRebNo3Purch = l.CBRebPurch,
                     ResVMPourWallCY = l.PourTop(),
                     ResVMPourBottomCY = l.PourBottom(l.CBHeight),
                     PourApron = l.PourApron(),
@@ -237,20 +233,13 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormFab = l.FabForms(l.CBHeight),
                     ResVMFormBase = l.InstBottomForms(l.CBHeight),
                     ResVMFormWall = l.InstTopForms(),
-                    ResVMRebNo4Purch = l.CBRebPurch,
                     ResVMRebPurch = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() * 1.15m,
                     ResVMRebFandI = (decimal)l.CBreinforcements.Where(w => w.CBId == l.CatchBasinId).Select(s => s.TotalWeight).Sum() 
                 };
                 results.Add(thisStr);
             }
-
-
-            //return View(await _context.SmallStructures.ToListAsync());
             return View(results.ToList());
-
         }
-
         #endregion
-
     }
 }
