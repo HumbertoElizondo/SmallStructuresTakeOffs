@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HWCode)
+                @Html.DisplayNameFor(model => model.HWcode)
             </th>
 
             <th>
@@ -63,7 +63,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HWCode)
+                    @Html.DisplayFor(modelItem => item.HWcode)
                 </td>
 
                 <td>
@@ -106,9 +106,9 @@
                     @Html.DisplayFor(modelItem => item.RebNo4Purch)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.SD630HeadwallId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SD630HeadwallId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SD630HeadwallId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.HeadwallId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.HeadwallId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HeadwallId">Delete</a>
                 </td>
             </tr>
         }
