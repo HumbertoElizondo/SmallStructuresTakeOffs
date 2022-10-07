@@ -201,7 +201,6 @@ namespace SmallStructuresTakeOffs.Controllers
 
         #endregion
 
-
         #region Result Action
         public IActionResult Results()
         {
@@ -223,21 +222,19 @@ namespace SmallStructuresTakeOffs.Controllers
                 //    from t in SD630Headwall.SeedHWInfo.sD630Headwalls
 
                 var takeOff =
-                     SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourBase();
+                     SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).PourBase();
 
                      ResultsVM thisStr = new()
                      {
                          ResVMHWcode = l.HWcode,
-                         ResVMHWDescription = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).SD630Description,
-                         ResVMHWStrId = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).SD630HeadwallId,
+                         ResVMHWDescription = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).SD630Description,
+                         ResVMHWStrId = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).HeadwallId,
                          ResVMId = l.SmStId,
-                         ResVMPourBottomCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourBase(),
-                         ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).PourWall(),
-                         ResVMRebNo4Req = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).RebNo4Req,
-                         ResVMRebNo3Purch = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).RebNo4Purch,
-                         ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormFab(),
-                         ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormBase(),
-                         ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisStructure).FormWall()
+                         ResVMPourBottomCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).PourBase(),
+                         ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).RebNo4Purch,
+                         ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).FormFab(),
+                         ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).FormBase(),
+                         ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisStructure).FormWall()
                      };
                 results.Add(thisStr);
             }
@@ -249,8 +246,5 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         #endregion
-
-
-
     }
 }

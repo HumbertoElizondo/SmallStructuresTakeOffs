@@ -19,13 +19,24 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         // GET: C1580CB
-        public async Task<IActionResult> Index(long id)
+        public async Task<IActionResult> Index(long id, string searchString)
         {
 
             ViewBag.ProjectId = id;
             ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
 
-            return View(await _context.CatchBasins.Where(i => i.ProjId == id).OrderBy(o => o.CBCode).ToListAsync());
+            var catchbasins = from m in _context.CatchBasins
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                catchbasins = catchbasins.Where(s => s.CBCode.Contains(searchString));
+            }
+
+            return View(await catchbasins.Where(i => i.ProjId == id).OrderBy(o => o.CBCode).ToListAsync());
+
+
+            //return View(await _context.CatchBasins.Where(i => i.ProjId == id).OrderBy(o => o.CBCode).ToListAsync());
         }
 
         // GET: C1580CB/Details/5

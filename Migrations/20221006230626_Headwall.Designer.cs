@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,9 +12,10 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20221006230626_Headwall")]
+    partial class Headwall
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -458,6 +460,9 @@ namespace SmallStructuresTakeOffs.Migrations
 
                     b.Property<string>("SD630Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SD630HeadwallId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("SD630_A")
                         .HasColumnType("decimal(18,2)");

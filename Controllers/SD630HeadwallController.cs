@@ -35,7 +35,7 @@ namespace SmallStructuresTakeOffs.Controllers
             }
 
             var sD630Headwall = await _context.SD630Headwalls
-                .FirstOrDefaultAsync(m => m.SD630HeadwallId == id);
+                .FirstOrDefaultAsync(m => m.HeadwallId == id);
             if (sD630Headwall == null)
             {
                 return NotFound();
@@ -52,7 +52,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 select c;
 
 
-            ViewBag.HWList = new SelectList(catalogue, "SD630HeadwallId", "SD630Description");
+            ViewBag.HWList = new SelectList(catalogue, "HeadwallId", "SD630Description");
 
 
             return View();
@@ -106,7 +106,7 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("HWCode,SD630HeadwallId,SD630Description,PipeNo,SD630_I_D,SD630_A,SD630_B,SD630_C,SD630_D,SD630_E,SD630_F,SD630_G,SD630_L,RebNo4Req,RebNo4Purch,ThisHeadwallId")] SD630Headwall sD630Headwall)
         {
-            if (id != sD630Headwall.SD630HeadwallId)
+            if (id != sD630Headwall.HeadwallId)
             {
                 return NotFound();
             }
@@ -121,7 +121,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SD630HeadwallExists(sD630Headwall.SD630HeadwallId))
+                    if (!SD630HeadwallExists(sD630Headwall.HeadwallId))
                     {
                         return NotFound();
                     }
@@ -144,7 +144,7 @@ namespace SmallStructuresTakeOffs.Controllers
             }
 
             var sD630Headwall = await _context.SD630Headwalls
-                .FirstOrDefaultAsync(m => m.SD630HeadwallId == id);
+                .FirstOrDefaultAsync(m => m.HeadwallId == id);
             if (sD630Headwall == null)
             {
                 return NotFound();
@@ -166,7 +166,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
         private bool SD630HeadwallExists(int id)
         {
-            return _context.SD630Headwalls.Any(e => e.SD630HeadwallId == id);
+            return _context.SD630Headwalls.Any(e => e.HeadwallId == id);
         }
 
         #region Result Action
@@ -190,21 +190,21 @@ namespace SmallStructuresTakeOffs.Controllers
                 //    from t in SD630Headwall.SeedHWInfo.sD630Headwalls
 
                 var takeOff =
-                     SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).PourBase();
+                     SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).PourBase();
 
                 ResultsVM thisStr = new()
                 {
                     ResVMHWcode = l.HWcode,
-                    ResVMHWDescription = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).SD630Description,
-                    ResVMHWStrId = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).SD630HeadwallId,
-                    ResVMId = l.SD630HeadwallId,
-                    ResVMPourBottomCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).PourBase(),
-                    ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).PourWall(),
-                    ResVMRebNo4Req = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).RebNo4Req,
-                    ResVMRebNo3Purch = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).RebNo4Purch,
-                    ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).FormFab(),
-                    ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).FormBase(),
-                    ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.SD630HeadwallId == l.ThisHeadwallId).FormWall()
+                    ResVMHWDescription = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).SD630Description,
+                    ResVMHWStrId = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).HeadwallId,
+                    ResVMId = l.HeadwallId,
+                    ResVMPourBottomCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).PourBase(),
+                    ResVMPourWallCY = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).PourWall(),
+                    ResVMRebNo4Req = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).RebNo4Req,
+                    ResVMRebNo3Purch = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).RebNo4Purch,
+                    ResVMFormFab = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).FormFab(),
+                    ResVMFormBase = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).FormBase(),
+                    ResVMFormWall = SD630Headwall.SeedHWInfo.sD630Headwalls.FirstOrDefault(f => f.HeadwallId == l.ThisHeadwallId).FormWall()
                 };
                 results.Add(thisStr);
             }
