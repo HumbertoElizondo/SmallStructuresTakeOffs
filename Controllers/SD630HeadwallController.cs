@@ -45,7 +45,7 @@ namespace SmallStructuresTakeOffs.Controllers
             }
 
             var sD630Headwall = await _context.SD630Headwalls
-                .FirstOrDefaultAsync(m => m.HeadwallId == id);
+                .FirstOrDefaultAsync(m => m.SD630HeadwallId == id);
             if (sD630Headwall == null)
             {
                 return NotFound();
@@ -118,7 +118,7 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("HWCode,SD630HeadwallId,SD630Description,ProjId,ThisHeadwall")] SD630Headwall sD630Headwall)
         {
-            if (id != sD630Headwall.HeadwallId)
+            if (id != sD630Headwall.SD630HeadwallId)
             {
                 return NotFound();
             }
@@ -133,7 +133,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SD630HeadwallExists(sD630Headwall.HeadwallId))
+                    if (!SD630HeadwallExists(sD630Headwall.SD630HeadwallId))
                     {
                         return NotFound();
                     }
@@ -156,7 +156,7 @@ namespace SmallStructuresTakeOffs.Controllers
             }
 
             var sD630Headwall = await _context.SD630Headwalls
-                .FirstOrDefaultAsync(m => m.HeadwallId == id);
+                .FirstOrDefaultAsync(m => m.SD630HeadwallId == id);
             if (sD630Headwall == null)
             {
                 return NotFound();
@@ -178,7 +178,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
         private bool SD630HeadwallExists(int id)
         {
-            return _context.SD630Headwalls.Any(e => e.HeadwallId == id);
+            return _context.SD630Headwalls.Any(e => e.SD630HeadwallId == id);
         }
 
         #region Result Action
