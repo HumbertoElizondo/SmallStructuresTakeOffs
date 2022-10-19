@@ -1,0 +1,416 @@
+[33mcommit c4015417f31611aa899dea2ffe9e60c6d4a4604b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;32mremastering[m[33m)[m
+Merge: 46ee4b7 0344208
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 14:49:48 2022 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 46ee4b7b3cabee0ebce37cf36bb9ae614b43d1e1[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 14:31:21 2022 -0700
+
+    MostlyHeadwallIssues
+
+[33mcommit 01c3ada6d5a86963cb0b472fc6e9184388c3210b[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:59:25 2022 -0700
+
+    RemovedDuplicatedEntity
+
+[33mcommit df2c55afaa4e4f0479d7755d1e565959a55a0ad9[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:54:11 2022 -0700
+
+    HasToDoWithDesigners
+
+[33mcommit e4a710332dcbfd604e56dcb6264ec5fd6b4042da[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:18:23 2022 -0700
+
+    WorkingWithHeadwallIndexAndCreateFunctionality
+
+[33mcommit edfd0cad109bc585065582d6217a68c69d61e07b[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Oct 7 13:50:21 2022 -0700
+
+    FixingIssuesWithHeadwallEntity
+
+[33mcommit bf3d90bb3135226b3be32bb1e99e8dae6135e590[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Thu Oct 6 15:57:17 2022 -0700
+
+    AddedHeadwallToContext
+
+[33mcommit 0344208317c9a6607c386e370948dabcaa2fb2ca[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 14:31:21 2022 -0700
+
+    MostlyHeadwallIssues
+
+[33mcommit 41b62bf26bba65a1960b1f0ed5b418bb6c676ce8[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:59:25 2022 -0700
+
+    RemovedDuplicatedEntity
+
+[33mcommit 0ceb2eeb91b4fc0e2ecc217d71998399faf62d4b[m
+Merge: 3207ba6 e23b4f9
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:55:58 2022 -0700
+
+    Merge branch 'RefreshingBackToCommit7bc2e434'
+
+[33mcommit e23b4f9482a73542d03f10441463ca64714fc235[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:54:11 2022 -0700
+
+    HasToDoWithDesigners
+
+[33mcommit 3207ba6a7e4573920a2d1ba3f63ab167e4b31d28[m
+Merge: 36ee681 d10de14
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:32:33 2022 -0700
+
+    AfterResolvingConflicts
+
+[33mcommit d10de147e6778545ce3348a9ba242b91e1eae033[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 19 13:18:23 2022 -0700
+
+    WorkingWithHeadwallIndexAndCreateFunctionality
+
+[33mcommit 36ee6818f03b02fd25e82a0d9b74f6fcf13653cf[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Oct 7 13:50:21 2022 -0700
+
+    FixingIssuesWithHeadwallEntity
+
+[33mcommit c727bfcf65879e177bd35fb60a1d189010f7d5a4[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Thu Oct 6 15:57:17 2022 -0700
+
+    AddedHeadwallToContext
+
+[33mcommit e09101a0ab9b1f2097e6e48ebd6ea3c40abed579[m[33m ([m[1;32mHeadwallsRevision[m[33m)[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Thu Oct 6 08:51:57 2022 -0700
+
+    StillRemovingSpecificRebarCalls
+
+[33mcommit 2993108ce294a642e2dda2f72b30e581ccc5a6c8[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 5 15:46:56 2022 -0700
+
+    CleanUpWorkInResultsViews
+
+[33mcommit 7bc2e4340a814f68b0cd12a1c2eec99b7458a256[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Oct 5 14:06:34 2022 -0700
+
+    CleanUpWork
+
+[33mcommit 3ea9dd4fd23f8b3ef7ff48017b45f69d32819aa0[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Sep 30 16:05:47 2022 -0700
+
+    AddingAcountToResultsViewAll
+
+[33mcommit f08790dbf1d07af3e2ca0ece1a205c3396695f7c[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 27 16:08:09 2022 -0700
+
+    DetailEFunctionality
+
+[33mcommit 8d3563e58109c9d3a0d643dc763d4aca318091fe[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 27 13:05:57 2022 -0700
+
+    SettingUpDetailDFunctionality
+
+[33mcommit c39f477c2f9e9eb203484005dc94cc6aa0a53189[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Mon Sep 26 12:49:51 2022 -0700
+
+    SettingUpCBc1530NoMethodsTested
+
+[33mcommit 68999fefe4efdd1a866f3e1416e810fad1c5759e[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Sep 23 14:23:57 2022 -0700
+
+    AddedCatchBasinResultsSummary
+
+[33mcommit 053b3e8649584697cf43d3a97ce504029edbb1ea[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Thu Sep 22 16:07:13 2022 -0700
+
+    AddingFunctionalityToCBp1572
+
+[33mcommit 9d0f02646f63c36de4affae52f0a9ef718432c99[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Thu Sep 22 09:09:53 2022 -0700
+
+    RevisedCBc1581Methods
+
+[33mcommit 0b24e974491a66b849eff6c83cb27a7a0570adff[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Wed Sep 21 19:29:08 2022 -0700
+
+    AddedCBc1581Functionality
+
+[33mcommit ea9752f247d20ffa07b1f1913ae878dddc1185ef[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 21 16:36:57 2022 -0700
+
+    AddedFunctionalityForCBp1570
+
+[33mcommit 4141f9dafd0372a5e882ed1886dc06151e54a124[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 20 13:27:45 2022 -0700
+
+    AddedSubTotalsToCatchBasinListsAndTotals
+
+[33mcommit 1dee032af2566023b6b88b318756e888e2d6ea4f[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 20 12:45:34 2022 -0700
+
+    CreatedCatchBasinListInCBController
+
+[33mcommit d390de43e78a967d65166ee6eb18a61129b9136c[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 21 13:37:16 2022 -0700
+
+    Revert "RevisedBackToListLinkForAllCreateViews"
+    
+    This reverts commit 1e5e05853f10523e2c8c7127cb1f9dc322409f68.
+
+[33mcommit be126b3d54df7cf28e7210b6f6898511b3e1f742[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 21 13:36:21 2022 -0700
+
+    Revert "LabelWorksOnCreateAndIndexViews"
+    
+    This reverts commit de596a2bf244566a2075b7fb029c7eca7f229a0c.
+
+[33mcommit 248d369f97ff8aa4e784eede7d47cd4568757a44[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 21 09:57:06 2022 -0700
+
+    LabelWorksOnCreateAndIndexViews
+
+[33mcommit 6dbb9b119176bae1d5220ce1d5fd6d5e1cce6eea[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 20 16:36:21 2022 -0700
+
+    RevisedBackToListLinkForAllCreateViews
+
+[33mcommit 5b21548fd5566deaf7c68e70d21377e358f5b291[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 20 13:27:45 2022 -0700
+
+    AddedSubTotalsToCatchBasinListsAndTotals
+
+[33mcommit 47f646fafaf6b6a42bbffd737c7150d79a25b4a5[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Tue Sep 20 12:45:34 2022 -0700
+
+    CreatedCatchBasinListInCBController
+
+[33mcommit 0b98e804ed509abb84c786b504088498fe25cfc3[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 17 19:20:35 2022 -0700
+
+    MigrationChanges
+
+[33mcommit 0f7319261aeba4ca55a77c163047818951865428[m
+Merge: ba30004 535c72d
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 17 19:00:15 2022 -0700
+
+    AcceptingFromHElizondoB2022
+
+[33mcommit 535c72d47e8ff1829faa157f6d3ba779e8eae0cb[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Sat Sep 17 18:14:09 2022 -0700
+
+    RevisedReinforcementForWing6ft
+
+[33mcommit 3194dc48392fa3a3fb96f4081145f01a4258c35f[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Sat Sep 17 12:47:55 2022 -0700
+
+    RenamedP1569EntitiesAndRevisedPourBottomAndTopsFor6ftWingAndLessThenH8'
+
+[33mcommit 227d74177bff7327f7bab4c0958edeae1233b7ae[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Sep 16 11:05:48 2022 -0700
+
+    FixedCBc1510ReinforcingAndPourMethods
+
+[33mcommit ba3000442fc9336dcbd93ce2c0674db2b5bf8889[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Thu Sep 15 18:42:03 2022 -0700
+
+    RevisedFunctOfCBc1510
+
+[33mcommit 20c45e58a5e5bfb82ccdb5f92e2366e13a2fc6d2[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 10 15:15:03 2022 -0700
+
+    FunctionalityForCBp1569
+
+[33mcommit 56ab5df4ca3d4bb470dda6a897b83fe6aa9165d5[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Sep 9 16:38:01 2022 -0700
+
+    AddedControllersAndViewsToCBd21
+
+[33mcommit 870f617c271397fb248851d743f71bf29377f500[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Fri Sep 9 12:49:43 2022 -0700
+
+    StartingCBd21
+
+[33mcommit 65513271e19d3002a87abdd18a5c1058928771cf[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 7 16:03:50 2022 -0700
+
+    RemovedTheLportionOfVerticalRebar
+
+[33mcommit 798f6145a125d898c2477d4b5f180dcc07b6e9a7[m
+Author: Humberto Balderrama <hbalderrama@swcp.us>
+Date:   Wed Sep 7 15:24:38 2022 -0700
+
+    RevisedPourTopMethod
+
+[33mcommit 2ab4d6c49acfdd34630d87840556ea28e782e2bf[m
+Merge: 56e29d8 615c797
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Tue Sep 6 17:58:02 2022 -0700
+
+    Merge branch 'AddingFunctionalityForCBc1592' of https://github.com/HumbertoElizondo/SmallStructuresTakeOffs into AddingFunctionalityForCBc1592
+
+[33mcommit 56e29d81a59d8a0d4dca2ad3170310dcc1af95ae[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Tue Sep 6 17:25:03 2022 -0700
+
+    SetUpCBc1592
+
+[33mcommit 615c7976bc9504dbddc7786290c6339a8862ad8f[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Tue Sep 6 17:25:03 2022 -0700
+
+    SetUpCBc1592
+
+[33mcommit 34164f6d4d0d7e0d4ec30a32ca811167f4aa6663[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Mon Sep 5 08:16:45 2022 -0700
+
+    ChangedProjectToUsenet6.0
+
+[33mcommit 2242e19150177d49099c4adc1615b4215b397a4d[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 3 18:23:27 2022 -0700
+
+    SolvedConflictsInC1591
+
+[33mcommit fc4aa0266ab62551519dddb2ecc64b7e824acaf9[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 3 11:09:40 2022 -0700
+
+    RemovedC1580CBFunctionality
+
+[33mcommit ae9357c9b048173e4e19c8863ffb2bdd548aa46c[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Thu Sep 1 19:46:04 2022 -0700
+
+    ChangesToCB1591Functionality
+
+[33mcommit a8526c930ba22b4ff4f211c4f58b89ebf7790577[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Sep 3 11:09:40 2022 -0700
+
+    RemovedC1580CBFunctionality
+
+[33mcommit d78890f0c36739b2f290a2dd3e7a46e39bee1275[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Thu Sep 1 19:46:04 2022 -0700
+
+    ChangesToCB1591Functionality
+
+[33mcommit 460fb69e0424f4706ca6894fbf022ddb87571776[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Wed Aug 31 19:28:36 2022 -0700
+
+    AddedCBc1591Entity
+
+[33mcommit faec062a55f4b86a2f165fb6d94437c29d8239bb[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Tue Aug 30 19:56:29 2022 -0700
+
+    SettingUpTheMethodtheReinforcement
+
+[33mcommit d75fa399ee823c0336bb2bf933fa64773f94ae1c[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Mon Aug 29 18:40:02 2022 -0700
+
+    LatestChangesToCB1520
+
+[33mcommit bf7a52ca3f0e02a7f3232a6c45c7f9978dafa94c[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sun Aug 7 10:08:24 2022 -0700
+
+    FinishingC1510Sgl
+
+[33mcommit b10a69b4a3e3a41c3a601c30654a3f6575dff4d1[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Jul 30 20:12:47 2022 -0700
+
+    AdjustedRebarCalcsForCBc1580
+
+[33mcommit a7b30443ff0c0bbaa7199eba2fb43a5cfc3110a7[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sun Jul 17 06:00:51 2022 -0700
+
+    AddedCBc1580RebarFeatures
+
+[33mcommit d1b1cdf8dfa17d25ec698708ee8343f23aa20df5[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Jul 16 10:36:51 2022 -0700
+
+    ChangesToCBc1580Controller
+
+[33mcommit a7c187128cf5237e6b7e0fb815f1166392f29d14[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sun Jul 10 16:54:20 2022 -0700
+
+    StillChangesInCatchBasinsEntity
+
+[33mcommit 73198186a2cb422cb4f11732cd52488824602b1a[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sat Jul 9 11:13:08 2022 -0700
+
+    PastCoding
+
+[33mcommit d6c9cb7f9f8d1335422edab5b918667c4383b749[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Sun Nov 7 11:09:53 2021 -0700
+
+    SeveralChangesToRebarBreakdown
+
+[33mcommit 55f0cb9a4e4f9cffed6f152e1562432af4e8a2a0[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Tue Jun 1 17:15:14 2021 -0700
+
+    AddedHeadwallsAndC1580CatchBasins
+
+[33mcommit b97f27e25de56e204662e15d01b98aae53fe269d[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Fri Apr 9 12:04:46 2021 -0700
+
+    Add project files.
+
+[33mcommit daddeff035fd8785d9df779b32ab5f97f9df9951[m
+Author: Humberto Elizondo <heb.humberto@live.com>
+Date:   Fri Apr 9 12:04:43 2021 -0700
+
+    Add .gitignore and .gitattributes.
