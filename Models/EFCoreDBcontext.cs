@@ -33,7 +33,6 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<RebarWasting> RebarWastings { get; set; }
         public DbSet<RebarToPurchase> RebarToPurchase { get; set; }
         public DbSet<Headwall> Headwalls { get; set; }
-        public DbSet<SD630Headwall> SD630Headwalls { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CBc1580>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
