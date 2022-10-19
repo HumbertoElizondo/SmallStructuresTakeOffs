@@ -27,7 +27,7 @@
 
 <div class="text-center">
     <a class="btn btn-primary" asp-controller="RebarRequests"asp-action="Index" asp-route-id="@Model.ProjectId">Rebar BreakDown</a>
-    <a class="btn btn-primary" asp-controller="SD630Headwall" asp-action="Index">SD-6.30HW</a>
+    <a class="btn btn-primary" asp-controller="SD630Headwall" asp-route-id="@Model.ProjectId" asp-action="Index">SD-6.30HW</a>
     <a class="btn btn-primary" asp-controller="CBc1510SglT1" asp-route-id="@Model.ProjectId" asp-action="Index">CB C-15.10</a>
     <a class="btn btn-primary" asp-controller="CBc1520T3" asp-route-id="@Model.ProjectId" asp-action="Index">CB C-15.20</a>
     <a class="btn btn-primary" asp-controller="CBc1580" asp-route-id="@Model.ProjectId" asp-action="Index">CB C-15.80</a>

@@ -38,6 +38,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
+            //ViewBag.ProjId = id;
             return View(Proj);
 
         }
