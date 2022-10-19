@@ -13,6 +13,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <input asp-for="ProjId" type="hidden" value="@ViewBag.ProjectId" />
+            </div>
+
+            <div class="form-group">
                 <label asp-for="HWCode" class="control-label"></label>
                 <input asp-for="HWCode" class="form-control" />
                 <span asp-validation-for="HWCode" class="text-danger"></span>
@@ -98,6 +102,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@ViewBag.ProjectId">Back to List</a>
 </div>
 

@@ -24,7 +24,7 @@ namespace SmallStructuresTakeOffs.Models
             switch (this.CBc1510Confgs)
             {
                 case CBc1510Confg.Single:
-                    {
+                {
                         cbReinf.Add(
                             new CBreinforcement
                             {
@@ -78,7 +78,7 @@ namespace SmallStructuresTakeOffs.Models
                         return cbReinf;
                     }
                 case CBc1510Confg.Double:
-                    {
+                {
                         cbReinf.Add(
                             new CBreinforcement
                             {
@@ -140,7 +140,7 @@ namespace SmallStructuresTakeOffs.Models
             switch(this.CBc1510Confgs)
             {
                 case CBc1510Confg.Single:
-                    {
+                {
                         if (CBHeight < 8)
                         {
                             return
@@ -156,7 +156,7 @@ namespace SmallStructuresTakeOffs.Models
                         }
                     }
                 case CBc1510Confg.Double:
-                    {
+                {
                         if (CBHeight < 8)
                         {
                             return
@@ -174,9 +174,8 @@ namespace SmallStructuresTakeOffs.Models
                             //) / 27M; /*CY*/
                         }
                     }
-                    default:
-                    return 0;
-
+                default:
+                return 0;
             }
         }
         public override decimal PourTop()
@@ -184,14 +183,14 @@ namespace SmallStructuresTakeOffs.Models
             switch (this.CBc1510Confgs)
             {
                 case CBc1510Confg.Single:
-                    {
+                {
                         return
                             (2M * (CBLength + 2M * CBWallThickness + CBWidth) * CBWallThickness * 2m  /*Walls*/
                             +(CBLength + 2m * CBWallThickness) * ( CBWallThickness + .5m ) * .5m  /*Curb Portion*/ 
                             +(CBLength + 2m * CBWallThickness) * 2.5m * 7m / 12m /*Pan Portion*/) / 27m;
                     }
                 case CBc1510Confg.Double:
-                    {
+                {
                         return
                             (2m * (2m * CBLength + CBWallThickness + 2M * CBWallThickness + CBWidth) * CBWallThickness * 2m  /*Walls*/ 
                             + (2m * CBLength + CBWallThickness + 2m * CBWallThickness) * (CBWallThickness + .5m) * .5m /*Curb Portion*/ 
@@ -224,7 +223,8 @@ namespace SmallStructuresTakeOffs.Models
                     2M * (CBLength + CBWidth + 4M *  CBWallThickness) * (CBHeight +.5m) + /*OutsideWalls*/
                     2M * (CBLength + CBWidth) * (CBHeight +.5m); /*InsideWalls*/
             }
-            else { 
+            else 
+            { 
                 return
                     2M * (CBLength + CBWidth + 4M *  (CBWallThickness + 2m/12m)) * (CBHeight + .5m - 2m) + /*OutsideWalls*/
                     2M * (CBLength + CBWidth) * (CBHeight + .5m - 2m ) + /*InsideWalls*/

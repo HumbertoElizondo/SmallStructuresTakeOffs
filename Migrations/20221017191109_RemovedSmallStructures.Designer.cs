@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,9 +12,10 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20221017191109_RemovedSmallStructures")]
+    partial class RemovedSmallStructures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,9 +239,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<int>("PipeNo")
                         .HasColumnType("int");
 
-                    b.Property<long>("ProjId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("RebNo4Purch")
                         .HasColumnType("decimal(18,2)");
 
@@ -281,28 +280,7 @@ namespace SmallStructuresTakeOffs.Migrations
 
                     b.HasKey("SD630HeadwallId");
 
-                    b.HasIndex("ProjId");
-
                     b.ToTable("SD630Headwalls");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SmallStructure", b =>
-                {
-                    b.Property<int>("SmStId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SmStId"), 1L, 1);
-
-                    b.Property<string>("HWcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ThisStructure")
-                        .HasColumnType("int");
-
-                    b.HasKey("SmStId");
-
-                    b.ToTable("SmallStructures");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1510SglT1", b =>
@@ -501,17 +479,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasForeignKey("RebarRequestId");
 
                     b.Navigation("RebarRequest");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>

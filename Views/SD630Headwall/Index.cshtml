@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-id="@ViewBag.ProjectId">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -15,7 +15,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.HWCode)
             </th>
-
             <th>
                 @Html.DisplayNameFor(model => model.SD630Description)
             </th>
@@ -49,12 +48,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.SD630_L)
                 </th>*@
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.RebNo4Req)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.RebNo4Purch)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -99,12 +98,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.SD630_L)
                     </td>*@
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.RebNo4Req)
-                </td>
-                <td>
+                </td>*@
+                @*<td>
                     @Html.DisplayFor(modelItem => item.RebNo4Purch)
-                </td>
+                </td>*@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.SD630HeadwallId">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.SD630HeadwallId">Details</a> |
@@ -116,6 +115,6 @@
 </table>
 
 <div>
-    <a asp-action="Results">Results</a>
+    <a asp-action="Results" asp-route-id="@ViewBag.ProjectId">Results</a>
 </div>
 

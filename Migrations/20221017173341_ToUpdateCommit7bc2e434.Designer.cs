@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,13 +12,14 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20221017173341_ToUpdateCommit7bc2e434")]
+    partial class ToUpdateCommit7bc2e434
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -237,9 +239,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<int>("PipeNo")
                         .HasColumnType("int");
 
-                    b.Property<long>("ProjId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("RebNo4Purch")
                         .HasColumnType("decimal(18,2)");
 
@@ -280,8 +279,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SD630HeadwallId");
-
-                    b.HasIndex("ProjId");
 
                     b.ToTable("SD630Headwalls");
                 });
@@ -501,17 +498,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasForeignKey("RebarRequestId");
 
                     b.Navigation("RebarRequest");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
