@@ -44,6 +44,8 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
+            //var thisone = 
+
             var sD630Headwall = await _context.SD630Headwalls
                 .FirstOrDefaultAsync(m => m.SD630HeadwallId == id);
             if (sD630Headwall == null)
@@ -51,7 +53,20 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            return View(sD630Headwall);
+            ViewBag.thisone = sD630Headwall.ThisHeadwall.ToString();
+            ViewBag.thisId = sD630Headwall.SD630HeadwallId.ToString();
+
+            // 
+            //return View(sD630Headwall);
+
+            var sD630Headwall1 = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwall];
+            return View(sD630Headwall1);
+
+            // This works, but no need to have a Method describing the HW when already hava a 
+            // property that does that.
+            //var thisOne = sD630Headwall.D630HWs1()[sD630Headwall.ThisHeadwall];
+            //return View(thisOne);
+
         }
 
         // GET: SD630Headwall/Create

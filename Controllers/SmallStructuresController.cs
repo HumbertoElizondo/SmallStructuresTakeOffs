@@ -63,7 +63,13 @@ namespace SmallStructuresTakeOffs.Controllers
 
             var catalogue =
                 from c in SD630Headwall.D630HWs
+                    //from c in SD630Headwall.
                 select c;
+
+
+            //var catalogue = _context.SD630Headwalls[0]
+
+
 
 
             ViewBag.HWList = new SelectList(catalogue, "SD630Id", "SD630Description");
