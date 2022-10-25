@@ -3,14 +3,28 @@
 @{
     ViewData["Title"] = "Details";
 }
+<h4>@Model.GetType().Name</h4>
+<p class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.HWCode)</p>
+<p class="m-3" style="display:inline">@ViewBag.HWCode</p>
 
-<h1>Details</h1>
 
-<p>@ViewBag.thisone</p>
-<p>@ViewBag.thisId</p>
+<hr />
+<dl class="row">
+    <dt class="m-3" style="display:inline">Pour Base</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.PourBase</dd>
+    <dt class="m-3" style="display:inline">Pour Wall</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.PourWall</dd>
+</dl>
+<dl class="row">
+    <dt class="m-3" style="display:inline">Form Fabrication</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.FormFab</dd>
+    <dt class="m-3" style="display:inline">Form Base</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.FormBase</dd>
+    <dt class="m-3" style="display:inline">Form Wall</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.FormWall</dd>
+</dl>
 
 <div>
-    <h4>SD630Headwall</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
