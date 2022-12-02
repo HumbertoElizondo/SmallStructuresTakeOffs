@@ -12,14 +12,14 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    [Migration("20220907000621_AddingCBc1592Entity")]
-    partial class AddingCBc1592Entity
+    [Migration("20221201220403_AfterErasingAllMigrations")]
+    partial class AfterErasingAllMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -50,12 +50,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<decimal>("CBRebPurch")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("CBSqRingL")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CBVertBars")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("CBWallThickness")
                         .HasColumnType("decimal(18,2)");
 
@@ -81,13 +75,13 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("CatchBasin");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1M", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1", b =>
                 {
-                    b.Property<int>("P1569_1MId")
+                    b.Property<int>("P1569_1Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("P1569_1MId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("P1569_1Id"), 1L, 1);
 
                     b.Property<decimal>("Height")
                         .HasColumnType("decimal(18,2)");
@@ -110,9 +104,9 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<decimal>("Reb4Purch")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("P1569_1MId");
+                    b.HasKey("P1569_1Id");
 
-                    b.ToTable("P1569_1Ms");
+                    b.ToTable("P1569_1s");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
@@ -132,6 +126,42 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
+                {
+                    b.Property<int>("RebarRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RebarRequestId"), 1L, 1);
+
+                    b.Property<long?>("ProjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RebReqDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("RebReqProjId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("RebarRequestLength")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RebarRequestNomination")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RebarRequestQty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Structure")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RebarRequestId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("RebarRequests");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarToPurchase", b =>
@@ -195,122 +225,12 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.ToTable("RebarWastings");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.Property<int>("SD630HeadwallId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SD630HeadwallId"), 1L, 1);
-
-                    b.Property<string>("HWCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PipeNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("RebNo4Purch")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("RebNo4Req")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("SD630Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SD630_A")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_B")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_C")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_E")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_F")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_G")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_I_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_L")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ThisHeadwall")
-                        .HasColumnType("int");
-
-                    b.HasKey("SD630HeadwallId");
-
-                    b.ToTable("SD630Headwalls");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SmallStructure", b =>
-                {
-                    b.Property<int>("SmStId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SmStId"), 1L, 1);
-
-                    b.Property<string>("HWcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ThisStructure")
-                        .HasColumnType("int");
-
-                    b.HasKey("SmStId");
-
-                    b.ToTable("SmallStructures");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
-                {
-                    b.Property<int>("RebarRequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RebarRequestId"), 1L, 1);
-
-                    b.Property<long?>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("RebReqDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("RebReqProjId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("RebarRequestLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RebarRequestNomination")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RebarRequestQty")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Structure")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RebarRequestId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("RebarRequests");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1510SglT1", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBc1510Confgs")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("CBc1510SglT1");
                 });
@@ -334,11 +254,31 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBc1520T3");
                 });
 
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1530", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBc1530Confgs")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CBc1530");
+                });
+
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1580", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
 
                     b.HasDiscriminator().HasValue("CBc1580");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1581", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBc1581Slps")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CBc1581");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1591", b =>
@@ -362,8 +302,7 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasColumnName("CBc1591_CBwings");
 
                     b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CBc1591_Genres");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("CBc1591");
                 });
@@ -373,7 +312,8 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
 
                     b.Property<int>("CBConfg")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("CBc1592_CBConfg");
 
                     b.Property<int>("CBCurbType")
                         .HasColumnType("int");
@@ -382,12 +322,70 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("CBwings")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int")
+                        .HasColumnName("CBc1592_CBwings");
 
                     b.HasDiscriminator().HasValue("CBc1592");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBd21", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.HasDiscriminator().HasValue("CBd21");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBdetD", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.HasDiscriminator().HasValue("CBdetD");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBdetE", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.HasDiscriminator().HasValue("CBdetE");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBp1569_2", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBConfg")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CBp1569Types")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CBp1569Wings")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CBwings")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CBp1569_2");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBp1570", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBp1570Typ")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CBp1570");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBp1572", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
+
+                    b.Property<int>("CBp1570Typ1")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CBp1572");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
@@ -401,20 +399,20 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.RebarRequest", "RebarRequest")
-                        .WithMany("RebarWastings")
-                        .HasForeignKey("RebarRequestId");
-
-                    b.Navigation("RebarRequest");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
                 {
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
                         .WithMany("RebarRequests")
                         .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarWasting", b =>
+                {
+                    b.HasOne("SmallStructuresTakeOffs.Models.RebarRequest", "RebarRequest")
+                        .WithMany("RebarWastings")
+                        .HasForeignKey("RebarRequestId");
+
+                    b.Navigation("RebarRequest");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
@@ -424,7 +422,7 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Navigation("RebarRequests");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.RebarRequest", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
                 {
                     b.Navigation("RebarWastings");
                 });

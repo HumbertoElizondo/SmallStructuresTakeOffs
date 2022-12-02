@@ -63,6 +63,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
             var catalogue =
                 from c in SD630Headwall.D630HWs
+                
                     //from c in SD630Headwall.
                 select c;
 
@@ -72,7 +73,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
 
 
-            ViewBag.HWList = new SelectList(catalogue, "SD630Id", "SD630Description");
+            ViewBag.HWList = new SelectList(catalogue, "SD630HeadwallsId", "SD630Description");
                 
 
 

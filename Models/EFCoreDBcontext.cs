@@ -22,9 +22,8 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<CBd21> CBd21s { get; set; }
         public DbSet<CBdetD> cBdetDs { get; set; }
         public DbSet<CBdetE> cBdetEs { get; set; }
-        public DbSet<SD630Headwall> SD630Headwalls { get; set; }
-
-        public DbSet<SmallStructure> SmallStructures { get; set; }
+        //public DbSet<SD630Headwall> SD630Headwalls { get; set; }
+        //public DbSet<SmallStructure> SmallStructures { get; set; }
         public DbSet<P1569_1> P1569_1s { get; set; }
         public DbSet<CBp1570> CBp1570s { get; set; }
         public DbSet<CBp1572> CBp1572s { get; set; }

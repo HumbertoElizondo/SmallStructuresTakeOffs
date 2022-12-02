@@ -5,7 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\SD630Headwall\**" />
+    <Compile Remove="Views\SmallStructures\**" />
+    <Content Remove="Views\SD630Headwall\**" />
+    <Content Remove="Views\SmallStructures\**" />
+    <EmbeddedResource Remove="Views\SD630Headwall\**" />
+    <EmbeddedResource Remove="Views\SmallStructures\**" />
+    <None Remove="Views\SD630Headwall\**" />
+    <None Remove="Views\SmallStructures\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\SD630HeadwallController.cs" />
+    <Compile Remove="Controllers\SmallStructuresController.cs" />
     <Compile Remove="Models\Headwall.cs" />
+    <Compile Remove="Models\SD630Headwall.cs" />
+    <Compile Remove="Models\SmallStructure.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +31,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
