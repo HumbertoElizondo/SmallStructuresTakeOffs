@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<SmallStructuresTakeOffs.Models.CBc1520T3>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Model.First().GetType().Name.ToString() + " Index";
+    Model.Any().GetType().Name.ToString();
+    string CB = "CB C-15.20 Index";
 }
 
 <dl class="row">

@@ -73,36 +73,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("CatchBasin");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.Headwall", b =>
-                {
-                    b.Property<int>("HeadwallId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HeadwallId"), 1L, 1);
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("HWProjId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("HWcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ThisHeadwallId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HeadwallId");
-
-                    b.HasIndex("HWProjId");
-
-                    b.ToTable("Headwalls");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Headwall");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1", b =>
                 {
                     b.Property<int>("P1569_1Id")
@@ -253,88 +223,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.ToTable("RebarWastings");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.Property<int>("SD630HeadwallId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SD630HeadwallId"), 1L, 1);
-
-                    b.Property<string>("HWCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PipeNo")
-                        .HasColumnType("int");
-
-                    b.Property<long>("ProjId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("RebNo4Purch")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("RebNo4Req")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("SD630Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SD630_A")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_B")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_C")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_E")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_F")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_G")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_I_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_L")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ThisHeadwall")
-                        .HasColumnType("int");
-
-                    b.HasKey("SD630HeadwallId");
-
-                    b.HasIndex("ProjId");
-
-                    b.ToTable("SD630Headwalls");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SmallStructure", b =>
-                {
-                    b.Property<int>("SmStId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SmStId"), 1L, 1);
-
-                    b.Property<string>("HWcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ThisStructure")
-                        .HasColumnType("int");
-
-                    b.HasKey("SmStId");
-
-                    b.ToTable("SmallStructures");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CBc1510SglT1", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.CatchBasin");
@@ -412,8 +300,7 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasColumnName("CBc1591_CBwings");
 
                     b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CBc1591_Genres");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("CBc1591");
                 });
@@ -435,10 +322,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<int>("CBwings")
                         .HasColumnType("int")
                         .HasColumnName("CBc1592_CBwings");
-
-                    b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CBc1592_Genres");
 
                     b.HasDiscriminator().HasValue("CBc1592");
                 });
@@ -480,9 +363,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<int>("CBwings")
                         .HasColumnType("int");
 
-                    b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("CBp1569_2");
                 });
 
@@ -506,68 +386,11 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBp1572");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
-
-                    b.Property<int>("PipeNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("RebNo4Purch")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("RebNo4Req")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("SD630Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SD630_A")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_B")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_C")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_E")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_F")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_G")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_I_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_L")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasDiscriminator().HasValue("SD630Headwall");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.CatchBasin", b =>
                 {
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
                         .WithMany("CatchBasins")
                         .HasForeignKey("ProjId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.Headwall", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("HWProjId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -588,17 +411,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasForeignKey("RebarRequestId");
 
                     b.Navigation("RebarRequest");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
