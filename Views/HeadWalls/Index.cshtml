@@ -1,0 +1,116 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.Headwall>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
+<form>
+    <p>
+        CB Code: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    @*<bold>Create a Headwall</bold>*@
+</p>
+<p>
+    <div class="text-center">
+        <a class="btn btn-primary" asp-controller="SD630Headwall" asp-action="Index" asp-route-id="@ViewBag.ProjectId">SD-6.30 Headwalls</a>
+
+        @*<a class="btn btn-primary" asp-controller="RebarRequests" asp-action="Index" asp-route-id="ViewBag.ProjectId">Rebar BreakDown</a>*@
+        @*<a class="btn btn-primary" asp-controller="CBc1510SglT1" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.10</a>
+        <a class="btn btn-primary" asp-controller="CBc1520T3" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.20</a>
+        <a class="btn btn-primary" asp-controller="CBc1530" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.30</a>
+        <a class="btn btn-primary" asp-controller="CBc1580" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.80</a>
+        <a class="btn btn-primary" asp-controller="CBc1581" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.81</a>
+        <a class="btn btn-primary" asp-controller="CBc1591" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.91</a>
+        <a class="btn btn-primary" asp-controller="CBc1592" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.92</a>
+        <a class="btn btn-primary" asp-controller="CBd21" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB D21</a>
+        <a class="btn btn-primary" asp-controller="CBdetD" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB Det D</a>
+        <a class="btn btn-primary" asp-controller="CBdetE" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB Det E</a>
+        <a class="btn btn-primary" asp-controller="CBp1569_2" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1569-2</a>
+        <a class="btn btn-primary" asp-controller="CBp1570" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1570</a>
+        <a class="btn btn-primary" asp-controller="CBp1572" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB P1572</a>*@
+        @*<a class="navbar-brand" asp-area="" asp-controller="SmallStructures" asp-action="Index">C-15.30 CATCH BASIN</a>*@
+    </div>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HWcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HWDescription)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CBHeight)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.CBLength)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.CBWidth)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.CBWallThickness)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.GetType().Name)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HWcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HWDescription)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CBHeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBWidth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CBWallThickness)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetType().Name)
+                </td>*@
+                @*<td>
+            <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.CatchBasinId">Delete</a>
+            </td>*@
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total Catch Basins: @Model.Select(s => s.HWcode).Count().ToString()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div>
+    <a asp-action="Results" asp-route-id=@ViewBag.ProjectId>Results</a> |
+</div>
+
+
+

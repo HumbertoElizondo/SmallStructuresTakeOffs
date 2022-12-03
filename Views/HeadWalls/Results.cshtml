@@ -7,7 +7,7 @@
     <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
 </dl>
 
-<h1>Results</h1>
+<h3>Results</h3>
 
 @if (Model.Count() == 0)
 {
@@ -55,41 +55,41 @@ else
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ResVMId)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ResVMHWcode)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ResVMHWStrId)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ResVMHWDescription)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMPourBottomCY)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMPourWallCY)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMRebNo4Req)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMRebNo4Purch)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMFormFab)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMFormBase)
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.ResVMFormWall)
-                </td>
-            </tr>
+                <tr>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.ResVMId)
+            </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResVMHWcode)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.ResVMHWStrId)
+            </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResVMHWDescription)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMPourBottomCY)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMPourWallCY)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMRebNo4Req)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMRebNo4Purch)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMFormFab)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMFormBase)
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ResVMFormWall)
+                    </td>
+                </tr>
             }
         </tbody>
         <tfoot>
@@ -111,5 +111,4 @@ else
 
 
 }
-
 

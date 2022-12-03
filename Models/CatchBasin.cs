@@ -35,10 +35,7 @@ namespace SmallStructuresTakeOffs.Models
             {"RebWeightNo4", 0.668M},
             {"RebWeightNo5", 1.050M},
         };
-
-
         /********** These are The Methods ***************/
-
         public abstract ICollection<CBreinforcement> TheReinforcements();
         public abstract decimal PourBottom(decimal CBHeight);
         public abstract decimal PourTop();

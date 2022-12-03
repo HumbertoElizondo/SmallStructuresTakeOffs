@@ -111,11 +111,6 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: C1580CB/Create
         public IActionResult Create(long id)
         {
-
-            //ViewBag.ResourceList = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList(),"CBConfig");
-            //ViewBag.ResourceList = new SelectList(_context.CBc1520T3s.Select(s => s.), "CBConfg", "Name");
-
-
             ViewBag.ProjectId = id;
             return View();
         }

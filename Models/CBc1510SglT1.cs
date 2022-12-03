@@ -12,11 +12,11 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal CBWidth { get; set; } = 2m + 2.5m / 12m;
         public override decimal CBBaseThickness { get; set; } = .75m;
         public override decimal CBWallThickness { get; set; } = .5m;
+        public CBc1510Confg CBc1510Confgs { get; set; }
         public override ICollection<CBreinforcement> CBreinforcements
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
         }
-        public CBc1510Confg CBc1510Confgs { get; set; }
         public override ICollection<CBreinforcement> TheReinforcements()
         {
             IList<CBreinforcement> cbReinf = new List<CBreinforcement>();

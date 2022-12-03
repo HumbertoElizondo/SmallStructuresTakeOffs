@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<SmallStructuresTakeOffs.Models.SD630Headwall>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SD-6.30 Headwall Index";
 }
 
-<h1>Index</h1>
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
 
 <p>
     <a asp-action="Create" asp-route-id="@ViewBag.ProjectId">Create New</a>
@@ -13,47 +17,11 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HWCode)
+                @Html.DisplayNameFor(model => model.HWcode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SD630Description)
+                @Html.DisplayNameFor(model => model.HWDescription)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.PipeNo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_I_D)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_A)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_B)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_C)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_D)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_E)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_F)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_G)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SD630_L)
-                </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.RebNo4Req)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.RebNo4Purch)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -62,52 +30,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HWCode)
+                    @Html.DisplayFor(modelItem => item.HWcode)
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.SD630Description)
+                    @Html.DisplayFor(modelItem => item.HWDescription)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.PipeNo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_I_D)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_A)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_B)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_C)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_D)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_E)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_F)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_G)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SD630_L)
-                    </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.RebNo4Req)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.RebNo4Purch)
-                </td>*@
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.SD630HeadwallId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SD630HeadwallId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SD630HeadwallId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.HeadwallId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.HeadwallId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HeadwallId">Delete</a>
                 </td>
             </tr>
         }
@@ -117,4 +49,42 @@
 <div>
     <a asp-action="Results" asp-route-id="@ViewBag.ProjectId">Results</a>
 </div>
+
+@*<td>
+    @Html.DisplayFor(modelItem => item.PipeNo)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_I_D)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_A)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_B)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_C)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_D)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_E)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_F)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_G)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => item.SD630_L)
+</td>*@
+@*<td>
+                    @Html.DisplayFor(modelItem => item.RebNo4Req)
+                </td>*@
+@*<td>
+                    @Html.DisplayFor(modelItem => item.RebNo4Purch)
+                </td>*@
+
 
