@@ -90,6 +90,16 @@ namespace SmallStructuresTakeOffs.Models
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
         }
+        public override decimal SD630_H { get; set; } = 1m;
+        public override decimal SD630_X { get; set; } = 1m;
+        public override decimal SD630_Y { get; set; } = 1m;
+        public override decimal SD630_Z { get; set; } = 1m;
+        public override decimal ConcrCY { get; set; } = 1m;
+        public override decimal ReinfLB { get; set; } = 1m;
+
+        //public override decimal ConcrCY { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //public override decimal ReinfLB { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public override ICollection<HWreinforcement> TheReinforcements()
         {
             IList<HWreinforcement> cbReinf = new List<HWreinforcement>();
@@ -119,8 +129,16 @@ namespace SmallStructuresTakeOffs.Models
                     HWTotalWeight = (10m) * (SD630_A + SD630_B - (5m / 12m)) * 0.668m
                 });
             return cbReinf;
+        }
 
+        public override decimal EngConcr()
+        {
+            throw new NotImplementedException();
+        }
 
+        public override decimal EngReinf()
+        {
+            throw new NotImplementedException();
         }
 
         // There's no need to duplicate the Headwall Configuration via a Mathod, when the Static Property above

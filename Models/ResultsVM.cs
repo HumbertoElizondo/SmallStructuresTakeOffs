@@ -101,6 +101,9 @@ namespace SmallStructuresTakeOffs.Models
 
         public IList<CBreinforcement> CBreinforcementsVM { get; set; }
 
+        public IList<HWreinforcement> HWreinforcementsVM { get; set; }
+
+
         public decimal HeightCB { get; set; }
 
 

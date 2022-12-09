@@ -20,6 +20,8 @@ namespace SmallStructuresTakeOffs.Models
         public string HWcode { get; set; }
         public string HWDescription { get; set; }
         public PipeSet PipeNo { get; set; }
+
+        
         public abstract decimal SD630_I_D { get; set; }
         public abstract decimal SD630_A { get; set; }
         public abstract decimal SD630_B { get; set; }
@@ -29,6 +31,15 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal SD630_F { get; set; }
         public abstract decimal SD630_G { get; set; }
         public abstract decimal SD630_L { get; set; }
+        public abstract decimal SD630_H { get; set; }
+        public abstract decimal SD630_X { get; set; }
+        public abstract decimal SD630_Y { get; set; }
+        public abstract decimal SD630_Z { get; set; }
+
+        public abstract decimal ConcrCY { get; set; }
+        public abstract decimal ReinfLB { get; set; }
+
+
         public decimal RebNo4Req { get; set; }
         public decimal RebNo4Purch { get; set; }
 
@@ -44,6 +55,10 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal FormWall();
         public abstract decimal FormFab();
         //public abstract decimal HWRebarTakeOfflb();
+
+        public abstract decimal EngConcr();
+        
+        public abstract decimal EngReinf();
 
     }
 }

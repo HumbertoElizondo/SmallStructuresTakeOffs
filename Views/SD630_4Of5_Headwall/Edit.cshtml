@@ -1,0 +1,54 @@
+﻿@model SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall
+@*@model SmallStructuresTakeOffs.Models.ResultsVM
+*@
+@using SmallStructuresTakeOffs.Enums;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit: @Model.GetType().Name</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HeadwallId" />
+            <input type="hidden" asp-for="HWProjId" />
+
+            <div class="form-group">
+                <label asp-for="HWcode" class="control-label"></label>
+                <input asp-for="HWcode" class="form-control" />
+                <span asp-validation-for="HWcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HWDescription" class="control-label"></label>
+                <input asp-for="HWDescription" class="form-control" />
+                <span asp-validation-for="HWDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PipeDiameters" class="control-label"></label>
+                <select asp-for="PipeDiameters" class="form-control" asp-items="Html.GetEnumSelectList<PipeDiameter>()"></select>
+                <span asp-validation-for="PipeDiameters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slopes" class="control-label"></label>
+                <select asp-for="Slopes" class="form-control" asp-items="Html.GetEnumSelectList<Slope>()"></select>
+                <span asp-validation-for="Slopes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skews" class="control-label"></label>
+                <select asp-for="Skews" class="form-control" asp-items="Html.GetEnumSelectList<SkewHW>()"></select>
+                <span asp-validation-for="Skews" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.HWProjId">Back to List</a>
+</div>

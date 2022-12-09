@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall>
+
+@{
+    ViewData["Title"] = "SD-6.30 Headwall Index";
+}
+
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
+
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.ProjectId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HWcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HWDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PipeDiameters)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slopes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skews)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HWcode)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HWDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PipeDiameters)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slopes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skews)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.HeadwallId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.HeadwallId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HeadwallId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Results" asp-route-id="@ViewBag.ProjectId">Results</a>
+</div>

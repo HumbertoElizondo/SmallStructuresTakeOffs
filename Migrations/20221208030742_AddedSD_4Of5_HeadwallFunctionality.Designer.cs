@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallStructuresTakeOffs.Models;
 
@@ -11,9 +12,10 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    partial class EFCoreDBcontextModelSnapshot : ModelSnapshot
+    [Migration("20221208030742_AddedSD_4Of5_HeadwallFunctionality")]
+    partial class AddedSD_4Of5_HeadwallFunctionality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -524,9 +526,6 @@ namespace SmallStructuresTakeOffs.Migrations
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
-
-                    b.Property<int>("PipeDiameters")
-                        .HasColumnType("int");
 
                     b.Property<int>("Skews")
                         .HasColumnType("int");

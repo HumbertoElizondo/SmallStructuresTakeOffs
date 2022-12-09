@@ -1,113 +1,78 @@
-﻿@model SmallStructuresTakeOffs.Models.SD630Headwall
+﻿@model SmallStructuresTakeOffs.Models.ResultsVM
 
 @{
     ViewData["Title"] = "Details";
 }
 <h4>@Model.GetType().Name</h4>
-<p class="m-3" style="display:inline">@Html.DisplayNameFor(Model => Model.HWcode)</p>
-<p class="m-3" style="display:inline">@ViewBag.HWCode</p>
 
+<h4>@ViewBag.ProjectName</h4>
 
-<hr />
+${"The HW Code is: "@Model.ResVMHWcode}
+@{
+    Console.WriteLine($"The HW Code is: { @Model.ResVMHWcode }");
+}
+
+<p> The HW Code is: @Model.ResVMHWcode</p>
 <dl class="row">
-    <dt class="m-3" style="display:inline">Pour Base</dt>
-    <dd class="m-3" style="display:inline">@ViewBag.PourBase</dd>
-    <dt class="m-3" style="display:inline">Pour Wall</dt>
-    <dd class="m-3" style="display:inline">@ViewBag.PourWall</dd>
+    <dt class="m-1" style="display:inline">HW Code</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.HWCode</dd>
+
+    <dt class="m-1" style="display:inline">Pour Base</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.PourBase</dd>
+    <dt class="m-1" style="display:inline">Pour Wall</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.PourWall</dd>
 </dl>
 <dl class="row">
-    <dt class="m-3" style="display:inline">Form Fabrication</dt>
-    <dd class="m-3" style="display:inline">@ViewBag.FormFab</dd>
-    <dt class="m-3" style="display:inline">Form Base</dt>
-    <dd class="m-3" style="display:inline">@ViewBag.FormBase</dd>
-    <dt class="m-3" style="display:inline">Form Wall</dt>
-    <dd class="m-3" style="display:inline">@ViewBag.FormWall</dd>
+    <dt class="m-1" style="display:inline">Form Fabrication</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormFab</dd>
+    <dt class="m-1" style="display:inline">Form Base</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormBase</dd>
+    <dt class="m-1" style="display:inline">Form Wall</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormWall</dd>
 </dl>
+
+<table class="table">
+    <thead>
+        <bold>Headwall Reinforcement</bold>
+        <tr>
+            <th>RebarCode</th>
+            <th>Nom</th>
+            <th>Shape</th>
+            <th class="text-right">Length</th>
+            <th class="text-right">Ea</th>
+            <th class="text-right">Total (ft)</th>
+            <th class="text-right">Total (lb)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var l in Model.HWreinforcementsVM)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => l.HWreinfCode)</td>
+                <td>@Html.DisplayFor(modelItem => l.HWRebarNom)</td>
+                <td>@Html.DisplayFor(modelItem => l.HWreinfShape)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWreinfLength)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWreinfQty)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWTotalLength)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWTotalWeight)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="text-right" colspan="6">
+                @Model.HWreinforcementsVM.Select(s => s.HWTotalLength).Sum().ToString("0.00")
+            </td>
+
+            <td class="text-right">
+                @Model.HWreinforcementsVM.Select(s => s.HWTotalWeight).Sum().ToString("0.00")
+            </td>
+        </tr>
+    </tfoot>
+</table>
 
 <div>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HWDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HWDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PipeNo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PipeNo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_I_D)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_I_D)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_A)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_A)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_B)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_B)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_C)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_C)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_D)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_D)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_E)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_E)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_F)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_F)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_G)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_G)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SD630_L)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SD630_L)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RebNo4Req)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RebNo4Req)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RebNo4Purch)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RebNo4Purch)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.HeadwallId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @* <a asp-action="Edit" asp-route-id="@Model.ResVMId">Edit</a> | *@
+    <a asp-action="Index" asp-route-id="@ViewBag.HWProjId">Back to List</a>
 </div>

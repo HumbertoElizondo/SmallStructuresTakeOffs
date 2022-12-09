@@ -31,24 +31,10 @@ namespace SmallStructuresTakeOffs.Controllers
         // GET: C1580CB/Details/5
         public IActionResult Details(int id)
         {
-            //SelectList cbs = new SelectList(_context.CBc1520T3s.Select(s => s.CBConfg).ToList());
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var cb = await _context.CBc1520T3s
-            //    .FirstOrDefaultAsync(m => m.CatchBasinId == id);
-            //if (cb == null)
-
-            //{ return NotFound(); }
-
             ViewBag.ProjectName = 
                 (from r in _context.CatchBasins
                 where r.CatchBasinId == id
                 select r.Project).FirstOrDefault().ProjectName;
-
-
 
             var cb = (from r in _context.CBc1510SglT1s
                       where r.CatchBasinId == id

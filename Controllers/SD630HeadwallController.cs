@@ -28,29 +28,70 @@ namespace SmallStructuresTakeOffs.Controllers
         }
 
         // GET: SD630Headwall/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sD630Headwall = await _context.SD630Headwalls
-                .FirstOrDefaultAsync(m => m.HeadwallId == id);
-            if (sD630Headwall == null)
+            ViewBag.ProjectName =
+                (from r in _context.Headwalls
+                 where r.HeadwallId == id
+                 select r.Project).FirstOrDefault().ProjectName;
+
+
+
+
+            var hw =
+                //(from s in _context.Headwalls.OfType<SD630Headwall>()
+                (from s in _context.SD630Headwalls
+                 where s.HeadwallId == id
+                 select s).FirstOrDefault();
+                //.ToList();
+                //.FirstOrDefaultAsync(m => m.HeadwallId == id);
+            if (hw == null)
             {
                 return NotFound();
             }
+            ViewBag.HWProjId = hw.HWProjId;
+            ViewBag.HWCode = hw.HWcode;
+            ViewBag.PourBase = SD630Headwall.D630HWs[hw.ThisHeadwallId].PourBase().ToString("0.00");
+            ViewBag.PourWall = SD630Headwall.D630HWs[hw.ThisHeadwallId].PourWall().ToString("0.00");
+            ViewBag.FormFab = SD630Headwall.D630HWs[hw.ThisHeadwallId].FormFab().ToString("0.00");
+            ViewBag.FormBase = SD630Headwall.D630HWs[hw.ThisHeadwallId].FormBase().ToString("0.00");
+            ViewBag.FormWall = SD630Headwall.D630HWs[hw.ThisHeadwallId].FormWall().ToString("0.00");
 
-            ViewBag.HWCode = sD630Headwall.HWcode;
-            ViewBag.PourBase = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId].PourBase().ToString("0.00");
-            ViewBag.PourWall = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId].PourWall().ToString("0.00");
-            ViewBag.FormFab = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId].FormFab().ToString("0.00");
-            ViewBag.FormBase = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId].FormBase().ToString("0.00");
-            ViewBag.FormWall = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId].FormWall().ToString("0.00");
 
-            var sD630Headwall1 = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId];
-            return View(sD630Headwall1);
+            var thisStr =
+                new ResultsVM
+                {
+                    
+                    ResVMHWcode = hw.HWcode,
+                    ResVMHWDescription = hw.HWDescription,
+                    ResVMHWStrId = hw.HeadwallId,
+                    ResVMId = hw.ThisHeadwallId,
+                    ResVMPourBottomCY = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).PourBase(),
+                    ResVMPourWallCY = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId ==     hw.ThisHeadwallId).PourWall(),
+                    ResVMRebNo4Req = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).RebNo4Req,
+                    ResVMRebNo4Purch = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).RebNo4Purch,
+                    ResVMFormFab =SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId ==     hw.ThisHeadwallId).FormFab(),
+                    ResVMFormBase = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).FormBase(),
+                    ResVMFormWall = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).FormWall(),
+                    HWreinforcementsVM = hw.TheReinforcements().ToList()
+                    //CBreinforcementsVM = cb.TheReinforcements()
+                    //CBreinforcementsVM = (IList<HWreinforcement>)cb.TheReinforcements().ToList()
+                    //CBreinforcementsVM = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == cb.ThisHeadwallId).TheReinforcements().ToList()
+
+                };
+            return View(thisStr);
+
+
+
+            //var sD630Headwall1 = SD630Headwall.D630HWs[sD630Headwall.ThisHeadwallId];
+            //return View(sD630Headwall1);
+
+
 
             // This works, but no need to have a Method describing the HW when already hava a 
             // property that does that.
@@ -58,6 +99,43 @@ namespace SmallStructuresTakeOffs.Controllers
             //return View(thisOne);
 
         }
+
+        public IActionResult Details1(int id)
+        {
+            ViewBag.ProjectName =
+                (from r in _context.CatchBasins
+                 where r.CatchBasinId == id
+                 select r.Project).FirstOrDefault().ProjectName;
+
+            var cb = (from r in _context.CBc1510SglT1s
+                      where r.CatchBasinId == id
+                      select r).FirstOrDefault();
+
+
+            var thisStr =
+                new ResultsVM
+                {
+                    HeightCB = cb.CBHeight,
+                    ResVMHWcode = cb.CBCode,
+                    ResVMHWDescription = cb.Description,
+                    ResVMHWStrId = cb.CatchBasinId,
+                    ResVMId = cb.CatchBasinId,
+                    ResVMPourWallCY = cb.PourTop(),
+                    ResVMPourBottomCY = cb.PourBottom(cb.CBHeight),
+                    PourApron = cb.PourApron(),
+                    PurchConcrete = cb.PurchConcrete(cb.CBHeight),
+                    ResVMFormFab = cb.FabForms(cb.CBHeight),
+                    ResVMFormBase = cb.InstBottomForms(cb.CBHeight),
+                    ResVMFormWall = cb.InstTopForms(),
+                    ResVMRebPurch = cb.CBRebarTakeOfflb(cb.CBHeight) * 1.15m,
+                    ResVMRebFandI = cb.CBRebarTakeOfflb(cb.CBHeight),
+                    CBreinforcementsVM = cb.TheReinforcements().ToList()
+
+                };
+            return View(thisStr);
+
+        }
+
 
         // GET: SD630Headwall/Create
         public IActionResult Create(long id)
