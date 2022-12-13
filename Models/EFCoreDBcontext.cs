@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using SmallStructuresTakeOffs.Models;
 
 namespace SmallStructuresTakeOffs.Models
 {
@@ -34,6 +36,7 @@ namespace SmallStructuresTakeOffs.Models
         public DbSet<Headwall> Headwalls { get; set; }
         public DbSet<SD630Headwall> SD630Headwalls { get; set; }
         public DbSet<SD630_4Of5_Headwall> SD630_4Of5_Headwalls { get; set; }
+        public DbSet<SD630_3Of5_Headwall> SD630_3Of5_Headwalls { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,7 +54,16 @@ namespace SmallStructuresTakeOffs.Models
             modelBuilder.Entity<CBp1572>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
             modelBuilder.Entity<CBc1581>(ar => ar.Property(p => p.CBHeight).HasColumnType("decimal(18,2)"));
 
-        }
 
+            //modelBuilder.Entity<HWreinforcement>()
+            //    .HasOne(p => p.SD630)
+            //    .WithMany(b => b)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<HWreinforcement>()
+            //    .HasOne(p => p.Headwall.OfType<SD630Headwall>())
+            //    .WithMany(b => b.HWreinforcements)
+            //    .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

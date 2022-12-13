@@ -1,0 +1,206 @@
+﻿@model IEnumerable<SmallStructuresTakeOffs.Models.SD630_3Of5_Headwall>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<dl class="row">
+    <dt class="m-lg-3" style="display:inline">Project:</dt>
+    <dd class="m-3" style="display:inline">@ViewBag.ProjectName</dd>
+</dl>
+
+
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.ProjectId">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HWcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HWDescription)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.SD630_I_D)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_A)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_B)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_C)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_D)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_E)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_F)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_G)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_L)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_H)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_X)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_Y)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SD630_Z)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.ConcrCY)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.ReinfLB)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.FlowSides)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slopes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PipeDiameters)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ThisHeadwallId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PipeNo)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.RebNo4Req)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RebNo4Purch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HWRebFandI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HWRebPurch)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HWcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HWDescription)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.SD630_I_D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_A)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_B)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_C)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_E)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_F)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_G)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_L)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_H)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_X)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_Y)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SD630_Z)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ConcrCY)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ReinfLB)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FlowSides)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slopes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skews)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PipeDiameters)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ThisHeadwallId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PipeNo)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.RebNo4Req)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RebNo4Purch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HWRebFandI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HWRebPurch)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HeadwallId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HeadwallId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HeadwallId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Results" asp-route-id="@ViewBag.ProjectId">Results</a>
+</div>

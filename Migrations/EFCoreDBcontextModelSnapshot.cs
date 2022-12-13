@@ -166,48 +166,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Headwall");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.HWreinforcement", b =>
-                {
-                    b.Property<int>("HWreinforcementId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HWreinforcementId"), 1L, 1);
-
-                    b.Property<int>("HWId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HWRebarNom")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("HWTotalLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("HWTotalWeight")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("HWreinfCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("HWreinfLength")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("HWreinfQty")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HWreinfShape")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("HeadwallId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HWreinforcementId");
-
-                    b.HasIndex("HeadwallId");
-
-                    b.ToTable("HWreinforcement");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.P1569_1", b =>
                 {
                     b.Property<int>("P1569_1Id")
@@ -521,9 +479,12 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBp1572");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_3Of5_Headwall", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
+
+                    b.Property<int>("FlowSides")
+                        .HasColumnType("int");
 
                     b.Property<int>("PipeDiameters")
                         .HasColumnType("int");
@@ -533,6 +494,25 @@ namespace SmallStructuresTakeOffs.Migrations
 
                     b.Property<int>("Slopes")
                         .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("SD630_3Of5_Headwall");
+                });
+
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
+
+                    b.Property<int>("PipeDiameters")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_PipeDiameters");
+
+                    b.Property<int>("Skews")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_Skews");
+
+                    b.Property<int>("Slopes")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_Slopes");
 
                     b.HasDiscriminator().HasValue("SD630_4Of5_Headwall");
                 });
@@ -566,13 +546,6 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.HWreinforcement", b =>
-                {
-                    b.HasOne("SmallStructuresTakeOffs.Models.Headwall", null)
-                        .WithMany("HWreinforcements")
-                        .HasForeignKey("HeadwallId");
-                });
-
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.RebarRequest", b =>
                 {
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", null)
@@ -587,11 +560,6 @@ namespace SmallStructuresTakeOffs.Migrations
                         .HasForeignKey("RebarRequestId");
 
                     b.Navigation("RebarRequest");
-                });
-
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.Headwall", b =>
-                {
-                    b.Navigation("HWreinforcements");
                 });
 
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>

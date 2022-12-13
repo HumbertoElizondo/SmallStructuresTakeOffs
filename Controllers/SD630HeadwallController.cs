@@ -40,9 +40,6 @@ namespace SmallStructuresTakeOffs.Controllers
                  where r.HeadwallId == id
                  select r.Project).FirstOrDefault().ProjectName;
 
-
-
-
             var hw =
                 //(from s in _context.Headwalls.OfType<SD630Headwall>()
                 (from s in _context.SD630Headwalls
@@ -159,7 +156,7 @@ namespace SmallStructuresTakeOffs.Controllers
         {
             if (ModelState.IsValid)
             {
-                sD630Headwall.HWDescription = SD630Headwall.D630HWs[(int)sD630Headwall.ThisHeadwallId].HWDescription;
+                //sD630Headwall.HWDescription = SD630Headwall.D630HWs[(int)sD630Headwall.ThisHeadwallId].HWDescription;
                 _context.Add(sD630Headwall);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new {id = sD630Headwall.HWProjId});
@@ -207,7 +204,7 @@ namespace SmallStructuresTakeOffs.Controllers
             {
                 try
                 {
-                    sD630Headwall.HWDescription = SD630Headwall.D630HWs[(int)sD630Headwall.ThisHeadwallId].HWDescription;
+                    //sD630Headwall.HWDescription = SD630Headwall.D630HWs[(int)sD630Headwall.ThisHeadwallId].HWDescription;
                     _context.Update(sD630Headwall);
                     await _context.SaveChangesAsync();
                 }
@@ -249,7 +246,13 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hw = await _context.SD630Headwalls.FindAsync(id);
+            var hw =
+                await _context.SD630Headwalls
+                .Where(w => w.HeadwallId == id)
+
+                //.Include(i => i.HWreinforcements)
+                .FirstOrDefaultAsync();
+                //.FindAsync(id);
             var prjId = hw.HWProjId;
 
             _context.SD630Headwalls.Remove(hw);

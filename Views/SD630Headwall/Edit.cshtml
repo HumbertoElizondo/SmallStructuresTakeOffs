@@ -19,7 +19,11 @@
                 <input asp-for="HWcode" class="form-control" />
                 <span asp-validation-for="HWcode" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="HWDescription" class="control-label"></label>
+                <input asp-for="HWDescription" class="form-control" />
+                <span asp-validation-for="HWDescription" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ThisHeadwallId" class="control-label"></label>
                 <select asp-for="ThisHeadwallId" class="form-control" asp-items="@ViewBag.HWList"></select>

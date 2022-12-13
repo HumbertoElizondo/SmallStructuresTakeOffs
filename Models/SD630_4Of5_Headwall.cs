@@ -87,7 +87,7 @@ namespace SmallStructuresTakeOffs.Models
             {
                 List<SD630_4Of5_Headwall> headwalls = new()
                 {
-                    #region 2:1 Slope, 15d Skew
+                    #region 15d Skew, 2:1 Slope
                     new SD630_4Of5_Headwall { 
                         ThisHeadwallId = 1, 
                         HWDescription = "Single 48\" Pipe Wingwalls On 2:1 Slope, 15d Skew",
@@ -228,8 +228,7 @@ namespace SmallStructuresTakeOffs.Models
 
                     },
                     #endregion
-
-                    #region 4:1 Slope, 15d Skew
+                    #region 15d Skew, 4:1 Slope
                     new SD630_4Of5_Headwall { 
                         ThisHeadwallId = 8,
                         HWDescription = "Single 48\" Pipe On 4:1 Slope, 15d Skew",
@@ -275,14 +274,144 @@ namespace SmallStructuresTakeOffs.Models
                         SD630_Z = 22m + 4.875m/12m,
                         ConcrCY = 13.4m,
                         ReinfLB = 930m,
-                    }
-
+                    },
+                    #endregion
+                    #region 15d Skew, 6:1 Slope 
+                    new SD630_4Of5_Headwall {
+                        ThisHeadwallId = 15,
+                        HWDescription = "Single 48\" Pipe On 6:1 Slope, 15d Skew",
+                        Slopes= Slope.Slope6_1,
+                        Skews=SkewHW.Skew15,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 54M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 50M / 12M,
+                        SD630_E = 18m + 0M / 12M,
+                        SD630_F = 15m + 1.25M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 3m + 3m/12m,
+                        SD630_Y = 2m + .875m/12m,
+                        SD630_Z = 24m + 5.125m/12m,
+                        ConcrCY = 16.1m,
+                        ReinfLB = 1040m
+                    },
 
                     #endregion
+                    #region 30d Skew, 2:1 Slope
 
+                    #endregion
+                    #region 30d Skew, 4:1 Slope
+                    new SD630_4Of5_Headwall {
+                        ThisHeadwallId = 108,
+                        HWDescription = "Single 48\" Pipe On 4:1 Slope, 30d Skew",
+                        Slopes= Slope.Slope4_1,
+                        Skews=SkewHW.Skew30,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 8M / 12M,
+                        SD630_B = 12M / 12M,
+                        SD630_C = 28M / 12M,
+                        SD630_D = 44M / 12M,
+                        SD630_E = 11m+0m/12m,
+                        SD630_F = 13m+1.25m/12m,
+                        SD630_G = 2m+6.125m/12m,
+                        SD630_L = 138M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_X = 3m+3m/12m,
+                        SD630_Y = 2m+3.75m/12m,
+                        SD630_Z = 20m+9.75m/12m,
+                        ConcrCY = 11m,
+                        ReinfLB = 680m,
+                    },
 
+                    #endregion
+                    #region 30d Skew, 6:1 Slope
 
+                    #endregion
+                    #region 45d Skew, 2:1 Slope
+                    new SD630_4Of5_Headwall {
+                        ThisHeadwallId = 201,
+                        HWDescription = "Single 48\" Pipe On 6:1 Slope, 45d Skew",
+                        Slopes= Slope.Slope6_1,
+                        Skews=SkewHW.Skew45,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 50M / 12M,
+                        SD630_E = 12m + 0M / 12M,
+                        SD630_F = 25m + 8.75M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 4m + 0m/12m,
+                        SD630_Y = 2m + 10m/12m,
+                        SD630_Z = 34m + 9.75m/12m,
+                        ConcrCY = 17.5m,
+                        ReinfLB = 1150m
+                    },
 
+                    #endregion
+                    #region 45d Skew, 4:1 Slope
+                    new SD630_4Of5_Headwall {
+                        ThisHeadwallId = 208,
+                        HWDescription = "Single 48\" Pipe On 6:1 Slope, 45d Skew",
+                        Slopes= Slope.Slope6_1,
+                        Skews=SkewHW.Skew45,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 50M / 12M,
+                        SD630_E = 12m + 0M / 12M,
+                        SD630_F = 25m + 8.75M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 4m + 0m/12m,
+                        SD630_Y = 2m + 10m/12m,
+                        SD630_Z = 34m + 9.75m/12m,
+                        ConcrCY = 17.5m,
+                        ReinfLB = 1150m
+                    },
+
+                    #endregion
+                    #region 45d Skew, 6:1 Slope
+                    new SD630_4Of5_Headwall {
+                        ThisHeadwallId = 215,
+                        HWDescription = "Single 48\" Pipe On 6:1 Slope, 45d Skew",
+                        Slopes= Slope.Slope6_1,
+                        Skews=SkewHW.Skew45,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 50M / 12M,
+                        SD630_E = 12m + 0M / 12M,
+                        SD630_F = 25m + 8.75M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 4m + 0m/12m,
+                        SD630_Y = 2m + 10m/12m,
+                        SD630_Z = 34m + 9.75m/12m,
+                        ConcrCY = 17.5m,
+                        ReinfLB = 1150m
+                    }
+
+                    #endregion
                 };
                 return headwalls;
             }
@@ -293,12 +422,11 @@ namespace SmallStructuresTakeOffs.Models
                (from c in D630HWs
                 where c.Slopes == this.Slopes &&
                     c.Skews == this.Skews &&
-                    c.PipeDiameters == this.PipeDiameters
+                    c.PipeDiameters == this.PipeDiameters 
                 select c).First();
 
             return result;
         }
-
         public override ICollection<HWreinforcement> HWreinforcements
         {
             get => this.TheReinforcements(); set => this.TheReinforcements();
@@ -358,33 +486,10 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal EngConcr()
         {
             return ConcrCY;
-            //throw new NotImplementedException();
         }
-
         public override decimal EngReinf()
         {
             return ReinfLB;
-            //throw new NotImplementedException();
         }
-
-        // There's no need to duplicate the Headwall Configuration via a Mathod, when the Static Property above
-        // can be accesses directly thru the class. See Detail action in the SD630Headwall Controller
-        //public /*static*/ List<SD630Headwall> D630HWs1()
-        //{
-        //        List<SD630Headwall> headwalls = new()
-        //        {
-        //            new SD630Headwall { SD630HeadwallId = 0, SD630Description = "Single 18\" Pipe Straight Headwall", SD630_I_D = 18M / 12M, PipeNo = PipeSet.Single, SD630_A = 6M / 12M, SD630_B = 10M / 12M, SD630_C = 24M / 12M, SD630_D = 38M / 12M, SD630_E = 30M / 12M, SD630_F = 19M / 12M, SD630_G = 54M / 12M, SD630_L = 114M / 12M, RebNo4Req = 58.78M, RebNo4Purch = 80.16M},
-        //            new SD630Headwall { SD630HeadwallId = 1, SD630Description = "Single 24\" Pipe Straight Headwall", SD630_I_D = 24M / 12M, PipeNo = PipeSet.Single, SD630_A = 8M / 12M, SD630_B = 12M / 12M, SD630_C = 28M / 12M, SD630_D = 44M / 12M, SD630_E = 36M / 12M, SD630_F = 25M / 12M, SD630_G = 66M / 12M, SD630_L = 138M / 12M, RebNo4Req = 77.49M, RebNo4Purch = 100.2M },
-        //            new SD630Headwall { SD630HeadwallId = 2, SD630Description = "Single 30\" Pipe Straight Headwall", SD630_I_D = 30M / 12M, PipeNo = PipeSet.Single, SD630_A = 10M / 12M, SD630_B = 14M / 12M, SD630_C = 32M / 12M, SD630_D = 50M / 12M, SD630_E = 45M / 12M, SD630_F = 31M / 12M, SD630_G = 78M / 12M, SD630_L = 162M / 12M, RebNo4Req = 96.19M, RebNo4Purch = 120.24M },
-        //            new SD630Headwall { SD630HeadwallId = 3, SD630Description = "Single 36\" Pipe Straight Headwall", SD630_I_D = 36M / 12M, PipeNo = PipeSet.Single, SD630_A = 12M / 12M, SD630_B = 16M / 12M, SD630_C = 36M / 12M, SD630_D = 56M / 12M, SD630_E = 54M / 12M, SD630_F = 37M / 12M, SD630_G = 84M / 12M, SD630_L = 186M / 12M, RebNo4Req = 110.22M, RebNo4Purch = 120.24M },
-        //            new SD630Headwall { SD630HeadwallId = 4, SD630Description = "Single 42\" Pipe Straight Headwall", SD630_I_D = 42M / 12M, PipeNo = PipeSet.Single, SD630_A = 14M / 12M, SD630_B = 18M / 12M, SD630_C = 40M / 12M, SD630_D = 62M / 12M, SD630_E = 63M / 12M, SD630_F = 43M / 12M, SD630_G = 102M / 12M, SD630_L = 210M / 12M, RebNo4Req = 133.60M, RebNo4Purch = 160.32M },
-        //            new SD630Headwall { SD630HeadwallId = 5, SD630Description = "Double 18\" Pipe Straight Headwall", SD630_I_D = 18M / 12M, PipeNo = PipeSet.Double, SD630_A = 6M / 12M, SD630_B = 10M / 12M, SD630_C = 24M / 12M, SD630_D = 38M / 12M, SD630_E = 30M / 12M, SD630_F = 19M / 12M, SD630_G = 54M / 12M, SD630_L = (114M + 30M) / 12M, RebNo4Req = 71.64M, RebNo4Purch = 80.16M },
-        //            new SD630Headwall { SD630HeadwallId = 6, SD630Description = "Double 24\" Pipe Straight Headwall", SD630_I_D = 24M / 12M, PipeNo = PipeSet.Double, SD630_A = 8M / 12M, SD630_B = 12M / 12M, SD630_C = 28M / 12M, SD630_D = 44M / 12M, SD630_E = 36M / 12M, SD630_F = 25M / 12M, SD630_G = 66M / 12M, SD630_L = (138M + 36M) / 12M, RebNo4Req = 92.85M, RebNo4Purch = 100.2M },
-        //            new SD630Headwall { SD630HeadwallId = 7, SD630Description = "Double 30\" Pipe Straight Headwall", SD630_I_D = 30M / 12M, PipeNo = PipeSet.Double, SD630_A = 10M / 12M, SD630_B = 14M / 12M, SD630_C = 32M / 12M, SD630_D = 50M / 12M, SD630_E = 45M / 12M, SD630_F = 31M / 12M, SD630_G = 78M / 12M, SD630_L = (162M + 45M)/ 12M, RebNo4Req = 126.92M, RebNo4Purch = 160.32M }
-
-        //        };
-        //        return headwalls;
-        //}
-
     }
 }

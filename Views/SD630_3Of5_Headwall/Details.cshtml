@@ -1,0 +1,110 @@
+﻿@model SmallStructuresTakeOffs.Models.SD630_3Of5_Headwall
+@*@model SmallStructuresTakeOffs.Models.ResultsVM*@
+
+@{
+    ViewData["Title"] = @Model.GetType().Name + " Details";
+}
+@*<h4>@Model.GetType().Name</h4>
+*@
+<h4>Project: @ViewBag.ProjectName</h4>
+
+@*${"The HW Code is: "@Model.HWcode}
+*@
+
+@{
+    Console.WriteLine($"The HW Code is: {@Model.HWcode}");
+}
+
+<p class="font-weight-bold"> @Model.HWcode : @Model.HWDescription</p>
+
+<dl class="row">
+    <dt class="m-1" style="display:inline">HW Code</dt>
+    <dd class="m-1" style="display:inline">@Model.HWcode</dd>
+    <dt class="m-1" style="display:inline">Pour Base (cy)</dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().PourBase().ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">Pour Wall (cy)</dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().PourWall().ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">Eng Concrete (cy)</dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().ConcrCY</dd>
+
+</dl>
+<dl class="row">
+    <dt class="m-1" style="display:inline">Form Fabrication</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormFab</dd>
+    <dt class="m-1" style="display:inline">Form Base</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormBase</dd>
+    <dt class="m-1" style="display:inline">Form Wall</dt>
+    <dd class="m-1" style="display:inline">@ViewBag.FormWall</dd>
+</dl>
+
+<dl class="row">
+    <dt class="m-1" style="display:inline">ID:</dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_I_D.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">H:</dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_H.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">E: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_E.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">F: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_F.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">X: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_X.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">Pipe Runs: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().PipeNo.ToString()</dd>
+    <dt class="m-1" style="display:inline">Skew: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().Skews.ToString()</dd>
+    <dt class="m-1" style="display:inline">Slope: </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().Slopes.ToString()</dd>
+    <dt class="m-1" style="display:inline">Conc (cy): </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().ConcrCY.ToString("0.00")</dd>
+    <dt class="m-1" style="display:inline">Reinf (lb) </dt>
+    <dd class="m-1" style="display:inline">@Model.GetTheHW().ReinfLB.ToString("0.00")</dd>
+
+</dl>
+
+<table class="table">
+    <thead>
+        <bold>Headwall Reinforcement</bold>
+        <tr>
+            <th>RebarCode</th>
+            <th>Nom</th>
+            <th>Shape</th>
+            <th class="text-right">Length</th>
+            <th class="text-right">Ea</th>
+            <th class="text-right">Total (ft)</th>
+            <th class="text-right">Total (lb)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var l in Model.TheReinforcements())
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => l.HWreinfCode)</td>
+                <td>@Html.DisplayFor(modelItem => l.HWRebarNom)</td>
+                <td>@Html.DisplayFor(modelItem => l.HWreinfShape)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWreinfLength)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWreinfQty)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWTotalLength)</td>
+                <td class="text-right">@Html.DisplayFor(modelItem => l.HWTotalWeight)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="text-right" colspan="6">
+                @Model.TheReinforcements().Select(s => s.HWTotalLength).Sum().ToString("0.00")
+            </td>
+
+            <td class="text-right">
+                @Model.TheReinforcements().Select(s => s.HWTotalWeight).Sum().ToString("0.00")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+<div>
+    <hr />
+    @* <a asp-action="Edit" asp-route-id="@Model.ResVMId">Edit</a> | *@
+    <a asp-action="Index" asp-route-id="@ViewBag.HWProjId">Back to List</a>
+</div>

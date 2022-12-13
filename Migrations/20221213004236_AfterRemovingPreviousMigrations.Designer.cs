@@ -12,8 +12,8 @@ using SmallStructuresTakeOffs.Models;
 namespace SmallStructuresTakeOffs.Migrations
 {
     [DbContext(typeof(EFCoreDBcontext))]
-    [Migration("20221202044650_AddingHWentities")]
-    partial class AddingHWentities
+    [Migration("20221213004236_AfterRemovingPreviousMigrations")]
+    partial class AfterRemovingPreviousMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,6 +83,9 @@ namespace SmallStructuresTakeOffs.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HeadwallId"), 1L, 1);
 
+                    b.Property<decimal>("ConcrCY")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -93,8 +96,65 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.Property<long>("HWProjId")
                         .HasColumnType("bigint");
 
+                    b.Property<decimal>("HWRebFandI")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("HWRebPurch")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("HWcode")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PipeNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("RebNo4Purch")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("RebNo4Req")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ReinfLB")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_A")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_B")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_C")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_D")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_E")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_F")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_G")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_H")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_I_D")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_L")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_X")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_Y")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SD630_Z")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ThisHeadwallId")
                         .HasColumnType("int");
@@ -421,48 +481,47 @@ namespace SmallStructuresTakeOffs.Migrations
                     b.HasDiscriminator().HasValue("CBp1572");
                 });
 
-            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_3Of5_Headwall", b =>
                 {
                     b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
 
-                    b.Property<int>("PipeNo")
+                    b.Property<int>("FlowSides")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("RebNo4Purch")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("PipeDiameters")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("RebNo4Req")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Skews")
+                        .HasColumnType("int");
 
-                    b.Property<string>("SD630Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Slopes")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("SD630_A")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasDiscriminator().HasValue("SD630_3Of5_Headwall");
+                });
 
-                    b.Property<decimal>("SD630_B")
-                        .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630_4Of5_Headwall", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
 
-                    b.Property<decimal>("SD630_C")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("PipeDiameters")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_PipeDiameters");
 
-                    b.Property<decimal>("SD630_D")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Skews")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_Skews");
 
-                    b.Property<decimal>("SD630_E")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Slopes")
+                        .HasColumnType("int")
+                        .HasColumnName("SD630_4Of5_Headwall_Slopes");
 
-                    b.Property<decimal>("SD630_F")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasDiscriminator().HasValue("SD630_4Of5_Headwall");
+                });
 
-                    b.Property<decimal>("SD630_G")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_I_D")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SD630_L")
-                        .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity("SmallStructuresTakeOffs.Models.SD630Headwall", b =>
+                {
+                    b.HasBaseType("SmallStructuresTakeOffs.Models.Headwall");
 
                     b.HasDiscriminator().HasValue("SD630Headwall");
                 });
@@ -481,7 +540,7 @@ namespace SmallStructuresTakeOffs.Migrations
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Headwall", b =>
                 {
                     b.HasOne("SmallStructuresTakeOffs.Models.Project", "Project")
-                        .WithMany()
+                        .WithMany("Headwalls")
                         .HasForeignKey("HWProjId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -508,6 +567,8 @@ namespace SmallStructuresTakeOffs.Migrations
             modelBuilder.Entity("SmallStructuresTakeOffs.Models.Project", b =>
                 {
                     b.Navigation("CatchBasins");
+
+                    b.Navigation("Headwalls");
 
                     b.Navigation("RebarRequests");
                 });

@@ -10,12 +10,12 @@ using SmallStructuresTakeOffs.Enums;
 
 namespace SmallStructuresTakeOffs.Controllers
 {
-    public class SD630_4Of5_HeadwallController : Controller
+    public class SD630_3Of5_HeadwallController : Controller
     {
         #region Context Setup
         private readonly EFCoreDBcontext _context;
 
-        public SD630_4Of5_HeadwallController(EFCoreDBcontext context)
+        public SD630_3Of5_HeadwallController(EFCoreDBcontext context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace SmallStructuresTakeOffs.Controllers
             ViewBag.ProjectId = id;
             ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
 
-            return View(await _context.Headwalls.OfType<SD630_4Of5_Headwall>().Where(w => w.HWProjId == id).OrderByDescending(d => d.HeadwallId).ToListAsync());
+            return View(await _context.Headwalls.OfType<SD630_3Of5_Headwall>().Where(w => w.HWProjId == id).OrderByDescending(d => d.HeadwallId).ToListAsync());
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace SmallStructuresTakeOffs.Controllers
 
             var hw =
                 //(from s in _context.Headwalls.OfType<SD630_4Of5_Headwall>()
-                (from s in _context.SD630_4Of5_Headwalls
+                (from s in _context.SD630_3Of5_Headwalls
                  where s.HeadwallId == id
                  select s).FirstOrDefault();
 
@@ -80,19 +80,6 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMFormBase = hw.GetTheHW().FormBase(),
                     ResVMFormWall = hw.GetTheHW().FormWall(),
                     HWreinforcementsVM = hw.TheReinforcements().ToList()
-
-
-                    //ResVMPourBottomCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).PourBase(),
-                    //ResVMPourWallCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).PourWall(),
-                    //ResVMRebNo4Req = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).RebNo4Req,
-                    //ResVMRebNo4Purch = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).RebNo4Purch,
-                    //ResVMFormFab =SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId ==     hw.ThisHeadwallId).FormFab(),
-                    //ResVMFormBase = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).FormBase(),
-                    //ResVMFormWall = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == hw.ThisHeadwallId).FormWall(),
-                    //CBreinforcementsVM = cb.TheReinforcements()
-                    //CBreinforcementsVM = (IList<HWreinforcement>)cb.TheReinforcements().ToList()
-                    //CBreinforcementsVM = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == cb.ThisHeadwallId).TheReinforcements().ToList()
-
                 };
             ViewBag.ResultVM = thisStr;
 
@@ -105,7 +92,7 @@ namespace SmallStructuresTakeOffs.Controllers
         public IActionResult Create(long id)
         {
             var catalogue =
-                from c in SD630_4Of5_Headwall.D630HWs
+                from c in SD630_3Of5_Headwall.D630HWs
                 select c;
 
             ViewBag.HWList = new SelectList(catalogue, "ThisHeadwallId", "HWDescription");
@@ -119,16 +106,16 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HWcode,HWDescription,HWProjId,PipeDiameters,Slopes,Skews")] SD630_4Of5_Headwall sD630_4Of5_Headwall)
+        public async Task<IActionResult> Create([Bind("HWcode,HWDescription,HWProjId,PipeDiameters,Slopes,Skews,FlowSides,PipeNo")] SD630_3Of5_Headwall sD630_3Of5_Headwall)
         {
             if (ModelState.IsValid)
             {
-                sD630_4Of5_Headwall.ThisHeadwallId = sD630_4Of5_Headwall.GetTheHW().ThisHeadwallId;
-                _context.Add(sD630_4Of5_Headwall);
+                sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
+                _context.Add(sD630_3Of5_Headwall);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new {id = sD630_4Of5_Headwall.HWProjId});
+                return RedirectToAction(nameof(Index), new {id = sD630_3Of5_Headwall.HWProjId});
             }
-            return View(sD630_4Of5_Headwall);
+            return View(sD630_3Of5_Headwall);
         }
 
         #endregion
@@ -142,14 +129,14 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var sD630Headwall = await _context.SD630_4Of5_Headwalls.FirstOrDefaultAsync(f => f.HeadwallId == id);
+            var sD630Headwall = await _context.SD630_3Of5_Headwalls.FirstOrDefaultAsync(f => f.HeadwallId == id);
             if (sD630Headwall == null)
             {
                 return NotFound();
             }
 
             var catalogue =
-                from c in SD630_4Of5_Headwall.D630HWs
+                from c in SD630_3Of5_Headwall.D630HWs
                 select c;
 
 
@@ -163,9 +150,9 @@ namespace SmallStructuresTakeOffs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("HeadwallId,HWCode,HWDescription,HWProjId,ThisHeadwallId")] int id, SD630_4Of5_Headwall sD630_4Of5_Headwall)
+        public async Task<IActionResult> Edit([Bind("HeadwallId,HWCode,HWDescription,HWProjId,ThisHeadwallId")] int id, SD630_3Of5_Headwall sD630_3Of5_Headwall)
         {
-            if (id != sD630_4Of5_Headwall.HeadwallId)
+            if (id != sD630_3Of5_Headwall.HeadwallId)
             {
                 return NotFound();
             }
@@ -175,14 +162,14 @@ namespace SmallStructuresTakeOffs.Controllers
                 try
                 {
                     //sD630_4Of5_Headwall.HWDescription = SD630_4Of5_Headwall.D630HWs[(int)sD630_4Of5_Headwall.ThisHeadwallId].HWDescription;
-                    sD630_4Of5_Headwall.ThisHeadwallId = sD630_4Of5_Headwall.GetTheHW().ThisHeadwallId;
+                    sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
 
-                    _context.Update(sD630_4Of5_Headwall);
+                    _context.Update(sD630_3Of5_Headwall);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SD630HeadwallExists(sD630_4Of5_Headwall.HeadwallId))
+                    if (!SD630HeadwallExists(sD630_3Of5_Headwall.HeadwallId))
                     {
                         return NotFound();
                     }
@@ -191,9 +178,9 @@ namespace SmallStructuresTakeOffs.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new { id = sD630_4Of5_Headwall.HWProjId });
+                return RedirectToAction(nameof(Index), new { id = sD630_3Of5_Headwall.HWProjId });
             }
-            return View(sD630_4Of5_Headwall);
+            return View(sD630_3Of5_Headwall);
         }
 
         #endregion
@@ -206,7 +193,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 return NotFound();
             }
 
-            var sD630Headwall = await _context.SD630_4Of5_Headwalls
+            var sD630Headwall = await _context.SD630_3Of5_Headwalls
                 .FirstOrDefaultAsync(m => m.HeadwallId == id);
             if (sD630Headwall == null)
             {
@@ -221,10 +208,10 @@ namespace SmallStructuresTakeOffs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hw = await _context.SD630_4Of5_Headwalls.FindAsync(id);
+            var hw = await _context.SD630_3Of5_Headwalls.FindAsync(id);
             var prjId = hw.HWProjId;
 
-            _context.SD630_4Of5_Headwalls.Remove(hw);
+            _context.SD630_3Of5_Headwalls.Remove(hw);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index), new { id = prjId });
         }
@@ -234,7 +221,7 @@ namespace SmallStructuresTakeOffs.Controllers
         #region Exists Method
         private bool SD630HeadwallExists(int id)
         {
-            return _context.SD630_4Of5_Headwalls.Any(e => e.HeadwallId == id);
+            return _context.SD630_3Of5_Headwalls.Any(e => e.HeadwallId == id);
         }
 
         #endregion
@@ -246,7 +233,7 @@ namespace SmallStructuresTakeOffs.Controllers
             ViewBag.ProjectName = _context.Projects.Where(w => w.ProjectId == id).Select(s => s.ProjectName).FirstOrDefault();
 
             var HWList =
-                from hw in _context.SD630_4Of5_Headwalls.Where(p => p.HWProjId == id).OrderBy(o => o.HWcode)
+                from hw in _context.SD630_3Of5_Headwalls.Where(p => p.HWProjId == id).OrderBy(o => o.HWcode)
                 select hw;
 
             List<ResultsVM> results = new();
@@ -260,14 +247,12 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWStrId = l.HeadwallId,
                     ResVMId = l.ThisHeadwallId,
                     ResVMPourBottomCY = l.GetTheHW().PourBase(),
-
-                    //ResVMPourBottomCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).PourBase(),
-                    ResVMPourWallCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).PourWall(),
-                    ResVMRebNo4Req = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Req,
-                    ResVMRebNo4Purch = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Purch,
-                    ResVMFormFab =SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormFab(),
-                    ResVMFormBase = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormBase(),
-                    ResVMFormWall = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormWall()
+                    ResVMPourWallCY = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).PourWall(),
+                    ResVMRebNo4Req = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Req,
+                    ResVMRebNo4Purch = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Purch,
+                    ResVMFormFab =SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormFab(),
+                    ResVMFormBase = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormBase(),
+                    ResVMFormWall = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormWall()
                 };
                 results.Add(thisStr);
             }

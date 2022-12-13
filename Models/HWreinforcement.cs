@@ -1,9 +1,13 @@
-﻿namespace SmallStructuresTakeOffs.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmallStructuresTakeOffs.Models
 {
     public class HWreinforcement
     {
-        public int HWreinforcementId { get; set; }
+        //[ForeignKey("Project")]
 
+        public int HWreinforcementId { get; set; }
+        [ForeignKey("Headwall")]
         public int HWId { get; set; }
 
         //public string CBreinforcementName { get; set; }

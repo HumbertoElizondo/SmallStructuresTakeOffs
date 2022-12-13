@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SmallStructuresTakeOffs.Models.Headwall>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Headwall Index";
 }
 
 <dl class="row">
@@ -23,7 +23,8 @@
 <p>
     <div class="text-center">
         <a class="btn btn-primary" asp-controller="SD630Headwall" asp-action="Index" asp-route-id="@ViewBag.ProjectId">SD-6.30 Headwalls</a>
-        <a class="btn btn-primary" asp-controller="SD630_4Of5_Headwall" asp-action="Index" asp-route-id="@ViewBag.ProjectId">SD-6.30 4of5 Wingwalls</a>
+        <a class="btn btn-primary" asp-controller="SD630_3Of5_Headwall" asp-action="Index" asp-route-id="@ViewBag.ProjectId">SD-6.30 No-Skew Wingwalls</a>
+        <a class="btn btn-primary" asp-controller="SD630_4Of5_Headwall" asp-action="Index" asp-route-id="@ViewBag.ProjectId">SD-6.30 Skewed Wingwalls</a>
 
         @*<a class="btn btn-primary" asp-controller="RebarRequests" asp-action="Index" asp-route-id="ViewBag.ProjectId">Rebar BreakDown</a>*@
         @*<a class="btn btn-primary" asp-controller="CBc1510SglT1" asp-route-id="@ViewBag.ProjectId" asp-action="Index">CB C-15.10</a>
@@ -63,9 +64,9 @@
             @*<th>
                 @Html.DisplayNameFor(model => model.CBWallThickness)
             </th>*@
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.GetType().Name)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -90,10 +91,10 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CBWallThickness)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.GetType().Name)
-                </td>*@
+                </td>
                 @*<td>
             <a asp-action="Edit" asp-route-id="@item.CatchBasinId">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.CatchBasinId">Details</a> |

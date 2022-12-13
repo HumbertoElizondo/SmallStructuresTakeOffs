@@ -1,0 +1,178 @@
+﻿@model SmallStructuresTakeOffs.Models.SD630_3Of5_Headwall
+@using SmallStructuresTakeOffs.Enums;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SD630_3Of5_Headwall</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="HWProjId" type="hidden" value="@ViewBag.ProjectId" />
+
+                @*<label asp-for="HWProjId" class="control-label"></label>*@
+                @*<select asp-for="HWProjId" class ="form-control" asp-items="ViewBag.HWProjId"></select>*@
+            </div>
+            <div class="form-group">
+                <input asp-for="Skews" type="hidden" value=@Skew.Skew0 />
+                @*<label asp-for="Skews" class="control-label"></label>*@
+                @*<select asp-for="Skews" class="form-control"></select>*@
+                @*<span asp-validation-for="Skews" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="HWcode" class="control-label"></label>
+                <input asp-for="HWcode" class="form-control" />
+                <span asp-validation-for="HWcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PipeDiameters" class="control-label"></label>
+                <select asp-for="PipeDiameters" class="form-control" asp-items="Html.GetEnumSelectList<PipeDiameter>()"></select>
+                <span asp-validation-for="PipeDiameters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HWDescription" class="control-label"></label>
+                <input asp-for="HWDescription" class="form-control" />
+                <span asp-validation-for="HWDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slopes" class="control-label"></label>
+                <select asp-for="Slopes" class="form-control" asp-items="Html.GetEnumSelectList<Slope>()"></select>
+                <span asp-validation-for="Slopes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FlowSides" class="control-label"></label>
+                <select asp-for="FlowSides" class="form-control" asp-items="Html.GetEnumSelectList<FlowSide>()"></select>
+                <span asp-validation-for="FlowSides" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PipeNo" class="control-label"></label>
+                <select asp-for="PipeNo" class="form-control" asp-items="Html.GetEnumSelectList<PipeSet>()"></select>
+                <span asp-validation-for="PipeNo" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                <label asp-for="SD630_I_D" class="control-label"></label>
+                <input asp-for="SD630_I_D" class="form-control" />
+                <span asp-validation-for="SD630_I_D" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_A" class="control-label"></label>
+                <input asp-for="SD630_A" class="form-control" />
+                <span asp-validation-for="SD630_A" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_B" class="control-label"></label>
+                <input asp-for="SD630_B" class="form-control" />
+                <span asp-validation-for="SD630_B" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_C" class="control-label"></label>
+                <input asp-for="SD630_C" class="form-control" />
+                <span asp-validation-for="SD630_C" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_D" class="control-label"></label>
+                <input asp-for="SD630_D" class="form-control" />
+                <span asp-validation-for="SD630_D" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_E" class="control-label"></label>
+                <input asp-for="SD630_E" class="form-control" />
+                <span asp-validation-for="SD630_E" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_F" class="control-label"></label>
+                <input asp-for="SD630_F" class="form-control" />
+                <span asp-validation-for="SD630_F" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_G" class="control-label"></label>
+                <input asp-for="SD630_G" class="form-control" />
+                <span asp-validation-for="SD630_G" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_L" class="control-label"></label>
+                <input asp-for="SD630_L" class="form-control" />
+                <span asp-validation-for="SD630_L" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_H" class="control-label"></label>
+                <input asp-for="SD630_H" class="form-control" />
+                <span asp-validation-for="SD630_H" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_X" class="control-label"></label>
+                <input asp-for="SD630_X" class="form-control" />
+                <span asp-validation-for="SD630_X" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_Y" class="control-label"></label>
+                <input asp-for="SD630_Y" class="form-control" />
+                <span asp-validation-for="SD630_Y" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SD630_Z" class="control-label"></label>
+                <input asp-for="SD630_Z" class="form-control" />
+                <span asp-validation-for="SD630_Z" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConcrCY" class="control-label"></label>
+                <input asp-for="ConcrCY" class="form-control" />
+                <span asp-validation-for="ConcrCY" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReinfLB" class="control-label"></label>
+                <input asp-for="ReinfLB" class="form-control" />
+                <span asp-validation-for="ReinfLB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisHeadwallId" class="control-label"></label>
+                <input asp-for="ThisHeadwallId" class="form-control" />
+                <span asp-validation-for="ThisHeadwallId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PipeNo" class="control-label"></label>
+                <select asp-for="PipeNo" class="form-control"></select>
+                <span asp-validation-for="PipeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebNo4Req" class="control-label"></label>
+                <input asp-for="RebNo4Req" class="form-control" />
+                <span asp-validation-for="RebNo4Req" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RebNo4Purch" class="control-label"></label>
+                <input asp-for="RebNo4Purch" class="form-control" />
+                <span asp-validation-for="RebNo4Purch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HWRebFandI" class="control-label"></label>
+                <input asp-for="HWRebFandI" class="form-control" />
+                <span asp-validation-for="HWRebFandI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HWRebPurch" class="control-label"></label>
+                <input asp-for="HWRebPurch" class="form-control" />
+                <span asp-validation-for="HWRebPurch" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@ViewBag.ProjectId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

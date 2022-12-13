@@ -20,8 +20,6 @@ namespace SmallStructuresTakeOffs.Models
         public string HWcode { get; set; }
         public string HWDescription { get; set; }
         public PipeSet PipeNo { get; set; }
-
-        
         public abstract decimal SD630_I_D { get; set; }
         public abstract decimal SD630_A { get; set; }
         public abstract decimal SD630_B { get; set; }
@@ -47,6 +45,7 @@ namespace SmallStructuresTakeOffs.Models
 
         public decimal HWRebFandI { get; set; }
         public decimal HWRebPurch { get; set; }
+        [NotMapped]
         public abstract ICollection<HWreinforcement> HWreinforcements { get; set; }
         public abstract ICollection<HWreinforcement> TheReinforcements();
         public abstract decimal PourBase();

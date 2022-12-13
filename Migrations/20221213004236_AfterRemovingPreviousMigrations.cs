@@ -4,7 +4,7 @@
 
 namespace SmallStructuresTakeOffs.Migrations
 {
-    public partial class AfterErasingAllMigrations : Migration
+    public partial class AfterRemovingPreviousMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -108,6 +108,56 @@ namespace SmallStructuresTakeOffs.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Headwalls",
+                columns: table => new
+                {
+                    HeadwallId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HWProjId = table.Column<long>(type: "bigint", nullable: false),
+                    ThisHeadwallId = table.Column<int>(type: "int", nullable: false),
+                    HWcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HWDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PipeNo = table.Column<int>(type: "int", nullable: false),
+                    SD630_I_D = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_A = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_B = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_C = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_D = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_E = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_F = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_G = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_L = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_H = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_X = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_Y = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SD630_Z = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ConcrCY = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ReinfLB = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RebNo4Req = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RebNo4Purch = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HWRebFandI = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HWRebPurch = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FlowSides = table.Column<int>(type: "int", nullable: true),
+                    Slopes = table.Column<int>(type: "int", nullable: true),
+                    Skews = table.Column<int>(type: "int", nullable: true),
+                    PipeDiameters = table.Column<int>(type: "int", nullable: true),
+                    SD630_4Of5_Headwall_Slopes = table.Column<int>(type: "int", nullable: true),
+                    SD630_4Of5_Headwall_Skews = table.Column<int>(type: "int", nullable: true),
+                    SD630_4Of5_Headwall_PipeDiameters = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Headwalls", x => x.HeadwallId);
+                    table.ForeignKey(
+                        name: "FK_Headwalls_Projects_HWProjId",
+                        column: x => x.HWProjId,
+                        principalTable: "Projects",
+                        principalColumn: "ProjectId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RebarRequests",
                 columns: table => new
                 {
@@ -161,6 +211,11 @@ namespace SmallStructuresTakeOffs.Migrations
                 column: "ProjId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Headwalls_HWProjId",
+                table: "Headwalls",
+                column: "HWProjId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RebarRequests_ProjectId",
                 table: "RebarRequests",
                 column: "ProjectId");
@@ -175,6 +230,9 @@ namespace SmallStructuresTakeOffs.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CatchBasins");
+
+            migrationBuilder.DropTable(
+                name: "Headwalls");
 
             migrationBuilder.DropTable(
                 name: "P1569_1s");
