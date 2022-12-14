@@ -81,7 +81,7 @@ namespace SmallStructuresTakeOffs.Controllers
                     //CBreinforcementsVM = SD630Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == cb.ThisHeadwallId).TheReinforcements().ToList()
 
                 };
-            return View(thisStr);
+            return View(hw);
 
 
 

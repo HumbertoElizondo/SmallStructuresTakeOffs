@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SmallStructuresTakeOffs.Models;
 using SmallStructuresTakeOffs.Enums;
-
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace SmallStructuresTakeOffs.Models
 {
@@ -27,22 +27,45 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal SD630_Z { get; set; }
         public override decimal ConcrCY { get; set; } = 1m;
         public override decimal ReinfLB { get; set; } = 1m;
+        public override PipeSet PipeNo { get; set; }
         public Slope Slopes { get; set; }
         public SkewHW Skews { get; set; }
         public PipeDiameter PipeDiameters { get; set; }
         public override decimal PourBase()
         {
-                        decimal Apron = (SD630_D + 2 + SD630_E)* SD630_E * 9m/12m; // Apron
-                        decimal ApronCutOffWall = (2m * SD630_E + SD630_D + 2m + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m); //Apron Cutoff Wall
-                        decimal LtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // LtWing
-                        decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
-                        decimal HW = (SD630_D + 2m) * 1m * (9m + 6m)/12m; // HW, includes CutOff Wall
-                        decimal LtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // LtHW, includes cutoff Wall
-                        decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW, includes cutoff Wall
+            switch (this.PipeNo)
+            {
+                case PipeSet.Single:
+                {
+                    decimal Apron = (SD630_D + 2 + SD630_E)* SD630_E * 9m/12m; // Apron
+                    decimal ApronCutOffWall = (2m * SD630_E + SD630_D + 2m + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m); //Apron Cutoff Wall
+                    decimal LtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // LtWing
+                    decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
+                    decimal HW = (SD630_D + 2m) * 1m * (9m + 6m)/12m; // HW, includes CutOff Wall
+                    decimal LtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // LtHW, includes cutoff Wall
+                    decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW, includes cutoff Wall
 
-                        return
-                            (Apron + LtW + RtW + HW + LtHW + RtHW + ApronCutOffWall)/27m;
-        }
+                    return
+                        (Apron + LtW + RtW + HW + LtHW + RtHW + ApronCutOffWall)/27m;
+                }
+                case PipeSet.Double:
+                {
+                    decimal Apron = (2m * SD630_D + SD630_E + 5m) * SD630_E * 9m/12m; // Apron
+                    decimal ApronCutOffWall = (2m * SD630_D + 2m * SD630_E + 6.5m ) * 9m/12m * (4m - 9m/12m); //Apron Cutoff Wall
+                    decimal LtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // LtWing
+                    decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_E, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
+                    decimal HW = (2m * SD630_D + 5m) * 1m * (9m + 6m)/12m; // HW, includes CutOff Wall
+                    decimal LtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // LtHW, includes cutoff Wall
+                    decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 45d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 45d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW, includes cutoff Wall
+
+                    return
+                        (Apron + LtW + RtW + HW + LtHW + RtHW + ApronCutOffWall)/27m;
+                }
+                default:
+                    return 0;
+
+            }
+    }
         public  override decimal PourWall()
         {
                 decimal HW = 2m * (SD630_Y + 1m) * SD630_H * 9m/12m;
@@ -55,7 +78,11 @@ namespace SmallStructuresTakeOffs.Models
                 decimal RtWone = (1m) * (SD630_H ) * 9m/12m;
                 return
                    (HW - PipeDia + LtHW + RtHW + LtW + RtW + LtWone + RtWone)/27;
-                //(SD630_D * SD630_L - (decimal)Math.PI * (decimal)Math.Pow((double)SD630_I_D, (double)2) / 4) * (8M / 12M) / 27M;
+        }
+        public override decimal PourTotal()
+        {
+            return
+                PourBase() + PourWall();
         }
 
         public override decimal FormBase()
@@ -222,29 +249,31 @@ namespace SmallStructuresTakeOffs.Models
                     //},
                     #endregion
                     #region 0d Skew, Inlet End, 4:1 Slope
-                    //new SD630_3Of5_Headwall { 
-                    //    ThisHeadwallId = 8,
-                    //    HWDescription = "Single 48\" Pipe On 4:1 Slope, 15d Skew",
-                    //    Slopes= Slope.Slope4_1,
-                    //    Skews=SkewHW.Skew15,
-                    //    PipeDiameters = PipeDiameter.ID_48,
-                    //    SD630_I_D = 48M / 12M, 
-                    //    PipeNo = PipeSet.Single, 
-                    //    SD630_A = 8M / 12M, 
-                    //    SD630_B = 12M / 12M, 
-                    //    SD630_C = 28M / 12M, 
-                    //    SD630_D = 44M / 12M, 
-                    //    SD630_E = 14m+3m/12m, 
-                    //    SD630_F = 11m+11.5m/12m, 
-                    //    SD630_G = 2m+6.125m/12m, 
-                    //    SD630_L = 138M / 12M,
-                    //    SD630_H = 6m + 2m/12m,
-                    //    SD630_X = 2m+4m/12m,
-                    //    SD630_Y = 2m+(7m/8m)/12m,
-                    //    SD630_Z = 20m+7.375m/12m,
-                    //    ConcrCY = 11.7m,
-                    //    ReinfLB = 770m,
-                    //},
+                    new SD630_3Of5_Headwall {
+                        ThisHeadwallId = 101,
+                        HWDescription = "Single 48\" Pipe On 4:1 Slope, No Skew",
+                        FlowSides = FlowSide.Inlet,
+                        Slopes= Slope.Slope4_1,
+                        Skews=SkewHW.Skew0,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 48M / 12M,
+                        SD630_E = 7m + 8M / 12M,
+                        SD630_F = 0m + 0M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 4m + 0m/12m,
+                        SD630_Y = 2m + .875m/12m,
+                        SD630_Z = 24m + 5.125m/12m,
+                        ConcrCY = 9.4m,
+                        ReinfLB = 570m
+                    },
+
                     //new SD630_3Of5_Headwall { 
                     //    ThisHeadwallId = 9, 
                     //    HWDescription = "Single 54\" Pipe On 4:1 Slope, 15d Skew",
@@ -300,29 +329,30 @@ namespace SmallStructuresTakeOffs.Models
 
                     #endregion
                     #region 0d Skew, Outlet End, 4:1 Slope
-                    //new SD630_3Of5_Headwall {
-                    //    ThisHeadwallId = 108,
-                    //    HWDescription = "Single 48\" Pipe On 4:1 Slope, 30d Skew",
-                    //    Slopes= Slope.Slope4_1,
-                    //    Skews=SkewHW.Skew30,
-                    //    PipeDiameters = PipeDiameter.ID_48,
-                    //    SD630_I_D = 48M / 12M,
-                    //    PipeNo = PipeSet.Single,
-                    //    SD630_A = 8M / 12M,
-                    //    SD630_B = 12M / 12M,
-                    //    SD630_C = 28M / 12M,
-                    //    SD630_D = 44M / 12M,
-                    //    SD630_E = 11m+0m/12m,
-                    //    SD630_F = 13m+1.25m/12m,
-                    //    SD630_G = 2m+6.125m/12m,
-                    //    SD630_L = 138M / 12M,
-                    //    SD630_H = 6m + 2m/12m,
-                    //    SD630_X = 3m+3m/12m,
-                    //    SD630_Y = 2m+3.75m/12m,
-                    //    SD630_Z = 20m+9.75m/12m,
-                    //    ConcrCY = 11m,
-                    //    ReinfLB = 680m,
-                    //},
+                    new SD630_3Of5_Headwall {
+                        ThisHeadwallId = 401,
+                        HWDescription = "Outlet End 48\" Pipe On 4:1 Slope, No Skew",
+                        FlowSides = FlowSide.Outlet,
+                        Slopes= Slope.Slope4_1,
+                        Skews=SkewHW.Skew0,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48M / 12M,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 10M / 12M,
+                        SD630_B = 14M / 12M,
+                        SD630_C = 32M / 12M,
+                        SD630_D = 48M / 12M,
+                        SD630_E = 13m + 8M / 12M,
+                        SD630_F = 5m + 0M / 12M,
+                        SD630_G = 3m + 2.125M / 12M,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = (162M + 45M)/ 12M,
+                        SD630_X = 2m + 6m/12m,
+                        SD630_Y = 2m + .875m/12m,
+                        SD630_Z = 24m + 5.125m/12m,
+                        ConcrCY = 10.8m,
+                        ReinfLB = 665m
+                    },
 
                     #endregion
                     #region 0d Skew, Outlet End, 6:1 Slope
@@ -356,17 +386,17 @@ namespace SmallStructuresTakeOffs.Models
                 return headwalls;
             }
         }
-        public SD630_3Of5_Headwall GetTheHW()
+        public override SD630_3Of5_Headwall GetTheHW()
         {
             var result =
                (from c in D630HWs
                 where c.Slopes == this.Slopes &&
                     c.Skews == this.Skews &&
                     c.PipeDiameters == this.PipeDiameters &&
-                    c.FlowSides == this.FlowSides &&
-                    c.PipeNo == this.PipeNo
+                    c.FlowSides == this.FlowSides 
+                    //c.PipeNo == this.PipeNo
                 select c).First();
-
+            result.PipeNo = this.PipeNo;
             return result;
         }
         public override ICollection<HWreinforcement> HWreinforcements

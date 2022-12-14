@@ -19,7 +19,7 @@ namespace SmallStructuresTakeOffs.Models
         public int ThisHeadwallId { get; set; } // Seeded Information for Headwalls
         public string HWcode { get; set; }
         public string HWDescription { get; set; }
-        public PipeSet PipeNo { get; set; }
+        public abstract PipeSet PipeNo { get; set; }
         public abstract decimal SD630_I_D { get; set; }
         public abstract decimal SD630_A { get; set; }
         public abstract decimal SD630_B { get; set; }
@@ -50,6 +50,8 @@ namespace SmallStructuresTakeOffs.Models
         public abstract ICollection<HWreinforcement> TheReinforcements();
         public abstract decimal PourBase();
         public abstract decimal PourWall();
+        public abstract decimal PourTotal();
+
         public abstract decimal FormBase();
         public abstract decimal FormWall();
         public abstract decimal FormFab();
@@ -58,6 +60,19 @@ namespace SmallStructuresTakeOffs.Models
         public abstract decimal EngConcr();
         
         public abstract decimal EngReinf();
+
+        public abstract Headwall GetTheHW();
+        //{
+        //    var result =
+        //       (from c in D630HWs
+        //        where c.Slopes == this.Slopes &&
+        //            c.Skews == this.Skews &&
+        //            c.PipeDiameters == this.PipeDiameters
+        //        select c).First();
+
+        //    return result;
+        //}
+
 
     }
 }

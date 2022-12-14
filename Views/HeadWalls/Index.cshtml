@@ -111,7 +111,9 @@
 </table>
 
 <div>
-    <a asp-action="Results" asp-route-id=@ViewBag.ProjectId>Results</a> |
+    <a asp-action="Results" asp-route-id=@ViewBag.ProjectId>Results | </a>
+    <a asp-action="Index" asp-controller="Projects" asp-route-id="@ViewBag.ProjectId">Back to Project</a>
+
 </div>
 
 

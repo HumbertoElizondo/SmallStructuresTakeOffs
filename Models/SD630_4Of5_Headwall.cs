@@ -34,22 +34,58 @@ namespace SmallStructuresTakeOffs.Models
         public override decimal SD630_Z { get; set; }
         public override decimal ConcrCY { get; set; } = 1m;
         public override decimal ReinfLB { get; set; } = 1m;
+        public override PipeSet PipeNo { get; set; }
         public Slope Slopes { get; set; }
         public SkewHW Skews { get; set; }
         public PipeDiameter PipeDiameters { get; set; }
         public override decimal PourBase()
         {
+            switch (Skews)
+            {
+                case SkewHW.Skew15:
+                    {
+                        decimal Apron = ((2m * (SD630_Y + 1m) + SD630_Z) / 2m) * SD630_E * 9m/12m; // Apron
+                        decimal LtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_G, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // LtWing
+                        decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_F, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
+                        decimal HW = 2m * (SD630_Y + 1m) * 1m * (9m+6m)/12m; // HW
+                        decimal LtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 80d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 80d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // LtHW
+                        decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 50d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 50d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW
+                        decimal ApronCutOffWall = (SD630_Z + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m);
 
-                decimal Apron =  ((2m * (SD630_Y + 1m) + SD630_Z) / 2m) * SD630_E * 9m/12m; // Apron
-                decimal LtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_G, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // LtWing
-                decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_F, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
-                decimal HW = 2m * (SD630_Y + 1m) * 1m * 9m/12m; // HW
-                decimal LtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 80d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 80d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // LtHW
-                decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 50d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 50d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW
-                decimal ApronCutOffWall = (SD630_Z + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m);
+                        return
+                            (Apron + LtW + RtW + HW + LtHW + RtHW + ApronCutOffWall)/27m;
 
-                return
-                    (Apron + LtW + RtW + HW + LtHW + RtHW + ApronCutOffWall)/27m;
+                    }
+                case SkewHW.Skew30:
+                    {
+                        decimal Apron = ((2m * (SD630_Y + 1m+2m/12m) + SD630_Z) / 2m) * SD630_E * 9m/12m; // Apron
+                        decimal ApronCutOffWall = (SD630_Z + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m); // Apron Cutoff Wall
+                        decimal LtW = SD630_E * 9m/12m * 9m/12m; // LtWing
+                        decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_F, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
+                        decimal HW = 2m * (SD630_Y + 1m+2m/12m) * 1m * (9m + 6m)/12m; // HW
+                        decimal LtHW = 9m/12m * 1m * (9m + 6m)/12m; // LtHW
+                        decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 40d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 40d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW
+
+                        return
+                            (Apron + ApronCutOffWall + LtW + RtW + HW + LtHW + RtHW )/27m;
+
+                    }
+                case SkewHW.Skew45:
+                    {
+                        decimal Apron = ((2m * (SD630_Y + 1m+4m/12m) + SD630_Z) / 2m) * SD630_E * 9m/12m; // Apron
+                        decimal ApronCutOffWall = (SD630_Z + 2m * 9m/12m) * 9m/12m * (4m - 9m/12m); // Apron Cutoff Wall
+                        decimal LtW = SD630_E * 9m/12m * 9m/12m; // LtWing
+                        decimal RtW = (decimal)Math.Sqrt(Math.Pow((double)SD630_F, (double)2) + Math.Pow((double)SD630_E, (double)2)) * 9m/12m * 9m/12m; // Rt Wing
+                        decimal HW = 2m * (SD630_Y + 1m+4m/12m) * 1m * (9m + 6m)/12m; // HW
+                        decimal LtHW = 9m/12m * 1m * (9m + 6m)/12m; // LtHW
+                        decimal RtHW = ((2m * (decimal)(9d/Math.Sin(Math.PI * 25d/180d)) - 1m * (decimal)(12d/Math.Tan(Math.PI * 25d/180d)))/(2m * 12m)) * 1m * (9m + 6m)/12m; // RtHW
+
+                        return
+                            (Apron + ApronCutOffWall + LtW + RtW + HW + LtHW + RtHW)/27m;
+                    }
+                default:
+                    return 0;
+            }
         }
         public  override decimal PourWall()
         {
@@ -64,6 +100,11 @@ namespace SmallStructuresTakeOffs.Models
                 return
                    (HW - PipeDia + LtHW + RtHW + LtW + RtW + LtWone + RtWone)/27;
                 //(SD630_D * SD630_L - (decimal)Math.PI * (decimal)Math.Pow((double)SD630_I_D, (double)2) / 4) * (8M / 12M) / 27M;
+        }
+        public override decimal PourTotal()
+        {
+            return
+                PourBase() + PourWall();
         }
 
         public override decimal FormBase()
@@ -109,7 +150,7 @@ namespace SmallStructuresTakeOffs.Models
                         SD630_Y = 2m+(7m/8m)/12m,
                         SD630_Z = 14m+5.25m/12m,
                         ConcrCY = 6.6m,
-                        ReinfLB = 450m,
+                        ReinfLB = 450m
                     },
                     new SD630_4Of5_Headwall { 
                         ThisHeadwallId = 2, 
@@ -416,7 +457,7 @@ namespace SmallStructuresTakeOffs.Models
                 return headwalls;
             }
         }
-        public SD630_4Of5_Headwall GetTheHW()
+        public override SD630_4Of5_Headwall GetTheHW()
         {
             var result =
                (from c in D630HWs
@@ -491,5 +532,6 @@ namespace SmallStructuresTakeOffs.Models
         {
             return ReinfLB;
         }
+
     }
 }

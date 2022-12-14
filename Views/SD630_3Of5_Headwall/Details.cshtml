@@ -7,58 +7,55 @@
 @*<h4>@Model.GetType().Name</h4>
 *@
 <h4>Project: @ViewBag.ProjectName</h4>
-
-@*${"The HW Code is: "@Model.HWcode}
-*@
-
-@{
-    Console.WriteLine($"The HW Code is: {@Model.HWcode}");
-}
-
 <p class="font-weight-bold"> @Model.HWcode : @Model.HWDescription</p>
 
+<hr />
 <dl class="row">
-    <dt class="m-1" style="display:inline">HW Code</dt>
-    <dd class="m-1" style="display:inline">@Model.HWcode</dd>
-    <dt class="m-1" style="display:inline">Pour Base (cy)</dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().PourBase().ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">Pour Wall (cy)</dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().PourWall().ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">Eng Concrete (cy)</dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().ConcrCY</dd>
+    <dt class="col text-right" style="display:inline">Pour Base (cy):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().PourBase().ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">Pour Wall (cy):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().PourWall().ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">Pour Total (cy):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().PourTotal().ToString("0.00")</dd>
+</dl>
+<dl class="row">
+    <dt class="col text-right" style="display:inline">Form Fabrication (sf):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().FormFab().ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">Form Base (sf):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().FormBase().ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">Form Wall (sf):</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().FormWall().ToString("0.00")</dd>
+</dl>
+<hr />
+
+<dl class="row">
+    <dt class="col text-right" style="display:inline">ID:</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_I_D.ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">E: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_E.ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">F: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_F.ToString("0.00")</dd>
+    @*<dt class="col text-right" style="display:inline">G: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_G.ToString("0.00")</dd>*@
+    <dt class="col text-right" style="display:inline">H:</dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_H.ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">X: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_X.ToString("0.00")</dd>
+    @*<dt class="col text-right" style="display:inline">Z: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().SD630_Z.ToString("0.00")</dd>*@
 
 </dl>
 <dl class="row">
-    <dt class="m-1" style="display:inline">Form Fabrication</dt>
-    <dd class="m-1" style="display:inline">@ViewBag.FormFab</dd>
-    <dt class="m-1" style="display:inline">Form Base</dt>
-    <dd class="m-1" style="display:inline">@ViewBag.FormBase</dd>
-    <dt class="m-1" style="display:inline">Form Wall</dt>
-    <dd class="m-1" style="display:inline">@ViewBag.FormWall</dd>
-</dl>
-
-<dl class="row">
-    <dt class="m-1" style="display:inline">ID:</dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_I_D.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">H:</dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_H.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">E: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_E.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">F: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_F.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">X: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().SD630_X.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">Pipe Runs: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().PipeNo.ToString()</dd>
-    <dt class="m-1" style="display:inline">Skew: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().Skews.ToString()</dd>
-    <dt class="m-1" style="display:inline">Slope: </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().Slopes.ToString()</dd>
-    <dt class="m-1" style="display:inline">Conc (cy): </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().ConcrCY.ToString("0.00")</dd>
-    <dt class="m-1" style="display:inline">Reinf (lb) </dt>
-    <dd class="m-1" style="display:inline">@Model.GetTheHW().ReinfLB.ToString("0.00")</dd>
-
+    <dt class="col text-right" style="display:inline">Pipe Runs: </dt>
+    <dd class="col" style="display:inline">@Model.PipeNo.ToString()</dd>
+    <dt class="col text-right" style="display:inline">Skew: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().Skews.ToString()</dd>
+    <dt class="col text-right" style="display:inline">Slope: </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().Slopes.ToString()</dd>
+    <dt class="col text-right" style="display:inline">Conc (cy): </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().ConcrCY.ToString("0.00")</dd>
+    <dt class="col text-right" style="display:inline">Reinf (lb) </dt>
+    <dd class="col" style="display:inline">@Model.GetTheHW().ReinfLB.ToString("0.00")</dd>
 </dl>
 
 <table class="table">

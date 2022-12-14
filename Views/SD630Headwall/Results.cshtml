@@ -102,14 +102,13 @@ else
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormFab).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormBase).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMFormWall).ToString("0.00")</td>
-
-
             </tr>
         </tfoot>
     </table>
-
-
-
 }
 
+<div>
+    <hr />
+    <a asp-action="Index" asp-route-id="@ViewBag.ProjectId">Back to List</a>
+</div>
 

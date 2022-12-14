@@ -260,14 +260,12 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMHWStrId = l.HeadwallId,
                     ResVMId = l.ThisHeadwallId,
                     ResVMPourBottomCY = l.GetTheHW().PourBase(),
-
-                    //ResVMPourBottomCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).PourBase(),
-                    ResVMPourWallCY = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).PourWall(),
-                    ResVMRebNo4Req = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Req,
-                    ResVMRebNo4Purch = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Purch,
-                    ResVMFormFab =SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormFab(),
-                    ResVMFormBase = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormBase(),
-                    ResVMFormWall = SD630_4Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormWall()
+                    ResVMPourWallCY = l.GetTheHW().PourWall(),
+                    ResVMRebNo4Req = l.GetTheHW().RebNo4Req,
+                    ResVMRebNo4Purch = l.GetTheHW().RebNo4Purch,
+                    ResVMFormFab = l.GetTheHW().FormFab(),
+                    ResVMFormBase = l.GetTheHW().FormBase(),
+                    ResVMFormWall = l.GetTheHW().FormWall()
                 };
                 results.Add(thisStr);
             }
