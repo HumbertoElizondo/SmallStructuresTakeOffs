@@ -7,6 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmallStructuresTakeOffs.Models;
 using SmallStructuresTakeOffs.Enums;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Routing;
 
 namespace SmallStructuresTakeOffs.Controllers
 {
@@ -104,16 +110,72 @@ namespace SmallStructuresTakeOffs.Controllers
         // POST: SD630Headwall/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HandleError]
+        //[System.Web.Mvc.HandleError(ExceptionType = typeof(NullReferenceException), View = "Error")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HWcode,HWDescription,HWProjId,PipeDiameters,Slopes,Skews,FlowSides,PipeNo")] SD630_3Of5_Headwall sD630_3Of5_Headwall)
         {
             if (ModelState.IsValid)
             {
-                sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
-                _context.Add(sD630_3Of5_Headwall);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new {id = sD630_3Of5_Headwall.HWProjId});
+                ViewBag.ProjectId = sD630_3Of5_Headwall.HWProjId;
+
+                try
+                {
+                    sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
+                    _context.Add(sD630_3Of5_Headwall);
+                    await _context.SaveChangesAsync();
+                }
+                catch (System.NullReferenceException ex)
+                {
+                    ViewBag.Error = ex.Source.ToString();
+                    return View("Error1", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                }
+
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+
+                    return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                }
+                finally { }
+
+                return RedirectToAction(nameof(Index), new { id = sD630_3Of5_Headwall.HWProjId });
+
+
+
+                //sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
+                //_context.Add(sD630_3Of5_Headwall);
+                //await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index), new { id = sD630_3Of5_Headwall.HWProjId });
+
+                //try
+                //{
+                //    sD630_3Of5_Headwall.ThisHeadwallId = sD630_3Of5_Headwall.GetTheHW().ThisHeadwallId;
+                //}
+                //catch (Exception ex)
+                //{
+                //    //RedirectToAction("Error");
+                //    //ErrorViewModel ErrVM = new();
+                //    //ErrVM.RequestId = ex.Message;
+                //    return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                //}
+                //finally { }
+
+                //_context.Add(sD630_3Of5_Headwall);
+                //await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index), new { id = sD630_3Of5_Headwall.HWProjId });
+
+                //try
+                //{ 
+                //}
+                //catch (NullReferenceException nrex) {
+                //    Console.WriteLine("Parameter Entered arent part of the Headwall List in File");
+                //}
+                //finally
+                //{
+                //    Console.WriteLine("Finally Block Reached");
+                //}
             }
             return View(sD630_3Of5_Headwall);
         }
@@ -243,7 +305,7 @@ namespace SmallStructuresTakeOffs.Controllers
                 ResultsVM thisStr = new()
                 {
                     ResVMHWcode = l.HWcode,
-                    ResVMHWDescription = l.HWDescription,
+                    ResVMHWDescription = l.GetTheHW().HWDescription,
                     ResVMHWStrId = l.HeadwallId,
                     ResVMId = l.ThisHeadwallId,
                     ResVMPourBottomCY = l.GetTheHW().PourBase(),
@@ -252,12 +314,31 @@ namespace SmallStructuresTakeOffs.Controllers
                     ResVMRebNo4Purch = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).RebNo4Purch,
                     ResVMFormFab =SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormFab(),
                     ResVMFormBase = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormBase(),
-                    ResVMFormWall = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormWall()
+                    ResVMFormWall = SD630_3Of5_Headwall.D630HWs.FirstOrDefault(f => f.ThisHeadwallId == l.ThisHeadwallId).FormWall(),
+                    PipeRun = l.GetTheHW().PipeNo.ToString()
                 };
                 results.Add(thisStr);
             }
             return View(results.ToList());
         }
         #endregion
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    string action = filterContext.RouteData.Values["action"].ToString();
+        //    Exception e = filterContext.Exception;
+        //    filterContext.ExceptionHandled = true;
+        //    filterContext.Result = new ViewResult()
+        //    {
+        //        ViewName = "Error"
+        //    };
+        //}
     }
 }

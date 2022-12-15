@@ -98,6 +98,7 @@ namespace SmallStructuresTakeOffs.Models
 
         [Display(Name = "Reb #4 (Trn-ea)")]
         public int RebNo4TrnEa { get; set; }
+        public string PipeRun { get; set; }
 
         public IList<CBreinforcement> CBreinforcementsVM { get; set; }
 

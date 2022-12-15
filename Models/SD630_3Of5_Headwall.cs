@@ -107,30 +107,30 @@ namespace SmallStructuresTakeOffs.Models
                 List<SD630_3Of5_Headwall> headwalls = new()
                 {
                     #region 0d Skew, Inlet End, 2:1 Slope
-                    //new SD630_3Of5_Headwall { 
-                    //    ThisHeadwallId = 1,
-                    //    FlowSides = FlowSide.Inlet,
-                    //    HWDescription = "Single 48\" Pipe Wingwalls On 2:1 Slope, 15d Skew",
-                    //    Slopes= Slope.Slope2_1,
-                    //    Skews=SkewHW.Skew15,
-                    //    PipeDiameters = PipeDiameter.ID_48,
-                    //    SD630_I_D = 48m/12m, 
-                    //    PipeNo = PipeSet.Single, 
-                    //    SD630_A = 6M / 12M, 
-                    //    SD630_B = 10M / 12M, 
-                    //    SD630_C = 24M / 12M, 
-                    //    SD630_D = 38M / 12M, 
-                    //    SD630_E = 8m+2m/12m, 
-                    //    SD630_F = 6m+10.25m/12m, 
-                    //    SD630_G = 1m+5.25m/12m,
-                    //    SD630_H = 6m + 2m/12m,
-                    //    SD630_L = 114M / 12M,
-                    //    SD630_X = 1m+7m/12m,
-                    //    SD630_Y = 2m+(7m/8m)/12m,
-                    //    SD630_Z = 14m+5.25m/12m,
-                    //    ConcrCY = 6.6m,
-                    //    ReinfLB = 450m,
-                    //},
+                    new SD630_3Of5_Headwall {
+                        ThisHeadwallId = 1,
+                        FlowSides = FlowSide.Inlet,
+                        HWDescription = "48\" Pipe Inlet Wingwalls On 2:1 Slope, No Skew",
+                        Slopes= Slope.Slope2_1,
+                        Skews=SkewHW.Skew0,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48m/12m,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 6M / 12M,
+                        SD630_B = 10M / 12M,
+                        SD630_C = 24M / 12M,
+                        SD630_D = 48M / 12M,
+                        SD630_E = 5m+4m/12m,
+                        SD630_F = 0m+0m/12m,
+                        SD630_G = 1m+5.25m/12m,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = 114M / 12M,
+                        SD630_X = 3m+0m/12m,
+                        SD630_Y = 2m+(7m/8m)/12m,
+                        SD630_Z = 14m+5.25m/12m,
+                        ConcrCY = 6.6m,
+                        ReinfLB = 395m
+                    },
                     //new SD630_3Of5_Headwall { 
                     //    ThisHeadwallId = 2, 
                     //    HWDescription = "Single 54\" On 2:1 Slope, 15d Skew",
@@ -251,7 +251,7 @@ namespace SmallStructuresTakeOffs.Models
                     #region 0d Skew, Inlet End, 4:1 Slope
                     new SD630_3Of5_Headwall {
                         ThisHeadwallId = 101,
-                        HWDescription = "Single 48\" Pipe On 4:1 Slope, No Skew",
+                        HWDescription = "48\" Pipe Inlet Wingwalls On 4:1 Slope, No Skew",
                         FlowSides = FlowSide.Inlet,
                         Slopes= Slope.Slope4_1,
                         Skews=SkewHW.Skew0,
@@ -301,7 +301,7 @@ namespace SmallStructuresTakeOffs.Models
                     #region 0d Skew, Inlet End, 6:1 Slope 
                     new SD630_3Of5_Headwall {
                         ThisHeadwallId = 201,
-                        HWDescription = "Single 48\" Pipe On 6:1 Slope, No Skew",
+                        HWDescription =  "48\" Pipe Inlet Wingwalls On 6:1 Slope, No Skew",
                         FlowSides = FlowSide.Inlet,
                         Slopes= Slope.Slope6_1,
                         Skews=SkewHW.Skew0,
@@ -326,12 +326,36 @@ namespace SmallStructuresTakeOffs.Models
 
                     #endregion
                     #region 0d Skew, Outlet End, 2:1 Slope
+                    new SD630_3Of5_Headwall {
+                        ThisHeadwallId = 301,
+                        FlowSides = FlowSide.Outlet,
+                        HWDescription =  "48\" Pipe Outlet Wingwalls On 2:1 Slope, No Skew",
+                        Slopes= Slope.Slope2_1,
+                        Skews=SkewHW.Skew0,
+                        PipeDiameters = PipeDiameter.ID_48,
+                        SD630_I_D = 48m/12m,
+                        PipeNo = PipeSet.Single,
+                        SD630_A = 6M / 12M,
+                        SD630_B = 10M / 12M,
+                        SD630_C = 24M / 12M,
+                        SD630_D = 48M / 12M,
+                        SD630_E = 8m+8m/12m,
+                        SD630_F = 3m+2m/12m,
+                        SD630_G = 1m+5.25m/12m,
+                        SD630_H = 6m + 2m/12m,
+                        SD630_L = 114M / 12M,
+                        SD630_X = 1m+4m/12m,
+                        SD630_Y = 2m+(7m/8m)/12m,
+                        SD630_Z = 14m+5.25m/12m,
+                        ConcrCY = 7m,
+                        ReinfLB = 430m
+                    },
 
                     #endregion
                     #region 0d Skew, Outlet End, 4:1 Slope
                     new SD630_3Of5_Headwall {
                         ThisHeadwallId = 401,
-                        HWDescription = "Outlet End 48\" Pipe On 4:1 Slope, No Skew",
+                        HWDescription = "48\" Pipe Outlet Wingwalls On 4:1 Slope, No Skew",
                         FlowSides = FlowSide.Outlet,
                         Slopes= Slope.Slope4_1,
                         Skews=SkewHW.Skew0,
@@ -358,7 +382,7 @@ namespace SmallStructuresTakeOffs.Models
                     #region 0d Skew, Outlet End, 6:1 Slope
                     new SD630_3Of5_Headwall {
                         ThisHeadwallId = 501,
-                        HWDescription = "Outlet End 48\" Pipe On 6:1 Slope, No Skew",
+                        HWDescription = "48\" Pipe Outlet Wingwalls On 6:1 Slope, No Skew",
                         FlowSides = FlowSide.Outlet,
                         Slopes= Slope.Slope6_1,
                         Skews=SkewHW.Skew0,
@@ -388,16 +412,42 @@ namespace SmallStructuresTakeOffs.Models
         }
         public override SD630_3Of5_Headwall GetTheHW()
         {
-            var result =
-               (from c in D630HWs
-                where c.Slopes == this.Slopes &&
-                    c.Skews == this.Skews &&
-                    c.PipeDiameters == this.PipeDiameters &&
-                    c.FlowSides == this.FlowSides 
+            //var result =
+            //   (from c in D630HWs
+            //    where c.Slopes == this.Slopes &&
+            //        c.Skews == this.Skews &&
+            //        c.PipeDiameters == this.PipeDiameters &&
+            //        c.FlowSides == this.FlowSides
+            //    c.PipeNo == this.PipeNo
+            //    select c).First();
+            //result.PipeNo = this.PipeNo;
+            //return result;
+
+            try
+            {
+                var result =
+                   (from c in D630HWs
+                    where c.Slopes == this.Slopes &&
+                        c.Skews == this.Skews &&
+                        c.PipeDiameters == this.PipeDiameters &&
+                        c.FlowSides == this.FlowSides
                     //c.PipeNo == this.PipeNo
-                select c).First();
-            result.PipeNo = this.PipeNo;
-            return result;
+                    select c).First();
+                result.PipeNo = this.PipeNo;
+                return result;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Message: {ex.Message}");
+                Console.WriteLine($"Source: {ex.Source}");
+                Console.WriteLine($"HelpLink: {ex.HelpLink}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+            }
+            finally
+            {
+                
+            }
+            return null;
         }
         public override ICollection<HWreinforcement> HWreinforcements
         {

@@ -4,26 +4,16 @@
 @{
     ViewData["Title"] = "Create";
 }
-
 <h1>Create</h1>
 
 <h4>SD630_3Of5_Headwall</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="HWProjId" type="hidden" value="@ViewBag.ProjectId" />
-
-                @*<label asp-for="HWProjId" class="control-label"></label>*@
-                @*<select asp-for="HWProjId" class ="form-control" asp-items="ViewBag.HWProjId"></select>*@
-            </div>
-            <div class="form-group">
-                <input asp-for="Skews" type="hidden" value=@Skew.Skew0 />
-                @*<label asp-for="Skews" class="control-label"></label>*@
-                @*<select asp-for="Skews" class="form-control"></select>*@
-                @*<span asp-validation-for="Skews" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="HWcode" class="control-label"></label>
@@ -40,12 +30,16 @@
                 <input asp-for="HWDescription" class="form-control" />
                 <span asp-validation-for="HWDescription" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input asp-for="Skews" type="hidden" value=@Skew.Skew0 />
+            </div>
             <div class="form-group">
                 <label asp-for="Slopes" class="control-label"></label>
                 <select asp-for="Slopes" class="form-control" asp-items="Html.GetEnumSelectList<Slope>()"></select>
                 <span asp-validation-for="Slopes" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="FlowSides" class="control-label"></label>
                 <select asp-for="FlowSides" class="form-control" asp-items="Html.GetEnumSelectList<FlowSide>()"></select>
@@ -56,6 +50,27 @@
                 <select asp-for="PipeNo" class="form-control" asp-items="Html.GetEnumSelectList<PipeSet>()"></select>
                 <span asp-validation-for="PipeNo" class="text-danger"></span>
             </div>
+        </div>
+        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" asp-route-id="@ViewBag.ProjectId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
 
             @*<div class="form-group">
                 <label asp-for="SD630_I_D" class="control-label"></label>
@@ -162,17 +177,3 @@
                 <input asp-for="HWRebPurch" class="form-control" />
                 <span asp-validation-for="HWRebPurch" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index" asp-route-id="@ViewBag.ProjectId">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

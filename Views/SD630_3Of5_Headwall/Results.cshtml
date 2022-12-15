@@ -27,15 +27,15 @@ else
                     @Html.DisplayNameFor(model => model.ResVMHWDescription)
                 </th>
                 <th class="text-right">
+                    @Html.DisplayNameFor(model => model.PipeRun)
+                </th>
+                <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMPourBottomCY)
                 </th>
                 <th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMPourWallCY)
                 </th>
-                @*<th class="text-right">
-                    @Html.DisplayNameFor(model => model.ResVMRebNo4Req)
-                </th>
-                <th class="text-right">
+                @*@<th class="text-right">
                     @Html.DisplayNameFor(model => model.ResVMRebNo4Purch)
                 </th>*@
                 <th class="text-right">
@@ -63,21 +63,22 @@ else
                         @Html.DisplayFor(modelItem => item.ResVMHWcode)
                     </td>
                     @*<td>
-            @Html.DisplayFor(modelItem => item.ResVMHWStrId)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.ResVMHWStrId)
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.ResVMHWDescription)
                     </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.PipeRun)
+                    </td>
+
                     <td class="text-right">
                         @Html.DisplayFor(modelItem => item.ResVMPourBottomCY)
                     </td>
                     <td class="text-right">
                         @Html.DisplayFor(modelItem => item.ResVMPourWallCY)
                     </td>
-                    @*<td class="text-right">
-                        @Html.DisplayFor(modelItem => item.ResVMRebNo4Req)
-                    </td>
-                    <td class="text-right">
+                    @*@<td class="text-right">
                         @Html.DisplayFor(modelItem => item.ResVMRebNo4Purch)
                     </td>*@
                     <td class="text-right">
@@ -95,7 +96,7 @@ else
         <tfoot>
             <tr>
                 <td>Total</td>
-                <td class="text-right" colspan="2">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
+                <td class="text-right" colspan="3">@Model.Sum(i => i.ResVMPourBottomCY).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMPourWallCY).ToString("0.00")</td>
                 @*<td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebNo4Req).ToString("0.00")</td>
                 <td class="text-right" colspan="1">@Model.Sum(i => i.ResVMRebNo4Purch).ToString("0.00")</td>*@
